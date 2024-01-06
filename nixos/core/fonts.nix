@@ -13,6 +13,7 @@
       noto-fonts-cjk
       noto-fonts-emoji
       liberation_ttf
+      dejavu_fonts
       ubuntu_font_family
       (nerdfonts.override {fonts = ["FiraCode" "SourceCodePro" "JetBrainsMono"];})
     ];
