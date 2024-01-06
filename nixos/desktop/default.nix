@@ -9,7 +9,7 @@ in {
     ./plymouth.nix
     ./flatpak.nix
     ./gaming.nix
-    ./plasma.nix
+    ./gnome.nix
   ];
 
   # Setup a graphical environment

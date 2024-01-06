@@ -27,7 +27,10 @@
     config = {
       allowUnfree = true;
     };
-    overlays = [outputs.overlays.nixpkgs-stable];
+    overlays = [
+      outputs.overlays.nixpkgs-stable
+      outputs.overlays.gnome-triple-buffering
+    ];
   };
 
   # Disable unneeded docs

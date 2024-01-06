@@ -30,7 +30,7 @@
         };
       };
       desktop = {
-        plasma = true;
+        gnome = true;
         gaming = true;
         flatpak = true;
         plymouth = true;

@@ -27,9 +27,9 @@ in {
     };
 
     desktop = {
+      gnome = mkEnableOption "Use GNOME as the Desktop Environment";
       gaming = mkEnableOption "Enable if the host is used for gaming";
       flatpak = mkEnableOption "Enable flatpak and install Flathub";
-      plasma = mkEnableOption "Use KDE Plasma as the Desktop Environment";
       plymouth = mkEnableOption "Setup silent boot and enable Plymouth";
     };
 
@@ -53,8 +53,8 @@ in {
         message = "A server can't be a gaming machine!";
       }
       {
-        assertion = with config.local.sys; !(desktop.plasma && type.server);
-        message = "KDE Plasma cannot be installed on a headless server!";
+        assertion = with config.local.sys; !(desktop.gnome && type.server);
+        message = "Can't setup up a DE/WM on a headless server!";
       }
     ];
   };
