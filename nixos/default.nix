@@ -6,6 +6,6 @@
     ./virt
     ./services
     ./desktop
-    ./software
+    ./packages.nix
   ];
 }
