@@ -9,6 +9,7 @@
     enableIPv6 = false;
 
     networkmanager.enable = lib.mkDefault true;
+    systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
 
     # Set up hostnames for devices in the LAN
     extraHosts = ''
