@@ -1,0 +1,9 @@
+**/config/nvim/spell
+**/config/nvim/scratch
+**/config/nvim/lazy-lock.json
+**/.zcompdump
+**/.zcompdump.*
+.direnv
+config/tmux/plugins
+result
+vm.qcow2
