@@ -13,7 +13,7 @@ in {
   ];
 
   # Setup a graphical environment
-  config = lib.mkIf opts.types.workstation {
+  config = lib.mkIf opts.type.workstation {
     services.xserver = {
       enable = true;
       libinput.enable = true;
