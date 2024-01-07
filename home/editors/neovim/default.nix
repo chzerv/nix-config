@@ -46,6 +46,7 @@ in {
         ## Bash
         nodePackages_latest.bash-language-server ## LSP
         shellcheck ## Static analysis
+        shfmt
 
         ## Lua
         lua-language-server # LSP

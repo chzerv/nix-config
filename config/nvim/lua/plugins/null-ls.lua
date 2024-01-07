@@ -38,6 +38,7 @@ function M.setup()
             formatting.goimports,
             formatting.terraform_fmt,
             formatting.alejandra,
+            formatting.shfmt,
             code_actions.shellcheck,
         },
         on_attach = function(client, bufnr)
