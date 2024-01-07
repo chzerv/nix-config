@@ -53,17 +53,14 @@
       };
     };
 
+    # Custom packages
     packages = myLib.forAllSystems (pkgs: import ./pkgs {inherit pkgs;});
 
-    # Setup a devshell containing all the dependencies needed for
-    # deploying my dotfiles on a fresh system
-    devShells = myLib.forAllSystems (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-        import ./shell.nix {inherit pkgs;}
-    );
-
+    # Package overrides
     overlays = import ./overlays {inherit inputs;};
+
+    devShells = myLib.forAllSystems (
+      pkgs: import ./shell.nix {inherit pkgs;}
+    );
   };
 }
