@@ -43,23 +43,23 @@
       ];
   in {
     alacritty = prev.alacritty.overrideAttrs (old: rec {
-      version = "0.13.0";
-      pname = "alacritty-v0.13.0";
+      version = "0.13.1";
+      pname = "alacritty-v0.13.1";
 
       src = prev.fetchFromGitHub {
         owner = "alacritty";
         repo = "alacritty";
-        rev = "78fa4d6febe25962be1068562ecaa0465bac445c";
-        hash = "sha256-5jStrLwuuFWlKHIPS5QJ4DUQj9kXLqlpRxeVDXK/uzU=";
+        rev = "57da0bf903b0d809b2f76aac2e0080bc80e11e83";
+        hash = "sha256-6KM3OAZNMHM5W3kWNuYizMk5DY1uJ5WqI0NMmjKA52I=";
       };
 
       # We can't directly override `cargoHash`. Instead, we have to do it through `cargoDeps`
       # We also provide a new name for the overlay
       cargoDeps = old.cargoDeps.overrideAttrs (_: {
-        name = "alacritty-0.13.0-vendor.tar.gz";
+        name = "alacritty-0.13.1-vendor.tar.gz";
         inherit src;
 
-        outputHash = "sha256-IdkDlxT7pvV+LYbEBsjNvDAWg9TDcmneLF1yrIU3BLU=";
+        outputHash = "sha256-N1Pv+lRa90BAtKF1ozW1choixinfqfRfV+AQi1vlvcQ=";
       });
 
       nativeBuildInputs = old.nativeBuildInputs ++ [final.scdoc];
