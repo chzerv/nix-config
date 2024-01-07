@@ -8,15 +8,12 @@
 in {
   home.packages = with pkgs;
     [
-      desktop-file-utils
       unzip
       ripgrep
       vgrep
       fd
       jq
       just
-      bitwarden-cli
-      xsel
       dogdns
       httpie
       duf
@@ -26,20 +23,27 @@ in {
       glow
       rsync
       git
-      translate-shell
       chafa
       python3
-      ffmpeg
     ]
     ++ lib.optionals opts.type.workstation [
       firefox
       chromium
       bitwarden
+      bitwarden-cli
       keepassxc
       wl-clipboard
       webcord
       libreoffice-fresh
       thunderbird
+      treefmt
+      alejandra
+      shfmt
+      shellcheck
+      stylua
+      desktop-file-utils
+      translate-shell
+      ffmpeg
     ];
 
   programs.yt-dlp = {
