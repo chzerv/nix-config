@@ -1,5 +1,5 @@
 {config, ...}: let
-  configDir = "${config.home.homeDirectory}/.dotfiles/config";
+  configDir = "${config.home.homeDirectory}/nix-config/config";
 in {
   programs.navi = {
     enable = true;

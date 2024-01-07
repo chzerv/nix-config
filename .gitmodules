@@ -1,0 +1,3 @@
+[submodule "config/navi-cheats"]
+	path = config/navi-cheats
+	url = git@github.com:chzerv/navi-cheats.git
