@@ -44,6 +44,7 @@ in {
       desktop-file-utils
       translate-shell
       ffmpeg
+      nurl
     ];
 
   programs.yt-dlp = {
