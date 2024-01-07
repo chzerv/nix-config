@@ -3,7 +3,6 @@ local M = {
 }
 
 function M.setup()
-
     local handlers = require("plugins.lsp.handlers")
     local rust_tools = require("rust-tools")
 

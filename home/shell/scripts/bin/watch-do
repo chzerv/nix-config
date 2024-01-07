@@ -32,9 +32,10 @@ else
     args="--include ${filename} ${directory}"
 fi
 
-while inotifywait --recursive --event close_write ${args}; do
+while inotifywait --recursive --event close_write "${args}"; do
     echo -e ""
     echo -e "${GREEN}Starting at: $(date '+%y-%m-%m %H:%M:%S')${NC}"
+    # shellcheck disable=2145
     echo -e "${YELLOW}Running command: ${@}${NC}"
     "${@}"
     echo -e "${GREEN}Done at : $(date '+%y-%m-%m %H:%M:%S')${NC}"

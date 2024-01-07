@@ -4,7 +4,8 @@ local sn = ls.snippet_node
 local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
-local c = ls.choice_node local d = ls.dynamic_node
+local c = ls.choice_node
+local d = ls.dynamic_node
 local r = ls.restore_node
 local l = require("luasnip.extras").lambda
 local rep = require("luasnip.extras").rep
@@ -19,42 +20,54 @@ local conds = require("luasnip.extras.expand_conditions")
 
 -- Simple placeholders
 ls.add_snippets("python", {
+    s("#!", { t("#!/usr/bin/env python") }),
+    s("shebang", { t("#!/usr/bin/env python") }),
     s(
-        "#!", { t"#!/usr/bin/env python" }
-    ),
-    s(
-        "shebang", { t"#!/usr/bin/env python" }
-    ),
-    s(
-        "if", fmt([[
+        "if",
+        fmt(
+            [[
         if {}:
             {}
 
         {}
-        ]], { i(1, "<cond>"), i(2, "<body>"), i(3) })
+        ]],
+            { i(1, "<cond>"), i(2, "<body>"), i(3) }
+        )
     ),
     s(
-        "elif", fmt([[
+        "elif",
+        fmt(
+            [[
         elif {}:
             {}
 
         {}
-        ]], { i(1, "<cond>"), i(2, "<body>"), i(3) })
+        ]],
+            { i(1, "<cond>"), i(2, "<body>"), i(3) }
+        )
     ),
     s(
-        "else", fmt([[
+        "else",
+        fmt(
+            [[
         else:
             {}
-        ]], {i(1, "<body>")})
+        ]],
+            { i(1, "<body>") }
+        )
     ),
     s(
-        "with", fmt([[
+        "with",
+        fmt(
+            [[
         with {} as {}:
             {}
-        ]], {
-            i(1, "<expr>"),
-            i(2, "<var>"),
-            i(3, "<body>")
-        })
+        ]],
+            {
+                i(1, "<expr>"),
+                i(2, "<var>"),
+                i(3, "<body>"),
+            }
+        )
     ),
 })

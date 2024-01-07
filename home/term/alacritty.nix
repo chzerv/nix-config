@@ -1,7 +1,4 @@
-{
-  config,
-  ...
-}: let
+{config, ...}: let
   opts = config.local.hm;
   configDir = "${config.home.homeDirectory}/nix-config/config";
 in {

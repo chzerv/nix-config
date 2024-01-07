@@ -26,7 +26,8 @@ if ok then
                 add = function()
                     local cmd = require("plugins.nvim-surround").get_input("Command >")
                     return {
-                        { "\\" .. cmd .. "{" }, { "}" }
+                        { "\\" .. cmd .. "{" },
+                        { "}" },
                     }
                 end,
             },

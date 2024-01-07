@@ -4,4 +4,4 @@
 # Search with ripgrep and load the results into neovim's quickfix list
 #
 
-exec nvim -q <(rg --vimgrep $1)
+exec nvim -q <(rg --vimgrep "$1")

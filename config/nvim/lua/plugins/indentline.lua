@@ -7,7 +7,7 @@ return {
             char = { "│" },
         },
         scope = {
-            enabled = false
+            enabled = false,
         },
         exclude = {
             buftypes = {
@@ -15,7 +15,7 @@ return {
                 "nofile",
                 "quickfix",
             },
-            filetypes = { "help" }
-        }
+            filetypes = { "help" },
+        },
     },
 }
