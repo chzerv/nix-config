@@ -38,7 +38,12 @@ function M.setup()
             formatting.goimports,
             formatting.terraform_fmt,
             formatting.alejandra,
-            formatting.shfmt,
+            formatting.shfmt.with({
+                extra_args = {
+                    "--indent",
+                    "2",
+                },
+            }),
             code_actions.shellcheck,
         },
         on_attach = function(client, bufnr)
