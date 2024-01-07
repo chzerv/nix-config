@@ -27,10 +27,8 @@
     inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = inputs.nixpkgs.legacyPackages.${system};
 
-      extraSpecialArgs = let
-        configDir = ../config;
-      in {
-        inherit inputs outputs hostname username system configDir;
+      extraSpecialArgs = {
+        inherit inputs outputs hostname username system;
       };
 
       modules = [../hosts/${hostname}/home.nix];

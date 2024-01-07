@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+#
+# Search with ripgrep and load the results into neovim's quickfix list
+#
+
+exec nvim -q <(rg --vimgrep $1)

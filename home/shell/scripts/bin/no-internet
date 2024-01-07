@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Run the specified application under the "no-internet" group.
+
+sg no-internet "$@"

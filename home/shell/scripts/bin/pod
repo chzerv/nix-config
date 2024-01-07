@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Run a new podman container, with the CWD bound to it
+# If no command is specified, `bash` is executed
+# Usage:
+#   pod ubuntu
+#   pod ubuntu whoami
+
+set -eu
+
+CONTAINER=$1
+shift 1
+COMMAND=${*:-bash}
+
+# Disable SELinux separation to avoid relabeling files/directories that
+# should not be relabeled, e.g., the user's home directory.
+if command -v sestatus &> /dev/null; then
+    sestatus=$(sestatus | head -n 1 | awk '{ print $3 }')
+
+    if [[ "$sestatus" == "enabled" ]]; then
+        podman run -it --rm --security-opt label=disable -v "$PWD":/data -w /data "$CONTAINER" "$COMMAND"
+    fi
+else
+        podman run -it --rm -v "$PWD":/data -w /data "$CONTAINER" "$COMMAND"
+fi
+

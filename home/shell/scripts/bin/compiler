@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# This script is usually ran from inside vim, to compile or run the currently
+# open file, depending on the file type.
+#
+# tex files: Compiles to pdf, including bibliography if necessary
+# md files: Compiles to pdf via pandoc
+# rmd files: Compiles via R Markdown
+
+file=$(readlink -f "$1")
+dir=$(dirname "$file")
+base="{file%.*}"
+shebang=$(sed -n 1p "$file")
+
+cd "$dir" || exit
+
+textype() {
+    command="pdflatex"
+    ( sed 5q "$file" | grep -i -q 'xelatex' ) && command="xelatex"
+    $command --output-directory="$dir" "$base" &&
+        grep -i addbibresource "$file" >/dev/null &&
+        biber --input-directory "$dir" "$base" &&
+        $command --output-directory="$dir" "$base" &&
+        $command --output-directory="$dir" "$base"
+}
+
+shebangtest() {
+    case "$shebang" in
+        \#\!*) "$file" ;;
+        *) sent "$file" 2>/dev/null & ;;
+    esac
+}
+
+case "$file" in
+    *\.rmd) echo "require(rmarkdown); render('$file')" | R -q --vanilla ;;
+    # *\.rmd) pandoc "$file" --pdf-engine=xelatex --variable mainfont="Noto Sans" -o "$base".pdf ;;
+    *\.tex) textype "$file" ;;
+    *\.md) pandoc "$file" --pdf-engine=xelatex -o "$base".pdf ;;
+    *config.h) make ;;
+    *\.py) python "$file" ;;
+    *\.go) go run "$file" ;;
+    *) shebangtest ;;
+esac

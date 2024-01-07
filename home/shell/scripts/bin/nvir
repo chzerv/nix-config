@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Edit a remote file using scp and neovim
+# See :help scp
+#
+# Usage:
+# nvir host       -- Opens up Netrw in the remote host
+# nvir host path  -- Opens up the specified path on the remote
+# nvir host/path  -- Opens up the specified path on the remote
+# nvir            -- Opens up standard neovim
+#
+# Note that when specifying a directory as the path, you must add a slash ("/") at the end
+# e.g., nvir foo/bar/
+
+nvim=$(which nvim)
+
+if [ "$#" -eq 0 ]; then
+    "${nvim}"
+else
+    "${nvim}" scp://"$1"/"$2"
+fi

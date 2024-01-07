@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# Record the screen, a window or an area selection using wf-recorder.
+
+# Note: Only works on wl-roots based compositors (e.g., Sway)
+# Note: The script forces wf-recorder to use software encoding (libx264rgb)
+#   See: https://github.com/ammen99/wf-recorder/issues/147
+#
+#
+# Credits to https://github.com/swaywm/sway/blob/master/contrib/grimshot#L146
+# for the window selection one-liner
+
+set -eo pipefail
+
+help() {
+    echo "help: $(basename "$0") [screen|window|area] -a"
+    exit 1
+}
+
+if [ -z "$1" ]; then
+    help
+elif [ -n "$2" ] && [ "$2" != "-a" ]; then
+    echo "Error: unknown flag: $2"
+    help
+fi
+
+if [ "$1" == "area" ]; then
+    GEOMETRY=$(slurp)
+elif [ "$1" == "window" ]; then
+    GEOMETRY=$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)
+elif [ "$1" == "screen" ]; then
+    GEOMETRY=""
+else
+    echo "Error: unknown command: $1"
+    help
+fi
+
+SAVE_FILE="$HOME/Videos/recording-$(date '+%F-%T-%N-%Z').mp4"
+
+wf-recorder -f "$SAVE_FILE" -c h264_vaapi -d /dev/dri/renderD128 -t -F hwupload,scale_vaapi=format=nv12 "$@" -g "$GEOMETRY"
+# wf-recorder -f "$SAVE_FILE" "$@" -c libx264rgb -g "$GEOMETRY"

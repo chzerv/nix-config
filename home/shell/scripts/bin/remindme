@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+#
+# Create a systemd transient timer that shows a notification at a specified time
+#
+
+help() {
+    echo -e "--- Usage ---\n"
+    echo -e "remindme [OPTS]\n"
+    echo -e "opts:"
+    echo -e "\t -t,   the text to show in the notification"
+    echo -e "\t -w,   when to show the notification"
+    echo ""
+    echo -e "Example:"
+    echo -e "\t remindme -t \"Eggs\" -w 5m"
+    exit
+}
+
+while getopts t:w: flag
+do
+    case "${flag}" in
+        t) text=${OPTARG};;
+        w) when=${OPTARG};;
+        *) help;;
+    esac
+done
+
+if [ $# -lt 3 ]; then
+    help
+fi
+
+/usr/bin/systemd-run --user --on-active="$when" /usr/bin/notify-send -u critical "REMINDER:" "$text"

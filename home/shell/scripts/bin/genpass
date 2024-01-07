@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+#
+# pwgen wrapper to generate a password of the specified length
+# Usage: genpass <password length>
+#
+
+pwgen --capitalize --numerals --secure --symbols --ambiguous "$@" 1 1

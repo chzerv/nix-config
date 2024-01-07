@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+#
+# Slightly modified version of ThePrimeagean's tmux-sessionizer script:
+# https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/bin/tmux-sessionizer
+#
+# Select a project from ~/Projects using fzf and open it in a new tmux session.
+# The first pane is named "main" for integration with the tmux-harpoon script.
+#
+
+PROJECTS=~/Projects
+
+project=$(fd --type d --hidden '.git$' "$PROJECTS" --exclude "00_Learning" |
+    sed 's/\.git\///' |
+    sed "s;$PROJECTS/;;" |
+    fzf --cycle --prompt ">" --no-sort
+)
+
+if [[ -z $project ]]; then
+    exit 0
+fi
+
+project_name=$(basename "$project")
+
+tmux_running=$(pgrep tmux)
+
+# If tmux is not running, create a new session named after the project, change directory into the project's name and rename the pane to "main"
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux new-session -s "$project_name" -c "$PROJECTS/$project" -n "main"
+    exit 0
+fi
+
+if ! tmux has-session -t="$project_name" 2>/dev/null; then
+    tmux new-session -ds "$project_name" -c "$PROJECTS/$project" -n "main"
+fi
+
+tmux switch-client -t "$project_name"

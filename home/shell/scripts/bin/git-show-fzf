@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+#
+# `git show` wrapper that uses FZF to filter commit hashes
+#
+
+commits=$(git log --oneline | fzf --no-sort)
+
+# If the user cancels, exit instead of throwing errors
+if test -z "${commits}"
+then
+    exit
+fi
+
+selected_commit=$(echo "$commits" | cut -d ' ' -f1)
+
+git show "$selected_commit"

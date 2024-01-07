@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+#
+# An adaptation of the script provided by the `harpoon` neovim plugin that lets us
+# switch back to the window named "main".
+#
+# Credits: https://github.com/ThePrimeagen/harpoon/blob/master/scripts/tmux/switch-back-to-nvim
+#
+
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    echo "tmux needs to be running"
+    exit 1
+fi
+
+# Find the currently active session
+active_session=$(tmux display-message -p "#S")
+
+# Switch to the window named "main"
+tmux switch-client -t "$active_session:main"

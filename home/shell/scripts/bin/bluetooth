@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+sudo rmmod btusb && sudo modprobe btusb && sudo systemctl restart bluetooth.service

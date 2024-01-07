@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+#
+# Prompt for a running container and show its logs
+# Usage: podman-logs
+#
+
+podman_ps=$(podman ps --format 'table {{.ID}} {{.Names}}')
+running_containers=$(echo "$podman_ps" | tail -n +2)
+header=$(echo "$podman_ps" | head -n 1)
+
+container=$(echo "$running_containers" | fzf --header="$header" --reverse --height=40% | awk '{ print $1 }')
+
+podman logs --color "$container" | less -RS

@@ -1,0 +1,38 @@
+#!/usr/bin/env fish
+
+#
+# `git add` wrapper, leveraging `fzf`.
+#
+# If no files are passed in as arguments, `fzf` is used, giving us the ability to select multiple files while also showing a diff on the side.
+#
+# Credits to forgit: https://github.com/wfxr/forgit
+#
+
+if count $argv > /dev/null
+    git add "$argv" && echo "" && git status --short && return
+end
+
+set preview "
+    set file (echo {} | sed 's/^ *] //' | cut -d ' ' -f 2-)
+    if test (git status -s -- \$file | grep '^??')
+        git diff --color=always --no-index -- /dev/null \$file | delta | sed '2 s/added:/untracked:/'
+    else
+        git diff --color=always -- \$file | delta
+    end
+"
+
+set git_files (git status --short |
+    sed -e 's/^ M/[M]/' -e 's/??/[??]/' |
+    # Hide staged files
+    grep -vP '^A(?!M )' |
+    fzf --prompt="git add > " --height=80% -0 --multi --reverse --preview="$preview")
+
+if test -n "$git_files"
+    for file in $git_files
+        # Remove any leading whitespace and the [??, M, A, AM] characters
+        set extracted (echo $file | sed 's/^ * //' | cut -d ' ' -f 2-)
+        echo $extracted | xargs -I{} git add {}
+    end
+    echo ""
+    git status --short && return
+end

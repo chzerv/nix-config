@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+#
+# Monitor a directory and execute a command once a file in it is created or modified
+#
+# Usage:
+#   Monitor the whole directory:    watch-do . notify-send "Done!"
+#   Wait for "file.txt" to appear:  watch-do ./file.txt notify-send "file.txt created!"
+#
+# Credits to: https://news.ycombinator.com/item?id=32467957
+#
+
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+NC='\033[0m'
+
+to_watch=${1}
+shift
+
+if ! command -v inotifywait &>/dev/null; then
+    echo "inotifywait does not exist. Install it via 'dnf install inotify-tools'"
+fi
+
+# Files that `inotifywait` should ignore
+excluded_files="(\Cargo.lock|\.git|\.pyc$|__pycache__|\.pytest_cache|\.log$|^tags$)"
+
+if [ -f "$to_watch" ] || [ -d "$to_watch" ]; then
+    args="--excludei ${excluded_files} ${to_watch}"
+else
+    directory=$(dirname "$to_watch")
+    filename=$(basename "$to_watch")
+    args="--include ${filename} ${directory}"
+fi
+
+while inotifywait --recursive --event close_write ${args}; do
+    echo -e ""
+    echo -e "${GREEN}Starting at: $(date '+%y-%m-%m %H:%M:%S')${NC}"
+    echo -e "${YELLOW}Running command: ${@}${NC}"
+    "${@}"
+    echo -e "${GREEN}Done at : $(date '+%y-%m-%m %H:%M:%S')${NC}"
+    echo -e ""
+done
