@@ -62,5 +62,10 @@
     devShells = myLib.forAllSystems (
       pkgs: import ./shell.nix {inherit pkgs;}
     );
+
+    # For `nix fmt`
+    # I know https://github.com/numtide/treefmt-nix is a thing, but I kinda prefer configuring
+    # `treefmt` in TOML.
+    formatter = myLib.forAllSystems (pkgs: pkgs.treefmt);
   };
 }

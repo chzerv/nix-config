@@ -1,0 +1,25 @@
+# One CLI to format the code tree - https://github.com/numtide/treefmt
+
+[formatter.nix]
+command = "alejandra"
+options = []
+includes = [ "*.nix" ]
+excludes = []
+
+[formatter.shfmt]
+command = "shfmt"
+options = ["--indent", "2"]
+includes = [ "./home/shell/scripts/bin/*" ]
+excludes = ["git-add-fzf"] # This is a fish script
+
+[formatter.shellcheck]
+command = "shellcheck"
+options = []
+includes = [ "./home/shell/scripts/bin/*" ]
+excludes = ["git-add-fzf"] # This is a fish script
+
+[formatter.lua]
+command = "stylua"
+options = ["--quote-style", "ForceDouble", "--indent-width", "4", "--indent-type", "Spaces"]
+includes = [ "*.lua" ]
+excludes = []

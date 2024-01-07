@@ -10,6 +10,11 @@
       ssh-to-age
       age
       nil
+      treefmt
+      alejandra
+      shfmt
+      shellcheck
+      stylua
       # home-manager
       # vim
     ];
