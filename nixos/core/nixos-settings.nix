@@ -1,4 +1,4 @@
-{outputs, ...}: {
+{outputs, ...} @ args: {
   nix = {
     # Automatic garbage collection
     gc = {
@@ -27,10 +27,7 @@
     config = {
       allowUnfree = true;
     };
-    overlays = [
-      outputs.overlays.nixpkgs-stable
-      outputs.overlays.gnome-triple-buffering
-    ];
+    overlays = import ../../overlays args;
   };
 
   # Disable unneeded docs

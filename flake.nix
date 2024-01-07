@@ -56,9 +56,6 @@
     # Custom packages
     packages = myLib.forAllSystems (pkgs: import ./pkgs {inherit pkgs;});
 
-    # Package overrides
-    overlays = import ./overlays {inherit inputs;};
-
     devShells = myLib.forAllSystems (
       pkgs: import ./shell.nix {inherit pkgs;}
     );

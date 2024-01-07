@@ -5,7 +5,7 @@
   outputs,
   pkgs,
   ...
-}: {
+} @ args: {
   # Do these for every host!
   home = {
     username = "${username}";
@@ -21,11 +21,11 @@
   news.display = "silent";
 
   nixpkgs = {
-    overlays = [
-      inputs.neovim-nightly.overlay
-      outputs.overlays.nixpkgs-stable
-      outputs.overlays.alacritty
-    ];
+    overlays =
+      [
+        inputs.neovim-nightly.overlay
+      ]
+      ++ (import ../overlays args);
     config = {
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
