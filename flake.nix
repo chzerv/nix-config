@@ -19,6 +19,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Neovim nightly
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
@@ -30,6 +35,7 @@
     self,
     nixpkgs,
     home-manager,
+    disko,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -42,6 +48,9 @@
       jupiter = myLib.mkNixosConfig {
         hostname = "jupiter";
         username = "chzerv";
+        extraModules = [
+          disko.nixosModules.disko
+        ];
       };
     };
 

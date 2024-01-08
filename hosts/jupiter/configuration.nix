@@ -11,6 +11,7 @@
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+    ./disks.nix
     ./hardware-configuration.nix
     ../../nixos
     ../../nixos/hardware/gpu/amd.nix
@@ -47,7 +48,7 @@
     i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
     time.timeZone = lib.mkDefault "Europe/Athens";
 
-    system.stateVersion = "23.05";
+    system.stateVersion = "23.11";
 
     boot = {
       kernelPackages = pkgs.linuxPackages_latest;
@@ -119,12 +120,12 @@
     };
 
     systemd.tmpfiles.rules = [
-      "d /media 0755 ${username} users"
-      "d /media/Bravo 0755 ${username} users"
-      "d /media/Omega 0755 ${username} users"
+      "d /storage 0755 ${username} users"
+      "d /storage/Bravo 0755 ${username} users"
+      "d /storage/Omega 0755 ${username} users"
     ];
 
-    fileSystems."/media/Bravo" = {
+    fileSystems."/storage/Bravo" = {
       device = "/dev/disk/by-label/Bravo";
       fsType = "ext4";
       options = [
@@ -132,7 +133,7 @@
       ];
     };
 
-    fileSystems."/media/Omega" = {
+    fileSystems."/storage/Omega" = {
       device = "/dev/disk/by-label/Omega";
       fsType = "ntfs";
       options = [
