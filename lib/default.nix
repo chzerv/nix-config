@@ -8,14 +8,17 @@
     hostname,
     username ? "chzerv",
     system ? "x86_64-linux",
+    extraModules ? [],
   }:
     inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs outputs hostname username system;};
-      modules = [
-        ../hosts/${hostname}/configuration.nix
+      modules =
+        [
+          ../hosts/${hostname}/configuration.nix
 
-        inputs.sops-nix.nixosModules.sops
-      ];
+          inputs.sops-nix.nixosModules.sops
+        ]
+        ++ extraModules;
     };
 
   # home-manager.lib.homeManagerConfiguration wrapper that sets some custom variables and imports
