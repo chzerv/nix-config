@@ -6,7 +6,7 @@ import = [
 term = "xterm-256color"
 
 [window]
-opacity = 0.9
+opacity = 1
 blur = true
 decorations = "none"
 startup_mode = "Windowed"
