@@ -12,5 +12,6 @@
     ./zoxide.nix
     ./git.nix
     ./tldr.nix
+    ./pfetch.nix
   ];
 }
