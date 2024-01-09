@@ -34,7 +34,10 @@
         inherit inputs outputs hostname username system;
       };
 
-      modules = [../hosts/${hostname}/home.nix];
+      modules = [
+        ../hosts/${hostname}/home.nix
+        inputs.nix-index-database.hmModules.nix-index
+      ];
     };
 
   forAllSystems = function:
