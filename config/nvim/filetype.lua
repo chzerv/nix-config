@@ -3,6 +3,7 @@ vim.filetype.add({
         conf = "conf",
         tf = "terraform",
         tfvars = "terraform",
+        templ = "templ",
     },
     pattern = {
         [".*/.github/workflows/.*%.y(a*)ml"] = { "yaml", { priority = 10 } },

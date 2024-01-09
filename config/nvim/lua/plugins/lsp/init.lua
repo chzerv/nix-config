@@ -17,6 +17,7 @@ return {
             "ansiblels",
             "bashls",
             "nil_ls",
+            "tailwindcss",
         }
 
         local lspconfig = require("lspconfig")

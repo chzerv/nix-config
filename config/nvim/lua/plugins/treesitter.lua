@@ -41,6 +41,7 @@ return {
                 "vimdoc",
                 "markdown",
                 "markdown_inline",
+                "templ",
             },
             sync_install = false,
             ignore_install = {},
