@@ -15,6 +15,7 @@
     ./hardware-configuration.nix
     ../../nixos
     ../../nixos/hardware/gpu/amd.nix
+    ../../nixos/hardware/btrfs
   ];
 
   config = {
@@ -25,6 +26,7 @@
         psd = true;
         opensnitch = false;
         openssh = true;
+        snapper = true;
         tailscale = {
           enable = false;
           routingFeatures = "client";

@@ -17,6 +17,7 @@ in {
       psd = mkEnableOption "Enable profile-sync-daemon";
       opensnitch = mkEnableOption "Enable the Opensnitch application firewall";
       openssh = mkEnableOption "Enable OpenSSH";
+      snapper = mkEnableOption "Enable Snapper for BTRFS snapshots";
       tailscale = {
         enable = mkEnableOption "Enable tailscale";
         routingFeatures = mkOption {

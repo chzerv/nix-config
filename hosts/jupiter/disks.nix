@@ -1,9 +1,4 @@
 {...}: {
-  services.btrfs.autoScrub.enable = true;
-  services.btrfs.autoScrub.interval = "weekly";
-
-  #environment.systemPackages = [pkgs.btrfs-progs];
-
   disko.devices = {
     disk = {
       nvme0 = {
