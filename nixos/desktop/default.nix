@@ -38,5 +38,8 @@ in {
     # Provide location
     services.geoclue2.enable = true;
     location.provider = "geoclue2";
+
+    # Make electron apps use Wayland when possible
+    environment.variables.NIXOS_OZONE_WL = "1";
   };
 }
