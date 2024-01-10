@@ -52,7 +52,7 @@ in {
     xdg.portal = {
       enable = true;
       extraPortals = [
-        # pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal-gtk
         pkgs.xdg-desktop-portal-gnome
       ];
       config = {
@@ -60,7 +60,7 @@ in {
           default = ["gtk"];
         };
         gnome = {
-          default = ["gnome"];
+          default = ["gtk" "gnome"];
         };
       };
     };
