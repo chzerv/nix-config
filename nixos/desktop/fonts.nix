@@ -9,18 +9,24 @@
     fontDir.enable = true; # Store fonts in /run/current-system/sw/share/X11/fonts
     packages = with pkgs; [
       fira
+      jetbrains-mono
+
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
+      material-symbols
+
       liberation_ttf
       dejavu_fonts
       ubuntu_font_family
-      (nerdfonts.override {fonts = ["FiraCode" "SourceCodePro" "JetBrainsMono"];})
+
+      (google-fonts.override {fonts = ["Inter"];})
+      (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "NerdFontsSymbolsOnly"];})
     ];
 
     fontconfig = {
       defaultFonts = lib.mkDefault {
-        monospace = ["FiraCode Nerd Font Mono"];
+        monospace = ["JetBrains Mono"];
         emoji = ["Noto Color Emoji"];
       };
     };
