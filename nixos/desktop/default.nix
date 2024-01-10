@@ -10,6 +10,7 @@ in {
     ./flatpak.nix
     ./gaming.nix
     ./gnome.nix
+    ./fonts.nix
   ];
 
   # Setup a graphical environment
