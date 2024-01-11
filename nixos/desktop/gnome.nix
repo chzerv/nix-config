@@ -36,8 +36,6 @@ in {
     environment.systemPackages = with pkgs; [
       gnome.gnome-tweaks
       gnome.adwaita-icon-theme
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-gnome
       ffmpegthumbnailer
       gnome.dconf-editor
     ];
@@ -52,7 +50,7 @@ in {
     xdg.portal = {
       enable = true;
       extraPortals = [
-        pkgs.xdg-desktop-portal-gtk
+        # pkgs.xdg-desktop-portal-gtk
         pkgs.xdg-desktop-portal-gnome
       ];
       config = {

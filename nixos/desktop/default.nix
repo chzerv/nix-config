@@ -43,6 +43,6 @@ in {
     environment.variables.NIXOS_OZONE_WL = "1";
 
     # https://archlinux.org/news/making-dbus-broker-our-default-d-bus-daemon/
-    dbus.implementation = "broker";
+    services.dbus.implementation = "broker";
   };
 }
