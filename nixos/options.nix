@@ -12,6 +12,11 @@ in {
       server = mkEnableOption "Setup a headless server";
     };
 
+    security = {
+      firewall = mkEnableOption "Enable the firewall";
+      sysctl_hardening = mkEnableOption "Add kernel hardening tweaks";
+    };
+
     services = {
       bluetooth = mkEnableOption "Enable bluetooth";
       psd = mkEnableOption "Enable profile-sync-daemon";

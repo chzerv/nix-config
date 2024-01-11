@@ -21,6 +21,10 @@
   config = {
     local.sys = {
       type.workstation = true;
+      security = {
+        firewall = true;
+        sysctl_hardening = true;
+      };
       services = {
         bluetooth = true;
         psd = true;
