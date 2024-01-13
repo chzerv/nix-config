@@ -42,6 +42,7 @@ return {
                 "markdown",
                 "markdown_inline",
                 "templ",
+                "nix",
             },
             sync_install = false,
             ignore_install = {},
