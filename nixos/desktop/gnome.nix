@@ -31,6 +31,8 @@ in {
         yelp # help
         gnome-maps
         gnome-weather
+        simple-scan
+        gnome-music
       ]);
 
     environment.systemPackages = with pkgs; [
