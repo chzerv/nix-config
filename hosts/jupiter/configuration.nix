@@ -30,6 +30,8 @@
         opensnitch = false;
         openssh = true;
         snapper = true;
+        ppd = false;
+        tlp = false;
         tailscale = {
           enable = false;
           routingFeatures = "client";
