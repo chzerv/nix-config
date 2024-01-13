@@ -57,12 +57,25 @@
           disko.nixosModules.disko
         ];
       };
+
+      luna = myLib.mkNixosConfig {
+        hostname = "luna";
+        username = "chzerv";
+        extraModules = [
+          disko.nixosModules.disko
+        ];
+      };
     };
 
     # Home Manager Configurations
     homeConfigurations = {
       "chzerv@jupiter" = myLib.mkHomeConfig {
         hostname = "jupiter";
+        username = "chzerv";
+      };
+
+      "chzerv@luna" = myLib.mkHomeConfig {
+        hostname = "luna";
         username = "chzerv";
       };
     };
