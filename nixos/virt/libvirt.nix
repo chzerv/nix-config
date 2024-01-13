@@ -3,6 +3,7 @@
   config,
   lib,
   username,
+  type,
   ...
 }: let
   opts = config.local.sys;
@@ -30,7 +31,7 @@ in {
         win-spice
       ]
       # Install virt-manager if there is a graphical environment
-      ++ lib.optionals (opts.type.workstation) [
+      ++ lib.optionals (type != "server") [
         virt-manager
       ];
   };

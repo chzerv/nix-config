@@ -20,7 +20,6 @@
 
   config = {
     local.sys = {
-      type.workstation = true;
       services = {
         bluetooth = true;
         psd = true;
@@ -33,7 +32,6 @@
         };
       };
       desktop = {
-        gnome = true;
         gaming = false;
         flatpak = true;
         plymouth = true;

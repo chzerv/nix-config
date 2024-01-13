@@ -8,10 +8,11 @@
     hostname,
     username ? "chzerv",
     system ? "x86_64-linux",
+    type ? "desktop",
     extraModules ? [],
   }:
     inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs outputs hostname username system;};
+      specialArgs = {inherit inputs outputs hostname username type system;};
       modules =
         [
           ../hosts/${hostname}/configuration.nix
@@ -26,12 +27,13 @@
     hostname,
     username,
     system ? "x86_64-linux",
+    type ? "desktop",
   }:
     inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = inputs.nixpkgs.legacyPackages.${system};
 
       extraSpecialArgs = {
-        inherit inputs outputs hostname username system;
+        inherit inputs outputs hostname username type system;
       };
 
       modules = [

@@ -2,16 +2,12 @@
 {
   config,
   lib,
+  type,
   ...
 }: let
   inherit (lib) mkEnableOption types mkOption;
 in {
   options.local.sys = {
-    type = {
-      workstation = mkEnableOption "Setup a graphical environment";
-      server = mkEnableOption "Setup a headless server";
-    };
-
     security = {
       firewall = mkEnableOption "Enable the firewall";
       sysctl_hardening = mkEnableOption "Add kernel hardening tweaks";
@@ -33,7 +29,6 @@ in {
     };
 
     desktop = {
-      gnome = mkEnableOption "Use GNOME as the Desktop Environment";
       gaming = mkEnableOption "Enable if the host is used for gaming";
       flatpak = mkEnableOption "Enable flatpak and install Flathub";
       plymouth = mkEnableOption "Setup silent boot and enable Plymouth";
@@ -50,17 +45,12 @@ in {
   config = {
     assertions = [
       {
-        assertion = with config.local.sys.type;
-          (workstation || server) && !(workstation && server);
-        message = "The system can either be a workstation or a server!";
-      }
-      {
-        assertion = with config.local.sys; !(desktop.gaming && type.server);
+        assertion = with config.local.sys; !(desktop.gaming && type == "server");
         message = "A server can't be a gaming machine!";
       }
       {
-        assertion = with config.local.sys; !(desktop.gnome && type.server);
-        message = "Can't setup up a DE/WM on a headless server!";
+        assertion = with config.local.sys; !(virt.docker && virt.podman);
+        message = "Can't install both Podman and Docker";
       }
     ];
   };

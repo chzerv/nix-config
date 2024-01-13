@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  type,
   ...
 }: let
   opts = config.local.hm;
@@ -26,7 +27,7 @@ in {
       chafa
       python3
     ]
-    ++ lib.optionals opts.type.workstation [
+    ++ lib.optionals (type != "server") [
       firefox
       chromium
       bitwarden
@@ -49,7 +50,7 @@ in {
     ];
 
   programs.yt-dlp = {
-    enable = opts.type.workstation;
+    enable = type != "server";
     settings = {
       embed-thumbnail = true;
     };

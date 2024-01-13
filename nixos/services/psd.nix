@@ -1,9 +1,13 @@
 # profile-sync-daemon
-{config, ...}: let
+{
+  config,
+  type,
+  ...
+}: let
   opts = config.local.sys;
 in {
   services.psd = {
-    enable = opts.services.psd && opts.type.workstation;
+    enable = opts.services.psd && type != "server";
     resyncTimer = "10m";
   };
 }

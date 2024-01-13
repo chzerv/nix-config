@@ -2,11 +2,9 @@
   pkgs,
   username,
   lib,
-  config,
+  type,
   ...
-}: let
-  opts = config.local.sys;
-in {
+}: {
   config = lib.mkMerge [
     {
       environment.systemPackages = with pkgs; [
@@ -27,7 +25,7 @@ in {
     }
 
     (
-      lib.mkIf opts.type.workstation {
+      lib.optionals (type != "server") {
         programs.wireshark = {
           enable = true;
           package = pkgs.wireshark;

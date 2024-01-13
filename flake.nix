@@ -53,6 +53,7 @@
       jupiter = myLib.mkNixosConfig {
         hostname = "jupiter";
         username = "chzerv";
+        type = "desktop";
         extraModules = [
           disko.nixosModules.disko
         ];
@@ -61,6 +62,7 @@
       luna = myLib.mkNixosConfig {
         hostname = "luna";
         username = "chzerv";
+        type = "laptop";
         extraModules = [
           disko.nixosModules.disko
         ];
@@ -72,11 +74,13 @@
       "chzerv@jupiter" = myLib.mkHomeConfig {
         hostname = "jupiter";
         username = "chzerv";
+        type = "desktop";
       };
 
       "chzerv@luna" = myLib.mkHomeConfig {
         hostname = "luna";
         username = "chzerv";
+        type = "laptop";
       };
     };
 

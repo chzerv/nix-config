@@ -20,7 +20,6 @@
 
   config = {
     local.sys = {
-      type.workstation = true;
       security = {
         firewall = true;
         sysctl_hardening = true;
@@ -37,7 +36,6 @@
         };
       };
       desktop = {
-        gnome = true;
         gaming = true;
         flatpak = true;
         plymouth = true;

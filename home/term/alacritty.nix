@@ -1,9 +1,13 @@
-{config, ...}: let
+{
+  config,
+  type,
+  ...
+}: let
   opts = config.local.hm;
   configDir = "${config.home.homeDirectory}/nix-config/config";
 in {
   programs.alacritty = {
-    enable = opts.term.alacritty && opts.type.workstation;
+    enable = opts.term.alacritty && type != "server";
   };
 
   xdg.configFile."alacritty/alacritty.toml" = {

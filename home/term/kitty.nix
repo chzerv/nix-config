@@ -1,8 +1,12 @@
-{config, ...}: let
+{
+  config,
+  type,
+  ...
+}: let
   opts = config.local.hm;
 in {
   programs.kitty = {
-    enable = opts.term.kitty && opts.type.workstation;
+    enable = opts.term.kitty && type != "server";
     shellIntegration.enableFishIntegration = false;
     font = {
       name = "Fira Mono";
