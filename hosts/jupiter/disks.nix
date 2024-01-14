@@ -58,7 +58,7 @@
                     mountpoint = "/var/lib";
                     mountOptions = ["compress=zstd" "noatime"];
                   };
-                  "/rootfs/.snapshots" = {
+                  "/root/.snapshots" = {
                     mountpoint = "/root/.snapshots";
                     mountOptions = ["compress=zstd" "noatime"];
                   };
