@@ -43,6 +43,11 @@ return {
                 on_attach = function(client, bufnr)
                     handlers.lsp_mappings(client, bufnr)
                     handlers.fmt_on_save(client, bufnr)
+
+                    -- Format via LSP in case null-ls is not configured for some language
+                    if client.server_capabilities.documentFormattingProvider then
+                        vim.keymap.set({ "n", "v" }, "<leader>cf", vim.lsp.buf.format, opts)
+                    end
                     -- client.server_capabilities.semanticTokensProvider = nil
                     -- handlers.popup_diagnostics_on_hover(bufnr)
                     -- handlers.lsp_highlight_document(client, bufnr)
