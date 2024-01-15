@@ -18,6 +18,7 @@ return {
             "bashls",
             "nil_ls",
             "tailwindcss",
+            "templ",
         }
 
         local lspconfig = require("lspconfig")
