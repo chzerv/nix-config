@@ -80,7 +80,7 @@
         resize-with-right-button = true;
       };
     }
-    // lib.optionals (type == "laptop") {
+    // lib.attrsets.optionalAttrs (type == "laptop") {
       "org/gnome/desktop/peripherals/touchpad" = {
         tap-to-click = true;
         two-finger-scrolling-enabled = true;
