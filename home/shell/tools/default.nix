@@ -14,5 +14,6 @@
     ./tldr.nix
     ./pfetch.nix
     ./nix-index.nix
+    ./lazygit.nix
   ];
 }
