@@ -85,6 +85,9 @@
     shellAliases = {
       tmux = "tmux -2";
       ls = "eza";
+      l = "eza";
+      ll = "eza -l";
+      la = "eza -la";
     };
 
     functions = {
