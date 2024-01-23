@@ -51,7 +51,13 @@
     };
 
     # These might differ from host to host (e.g., a host is a cloud VPS) so they are not part of core.
-    i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
+    i18n = {
+      defaultLocale = lib.mkDefault "en_US.UTF-8";
+      supportedLocales = [
+        (config.i18n.defaultLocale + "/UTF-8")
+        "el_GR.UTF-8/UTF-8"
+      ];
+    };
     time.timeZone = lib.mkDefault "Europe/Athens";
 
     system.stateVersion = "23.11";
