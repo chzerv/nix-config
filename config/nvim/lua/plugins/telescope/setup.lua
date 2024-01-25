@@ -5,8 +5,6 @@ require("telescope").setup({
     defaults = {
         path_display = { "truncate" },
         layout_config = {
-            width = 0.85,
-            height = 0.80,
             preview_cutoff = 120,
             prompt_position = "top",
         },
