@@ -33,7 +33,10 @@
   location.provider = "geoclue2";
 
   # Make electron apps use Wayland when possible
-  environment.variables.NIXOS_OZONE_WL = "1";
+  environment.variables = {
+    NIXOS_OZONE_WL = "1";
+    QT_QPA_PLATFORM = "wayland";
+  };
 
   # https://archlinux.org/news/making-dbus-broker-our-default-d-bus-daemon/
   services.dbus.implementation = "broker";
