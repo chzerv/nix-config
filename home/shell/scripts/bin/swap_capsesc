@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# For my Laptop, I'm swapping the CAPS and ESC keys via `gsettings`.
+# However, for my external keyboard, these keys are swapped using QMK.
+#
+# The problem is that whenever I connect the external keyboard to the
+# laptop, the laptop's settings "revert" QMK's settings.
+#
+# Ideally, this should be done using `udev` rules, but since `udev` runs
+# as root, I haven't figured a way to run `gsettings`.
+
+if [[ $1 == true ]]; then
+  gsettings set org.gnome.desktop.input-sources xkb-options "['terminate:ctrl_alt_bksp', 'caps:swapescape']"
+else
+  gsettings set org.gnome.desktop.input-sources xkb-options "['terminate:ctrl_alt_bksp']"
+fi
