@@ -34,6 +34,7 @@ in {
       gaming = mkEnableOption "Enable if the host is used for gaming";
       flatpak = mkEnableOption "Enable flatpak and install Flathub";
       plymouth = mkEnableOption "Setup silent boot and enable Plymouth";
+      mount_smb_share = mkEnableOption "Mount SMB share from TrueNAS";
     };
 
     virt = {

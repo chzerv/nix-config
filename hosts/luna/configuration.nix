@@ -37,6 +37,7 @@
         gaming = false;
         flatpak = true;
         plymouth = true;
+        mount_smb_share = true;
       };
       virt = {
         podman = true;
@@ -73,21 +74,6 @@
       algorithm = "zstd";
     };
 
-    sops.secrets = {
-      smb_user = {};
-      smb_password = {};
-      smb_domain = {};
-    };
-
-    sops.templates."smb_secrets" = {
-      content = ''
-        username=${config.sops.placeholder.smb_user}
-        domain=${config.sops.placeholder.smb_domain}
-        password=${config.sops.placeholder.smb_password}
-      '';
-      path = "/etc/nixos/smb-secrets";
-    };
-
     programs.fish.enable = true;
     users = {
       users = {
@@ -109,14 +95,6 @@
           ];
         };
       };
-    };
-
-    fileSystems."/home/${username}/truenas_smb" = {
-      device = "//truenas/data";
-      fsType = "cifs";
-      options = let
-        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-      in ["${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1000,gid=100"];
     };
   };
 }

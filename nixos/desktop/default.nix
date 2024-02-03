@@ -5,6 +5,7 @@
     ./gaming.nix
     ./gnome.nix
     ./fonts.nix
+    ./smb_mount.nix
   ];
 
   # Setup a graphical environment
