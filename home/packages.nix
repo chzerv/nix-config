@@ -29,6 +29,7 @@ in {
     ]
     ++ lib.optionals (type != "server") [
       firefox
+      obsidian
       chromium
       bitwarden
       bitwarden-cli

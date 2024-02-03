@@ -31,6 +31,10 @@
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
+      # Obsidian is still based on an insecure version of electron..
+      permittedInsecurePackages = [
+        "electron-25.9.0"
+      ];
     };
   };
 
