@@ -70,7 +70,6 @@
         # Enable sysrq
         "kernel.sysrq" = 1;
       };
-      kernelParams = ["ipv6.disable=1"];
     };
 
     zramSwap = {

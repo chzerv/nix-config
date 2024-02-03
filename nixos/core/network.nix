@@ -6,7 +6,6 @@
   # Network configuration
   networking = {
     hostName = hostname;
-    enableIPv6 = false;
 
     networkmanager.enable = lib.mkDefault true;
 
