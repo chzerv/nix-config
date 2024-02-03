@@ -5,34 +5,30 @@
   type,
   ...
 }: {
-  config = lib.mkMerge [
-    {
-      environment.systemPackages = with pkgs; [
-        vim
-        rsync
-        git
-        libnotify
-        ntfs3g
-        cifs-utils
-        file
-        killall
-        usbutils
-        lm_sensors
-        pciutils
-        man-pages
-        iperf3
-      ];
-    }
-
-    (
-      lib.optionals (type != "server") {
-        programs.wireshark = {
-          enable = true;
-          package = pkgs.wireshark;
-        };
-
-        users.users.${username}.extraGroups = ["wireshark"];
-      }
-    )
+  environment.systemPackages = with pkgs; [
+    vim
+    rsync
+    git
+    libnotify
+    ntfs3g
+    cifs-utils
+    file
+    killall
+    usbutils
+    lm_sensors
+    pciutils
+    man-pages
+    iperf3
+    lsof
+    wireguard-tools
   ];
+
+  programs.wireshark = {
+    enable = type != "server";
+    package = pkgs.wireshark;
+  };
+
+  users.users.${username} = lib.mkIf (type != "server") {
+    extraGroups = ["wireshark"];
+  };
 }
