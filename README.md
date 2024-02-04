@@ -9,10 +9,7 @@
 
 # Disclaimer for the visitor
 
-I've known about Nix for a while, but only recently dove into it, mostly for managing development environments. I found the process so exciting that I decided to also use it for managing my dotfiles and entire system configuration. Since I'm still a beginner, the code might not be of the best quality or follow best practices and is always subject to change.
-
-> [!Warning]
-> These are **_my_** dotfiles. They are always evolving and are specifically made for my needs. They are **NOT** guaranteed to work for you! With that in mind, feel free to take a look around and pick anything you like!
+I have only recently dove into Nix, so the code might not be of the best quality or follow best practices and is always subject to change. Also note that these are **_my_** dotfiles. They are always evolving and are specifically made for my needs. They are **NOT** guaranteed to work for you! With that in mind, feel free to take a look around and pick anything you like!
 
 # Features
 
