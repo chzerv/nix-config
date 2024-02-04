@@ -20,6 +20,10 @@
 
   config = {
     local.sys = {
+      security = {
+        firewall = true;
+        sysctl_hardening = true;
+      };
       services = {
         bluetooth = true;
         psd = true;
@@ -40,8 +44,8 @@
         mount_smb_share = true;
       };
       virt = {
-        podman = true;
-        docker = false;
+        podman = false;
+        docker = true;
         libvirt = true;
         vagrant = true;
       };

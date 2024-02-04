@@ -24,28 +24,30 @@ I've known about Nix for a while, but only recently dove into it, mostly for man
 - `neovim`, `tmux` and `alacritty` configurations managed via their own config files, but still "deployed" via `home-manager`
 - Automatically loaded **overlays** thanks to the [NixOS & Flakes](https://nixos-and-flakes.thiscute.world/nixpkgs/overlays) book
   - Super useful for updating or downgrading packages, adding patches and more
+- Proxmox LXC templates utilizing [nixos-generators](https://github.com/nix-community/nixos-generators)
 
 # Structure
 
 ```shell
 .
-├── config        # Dotfiles for programs that I'm configuring using their own config files
-├── home          # Home-manager configuration
+├── config          # Dotfiles for programs that I'm configuring using their own config files
+├── home            # Home-manager configuration
 │  ├── desktop      # Desktop related stuff, e.g., GNOME customizations
 │  ├── editors      # Neovim and VSCode configurations
 │  ├── services     # User services
 │  ├── shell        # My shell setup
 │  └── term         # Terminal emulator configurations
-├── hosts         # Machine specific configurations like hardware, options (more later) etc.
-├── lib           # Utility functions
-├── nixos         # System-wide configurations
+├── hosts           # Machine specific configurations like hardware, options (more later) etc.
+├── images          # Images built using nixos-generators for use in Proxmox, VMWare etc
+├── lib             # Utility functions
+├── nixos           # System-wide configurations
 │  ├── core         # Applied to every host
 │  ├── desktop      # Desktop related stuff
 │  ├── hardware     # Hardware specific setup
 │  ├── services     # System services
 │  └── virt         # Setup virtualisation technologies e.g., docker, podman etc.
-├── overlays      # Package overrides, patches and more
-└── pkgs          # Custom packages
+├── overlays        # Package overrides, patches and more
+└── pkgs            # Custom packages
 ```
 
 ## Customization via options

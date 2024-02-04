@@ -34,6 +34,12 @@
 
     # Contains every possible VSCode extension there is
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
+    # Image builders
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -41,6 +47,7 @@
     nixpkgs,
     home-manager,
     disko,
+    nixos-generators,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -85,7 +92,18 @@
     };
 
     # Custom packages
-    packages = myLib.forAllSystems (pkgs: import ./pkgs {inherit pkgs;});
+    packages =
+      myLib.forAllSystems (pkgs: import ./pkgs {inherit pkgs;})
+      // {
+        x86_64-linux.pve-lxc-docker = nixos-generators.nixosGenerate {
+          system = "x86_64-linux";
+          format = "proxmox-lxc";
+          modules = [
+            ./images/pve/configuration.nix
+          ];
+          specialArgs = {inherit inputs;};
+        };
+      };
 
     devShells = myLib.forAllSystems (
       pkgs: import ./shell.nix {inherit pkgs;}
