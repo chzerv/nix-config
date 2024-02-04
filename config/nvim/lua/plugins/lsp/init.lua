@@ -17,7 +17,6 @@ return {
             "ansiblels",
             "bashls",
             "nil_ls",
-            "tailwindcss",
             "templ",
         }
 

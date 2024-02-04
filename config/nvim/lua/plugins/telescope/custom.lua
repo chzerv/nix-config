@@ -31,7 +31,7 @@ end
 M.search_notes = function()
     local opts = {
         prompt_title = "~ Notes ~",
-        cwd = "~/Documents/Syncthing/Notes",
+        cwd = "~/Documents/Syncthing/Obsidian_Vault",
     }
 
     builtin.find_files(opts)

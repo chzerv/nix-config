@@ -1,12 +1,12 @@
 import = [
-    "~/.config/alacritty/catppuccin-mocha.toml"
+    "~/.config/alacritty/catppuccin-macchiato.toml"
 ]
 
 [env]
 term = "xterm-256color"
 
 [window]
-opacity = 0.95
+opacity = 1
 blur = true
 decorations = "none"
 startup_mode = "Windowed"

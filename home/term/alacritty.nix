@@ -20,4 +20,11 @@ in {
       sha256 = "061yalrzpqivr67k2f8hsqixr77srgd8y47xvhp5vg0sjmh5lrcy";
     };
   };
+
+  xdg.configFile."alacritty/catppuccin-macchiato.toml" = {
+    source = builtins.fetchurl {
+      url = "https://raw.githubusercontent.com/catppuccin/alacritty/main/catppuccin-macchiato.toml";
+      sha256 = "sha256:1iq187vg64h4rd15b8fv210liqkbzkh8sw04ykq0hgpx20w3qilv";
+    };
+  };
 }

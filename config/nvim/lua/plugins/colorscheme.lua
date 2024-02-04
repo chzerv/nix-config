@@ -1,18 +1,5 @@
 return {
     {
-        "navarasu/onedark.nvim",
-        lazy = false,
-        priority = 1000,
-        enabled = false,
-        config = function()
-            require("onedark").setup({
-                style = "darker",
-            })
-            require("onedark").load()
-        end,
-    },
-
-    {
         "sainnhe/gruvbox-material",
         lazy = false,
         enabled = false,
@@ -30,35 +17,6 @@ return {
         end,
     },
 
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        enabled = false,
-        priority = 1000,
-        config = function()
-            require("tokyonight").setup({
-                style = "night",
-                light_style = "day",
-                transparent = false,
-                terminal_colors = true,
-                styles = {
-                    comments = { italic = true },
-                    keywords = { italic = false },
-                    functions = {},
-                    variables = {},
-                    sidebars = "dark",
-                    floats = "dark",
-                },
-                sidebars = { "qf", "help" },
-                day_brightness = 0.3,
-                hide_inactive_statusline = false,
-                dim_inactive = true,
-                lualine_bold = false,
-            })
-
-            vim.cmd.colorscheme("tokyonight")
-        end,
-    },
     {
         "projekt0n/github-nvim-theme",
         lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -91,8 +49,7 @@ return {
                 },
             })
 
-            -- vim.cmd("colorscheme github_dark")
-            vim.cmd("colorscheme github_light")
+            vim.cmd("colorscheme github_dark")
         end,
     },
     {
@@ -103,7 +60,7 @@ return {
         priority = 1000,
         config = function()
             require("catppuccin").setup({
-                transparent_background = true,
+                transparent_background = false,
                 dim_inactive = {
                     enabled = true,
                     shade = "dark",
@@ -111,7 +68,7 @@ return {
                 },
             })
 
-            vim.cmd.colorscheme("catppuccin-mocha")
+            vim.cmd.colorscheme("catppuccin-macchiato")
         end,
     },
 }
