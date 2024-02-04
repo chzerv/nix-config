@@ -48,6 +48,7 @@ in {
       ffmpeg
       vlc
       nurl
+      note # Built in pkgs/note
     ];
 
   programs.yt-dlp = {
