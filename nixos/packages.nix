@@ -21,6 +21,7 @@
     iperf3
     lsof
     wireguard-tools
+    pv
   ];
 
   programs.wireshark = {
