@@ -8,6 +8,7 @@
       git
       sops
       ssh-to-age
+      ssh-to-pgp
       age
       nil
       treefmt

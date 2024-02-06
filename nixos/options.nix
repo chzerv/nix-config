@@ -21,6 +21,7 @@ in {
       snapper = mkEnableOption "Enable Snapper for BTRFS snapshots";
       tlp = mkEnableOption "Use TLP for power-saving";
       ppd = mkEnableOption "Use power-profiles-daemon for power-saving";
+      gpg_agent = mkEnableOption "Enable GnuPG agent";
       tailscale = {
         enable = mkEnableOption "Enable tailscale";
         routingFeatures = mkOption {

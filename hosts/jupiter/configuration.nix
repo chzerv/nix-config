@@ -32,6 +32,7 @@
         snapper = true;
         ppd = false;
         tlp = false;
+        gpg_agent = true;
         tailscale = {
           enable = false;
           routingFeatures = "client";
