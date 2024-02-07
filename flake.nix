@@ -76,6 +76,12 @@
           disko.nixosModules.disko
         ];
       };
+
+      attic = myLib.mkNixosConfig {
+        hostname = "attic";
+        username = "xci";
+        type = "server";
+      };
     };
 
     # Home Manager Configurations
