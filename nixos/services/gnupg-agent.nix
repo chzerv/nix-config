@@ -6,7 +6,7 @@
 }: let
   opts = config.local.sys;
 in {
-  config = lib.mkIf opts.services.gpg_agent.enable {
+  config = lib.mkIf opts.services.gpg_agent {
     programs.gnupg.agent = {
       enable = true;
       enableSSHSupport = false;
