@@ -10,7 +10,7 @@ in {
     ports = [42749];
     openFirewall = true;
     settings = {
-      PermitRootLogin = lib.mkForce "no";
+      PermitRootLogin = lib.mkDefault "no";
       UseDns = false;
       X11Forwarding = false;
       PasswordAuthentication = lib.mkForce false;
