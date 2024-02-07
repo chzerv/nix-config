@@ -104,7 +104,7 @@
           type = "s3";
           bucket = "attic";
           region = "us-east-1";
-          endpoint = "https://api.minio.chrizer.xyz";
+          endpoint = "https://storage.chrizer.xyz";
         };
       };
     };
