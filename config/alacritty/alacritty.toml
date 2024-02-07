@@ -19,10 +19,10 @@ style = "Beam"
 [font]
 size = 11.0
 builtin_box_drawing = true
-normal = { family = "FiraCode Nerd Font Mono", style = "Regular" }
-bold = { family = "FiraCode Nerd Font Mono", style = "Bold" }
-italic = { family = "FiraCode Nerd Font Mono", style = "Italic" }
-bold_italic = { family = "FiraCode Nerd Font Mono", style = "Bold Italic" }
+normal = { family = "Monaspace Argon", style = "Regular" }
+bold = { family = "Monaspace Argon", style = "Bold" }
+italic = { family = "Monaspace Argon", style = "Italic" }
+bold_italic = { family = "Monaspace Argon", style = "Bold Italic" }
 
 [selection]
 save_to_clipboard = false

@@ -10,6 +10,7 @@
     packages = with pkgs; [
       fira
       jetbrains-mono
+      monaspace
 
       noto-fonts
       noto-fonts-cjk
@@ -21,7 +22,7 @@
       ubuntu_font_family
 
       (google-fonts.override {fonts = ["Inter"];})
-      (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "NerdFontsSymbolsOnly"];})
+      (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "NerdFontsSymbolsOnly" "Monaspace"];})
     ];
 
     fontconfig = {
