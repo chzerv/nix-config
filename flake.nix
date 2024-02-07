@@ -94,18 +94,24 @@
     };
 
     # Custom packages
-    packages =
-      myLib.forAllSystems (pkgs: import ./pkgs {inherit pkgs;})
-      // {
-        x86_64-linux.pve-lxc-docker = nixos-generators.nixosGenerate {
-          system = "x86_64-linux";
-          format = "proxmox-lxc";
-          modules = [
-            ./images/pve/configuration.nix
-          ];
-          specialArgs = {inherit inputs;};
-        };
+    packages = myLib.forAllSystems (pkgs: {
+      pve-lxc-docker = nixos-generators.nixosGenerate {
+        system = "x86_64-linux";
+        format = "proxmox-lxc";
+        modules = [
+          ./generators/pve-lxc-docker
+        ];
+        specialArgs = {inherit inputs;};
       };
+      pve-vm-template = nixos-generators.nixosGenerate {
+        system = "x86_64-linux";
+        format = "proxmox";
+        modules = [
+          ./generators/pve-vm-template
+        ];
+        specialArgs = {inherit inputs;};
+      };
+    });
 
     devShells = myLib.forAllSystems (
       pkgs: import ./shell.nix {inherit pkgs;}
