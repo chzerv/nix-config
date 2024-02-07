@@ -89,8 +89,8 @@ ssh proxmox_server
 qmrestore vzdump-qemu-nixos-template.vma.zst <VM_ID> --unique true
 ```
 
-> [!tip] Create a template from the VMA
-> In the Proxmox UI, find the newly created VM -> Right Click -> Convert to template
+> [!Tip]
+> To create a template from the VMA, go in the Proxmox UI -> find the newly created VM -> Right Click -> Convert to template
 
 # Secret Management
 
