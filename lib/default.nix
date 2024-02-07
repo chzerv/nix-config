@@ -18,6 +18,7 @@
           ../hosts/${hostname}/configuration.nix
 
           inputs.sops-nix.nixosModules.sops
+          inputs.attic.nixosModules.atticd
         ]
         ++ extraModules;
     };

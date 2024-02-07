@@ -40,6 +40,8 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    attic.url = "github:zhaofengli/attic";
   };
 
   outputs = {
