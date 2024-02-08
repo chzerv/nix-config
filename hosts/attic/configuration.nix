@@ -17,6 +17,10 @@
       };
       services = {
         openssh = true;
+        tailscale = { 
+          enable = true;
+          routingFeatures = "client";
+        };
       };
     };
 
