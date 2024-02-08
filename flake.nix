@@ -40,8 +40,6 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    attic.url = "github:zhaofengli/attic";
   };
 
   outputs = {
@@ -75,12 +73,6 @@
         extraModules = [
           disko.nixosModules.disko
         ];
-      };
-
-      attic = myLib.mkNixosConfig {
-        hostname = "attic";
-        username = "xci";
-        type = "server";
       };
     };
 

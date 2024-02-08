@@ -22,7 +22,6 @@ I have only recently dove into Nix, so the code might not be of the best quality
 - Automatically loaded **overlays** thanks to the [NixOS & Flakes](https://nixos-and-flakes.thiscute.world/nixpkgs/overlays) book
   - Super useful for updating or downgrading packages, adding patches and more
 - Proxmox LXC and VM templates utilizing [nixos-generators](https://github.com/nix-community/nixos-generators)
-- Self-hosted [attic](https://github.com/zhaofengli/attic) server for caching
 
 # Structure
 
