@@ -1,4 +1,6 @@
-{...} @ args: {
+{config, ...} @ args: {
+  sops.secrets."attic/netrc" = {};
+
   nix = {
     # Automatic garbage collection
     gc = {
@@ -19,6 +21,15 @@
       # Avoid garbage collection when using nix-direnv
       keep-outputs = true;
       keep-derivations = true;
+
+      substituters = [
+        "https://nixcache.chrizer.xyz/system?priority=41"
+      ];
+      trusted-public-keys = [
+        "system:GT8qDFyehp/zpWF5AuB5LMyAzaR5dgQDqpKxm9KAnJE="
+      ];
+
+      netrc-file = config.sops.secrets."attic/netrc".path;
     };
   };
 

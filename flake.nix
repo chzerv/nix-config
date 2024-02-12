@@ -40,6 +40,8 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    attic.url = "github:zhaofengli/attic";
   };
 
   outputs = {
@@ -74,6 +76,12 @@
           disko.nixosModules.disko
         ];
       };
+
+      attic = myLib.mkNixosConfig {
+        hostname = "attic";
+        username = "xci";
+        type = "server";
+      };
     };
 
     # Home Manager Configurations
@@ -101,6 +109,7 @@
         ];
         specialArgs = {inherit inputs;};
       };
+
       pve-vm-template = nixos-generators.nixosGenerate {
         system = "x86_64-linux";
         format = "proxmox";

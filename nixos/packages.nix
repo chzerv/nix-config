@@ -22,6 +22,7 @@
     lsof
     wireguard-tools
     pv
+    attic
   ];
 
   programs.wireshark = {
