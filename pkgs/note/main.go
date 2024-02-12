@@ -2,11 +2,13 @@ package main
 
 import (
 	"errors"
+	"io/fs"
 	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"sort"
+	"strings"
 
 	"github.com/charmbracelet/huh"
 )
@@ -18,7 +20,16 @@ func main() {
 
 	opts := convertDirToOpt(directories)
 
-	note, dir := createHuhForm(opts)
+	note, dir, newDir := createHuhForm(opts)
+
+	if len(newDir) != 0 {
+		dir = dir + "/" + newDir
+
+		if err := os.Mkdir(dir, os.ModePerm); err != nil {
+			log.Fatalf("Could not create directory, %v", err)
+		}
+
+	}
 
 	openFile(note, dir)
 }
@@ -30,24 +41,41 @@ func getDirectories() map[string]string {
 		log.Fatalf("Could not get user's home directory: %v", err)
 	}
 
-	entries, err := os.ReadDir(homeDir + notesDir)
-	if err != nil {
-		log.Fatalf("Could not read directories in notesDir: %v", err)
-	}
-
 	directories := make(map[string]string)
 	var absPath string
 
-	// Store the root directory
-	absPath, _ = filepath.Abs(homeDir + notesDir)
-	directories["."] = absPath
-
-	for _, e := range entries {
-		// Store non-hidden directories in a map where the key is the directory name and the value is its full path on the disk
-		if e.IsDir() && e.Name()[0] != '.' {
-			absPath, _ = filepath.Abs(homeDir + notesDir)
-			directories[e.Name()] = absPath + "/" + e.Name()
+	err = filepath.Walk(homeDir+notesDir, func(path string, info fs.FileInfo, err error) error {
+		if err != nil {
+			log.Printf("Error walking the path: %v", err)
+			return err
 		}
+
+		absPath, err = filepath.Abs(homeDir + notesDir)
+		if err != nil {
+			log.Printf("Error getting the absolute path of %s, [%v]", homeDir+notesDir, err)
+		}
+
+		if info.IsDir() {
+			// Ignore the ".git" and ".obsidian" sub-directories
+			if info.Name() == ".git" || info.Name() == ".obsidian" {
+				return filepath.SkipDir
+			} else {
+				name := strings.SplitAfterN(path, "/", 6)
+				name = strings.SplitAfterN(name[5], "/", 2)
+
+				if len(name) == 1 {
+					directories["."] = absPath
+				} else {
+					directories[name[1]] = absPath + "/" + name[1]
+				}
+
+			}
+		}
+		return nil
+	})
+
+	if err != nil {
+		log.Printf("Error walking the path: [%v]", err)
 	}
 
 	return directories
@@ -81,18 +109,25 @@ func convertDirToOpt(dirs map[string]string) []huh.Option[string] {
 }
 
 // Create the form
-func createHuhForm(opts []huh.Option[string]) (string, string) {
-	var file, dir string
+func createHuhForm(opts []huh.Option[string]) (string, string, string) {
+	var file, dir, newDir string
 
 	form := huh.NewForm(
 		huh.NewGroup(
-			huh.NewInput().Title("What should the new note be called?").Value(&file).Validate(func(str string) error {
-				if len(str) == 0 {
-					return errors.New("New note name cannot be empty!")
-				}
-				return nil
-			}),
-			huh.NewSelect[string]().Title("Where should the new note be saved to?").Options(opts...).Value(&dir),
+			huh.NewInput().Title("What should the new note be called?").
+				Value(&file).
+				Validate(func(str string) error {
+					if len(str) == 0 {
+						return errors.New("New note name cannot be empty!")
+					}
+					return nil
+				}),
+			huh.NewInput().Title("Create a new directory to store the note to").
+				Description("If a directory is selected in the next list, the new directory will be created under it").
+				Value(&newDir),
+			huh.NewSelect[string]().Title("Where should the new note be saved to?").
+				Options(opts...).
+				Value(&dir),
 		),
 	)
 
@@ -101,7 +136,7 @@ func createHuhForm(opts []huh.Option[string]) (string, string) {
 		log.Fatalf("Could not run the form: %v", err)
 	}
 
-	return file, dir
+	return file, dir, newDir
 }
 
 // Open file in Neovim
