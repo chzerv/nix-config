@@ -1,0 +1,51 @@
+---
+name: "Build system configurations and push them to Attic"
+"on":
+  push:
+    branches:
+      - "main"
+    paths-ignore:
+      - "README.md"
+
+jobs:
+  build:
+    runs-on: "ubuntu-latest"
+    strategy:
+      fail-fast: false
+      matrix:
+        machine:
+          - host: jupiter
+          - host: luna
+          - host: attic
+
+    steps:
+      - name: Free up some space on the runner to avoid out-of-space errors
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf "/usr/local/share/boost"
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+
+      - name: Connect to the Tailscale network
+        uses: tailscale/github-action@main
+        with:
+          authkey: ${{ secrets.TS_AUTHKEY }}
+
+      - uses: actions/checkout@v4
+
+      - uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: |
+            fallback = true
+            http-connections = 128
+            max-substitution-jobs = 128
+            substituters = ${{ secrets.ATTIC_HOST }}/system?priority=41 https://cache.nixos.org/
+            trusted-public-keys = system:GT8qDFyehp/zpWF5AuB5LMyAzaR5dgQDqpKxm9KAnJE= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Build and push system
+        run: |
+          nix build .#nixosConfigurations.${{ matrix.machine.host }}.config.system.build.toplevel
+          nix run github:zhaofengli/attic#default login cache ${{ secrets.ATTIC_HOST }} ${{ secrets.ATTIC_TOKEN }}
+          nix run github:zhaofengli/attic#default push system result
