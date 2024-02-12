@@ -15,5 +15,6 @@
     ./pfetch.nix
     ./nix-index.nix
     ./lazygit.nix
+    ./atuin.nix
   ];
 }
