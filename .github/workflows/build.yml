@@ -33,19 +33,26 @@ jobs:
 
       - uses: actions/checkout@v4
 
-      - uses: DeterminateSystems/nix-installer-action@main
+      - run: |
+          sudo mkdir -p /etc/nix
+          echo -e "machine https://nixcache.chrizer.xyz\npassword ${{ secrets.ATTIC_TOKEN }}" | sudo tee /etc/nix/netrc > /dev/null
+
+      - uses: cachix/install-nix-action@v22
         with:
-          extra-conf: |
+          extra_nix_config: |
             fallback = true
             http-connections = 128
             max-substitution-jobs = 128
-            substituters = ${{ secrets.ATTIC_HOST }}/system?priority=41 https://cache.nixos.org/
+            substituters = https://nixcache.chrizer.xyz/system?priority=41 https://cache.nixos.org/
             trusted-public-keys = system:GT8qDFyehp/zpWF5AuB5LMyAzaR5dgQDqpKxm9KAnJE= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
 
       - uses: DeterminateSystems/magic-nix-cache-action@main
 
+      - run: |
+          nix run github:zhaofengli/attic#default login cache https://nixcache.chrizer.xyz ${{ secrets.ATTIC_TOKEN }}
+          nix run github:zhaofengli/attic#default use system
+
       - name: Build and push system
         run: |
           nix build .#nixosConfigurations.${{ matrix.machine.host }}.config.system.build.toplevel
-          nix run github:zhaofengli/attic#default login cache ${{ secrets.ATTIC_HOST }} ${{ secrets.ATTIC_TOKEN }}
           nix run github:zhaofengli/attic#default push system result
