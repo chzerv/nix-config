@@ -18,7 +18,7 @@
       services = {
         openssh = true;
         tailscale = {
-          enable = false;
+          enable = true;
           routingFeatures = "client";
         };
       };
