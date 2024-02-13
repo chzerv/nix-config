@@ -1,11 +1,11 @@
 ---
-name: "Build system configurations and push them to Attic"
+name: "build"
 "on":
   push:
     branches:
       - "main"
-    paths-ignore:
-      - "README.md"
+    paths:
+      - "flake.lock"
 
 jobs:
   build:
@@ -46,13 +46,13 @@ jobs:
             substituters = https://nixcache.chrizer.xyz/system?priority=41 https://cache.nixos.org/
             trusted-public-keys = system:GT8qDFyehp/zpWF5AuB5LMyAzaR5dgQDqpKxm9KAnJE= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
 
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-
       - run: |
           nix run github:zhaofengli/attic#default login cache https://nixcache.chrizer.xyz ${{ secrets.ATTIC_TOKEN }}
           nix run github:zhaofengli/attic#default use system
 
-      - name: Build and push system
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Build and push system configurations
         run: |
           nix build .#nixosConfigurations.${{ matrix.machine.host }}.config.system.build.toplevel
           nix run github:zhaofengli/attic#default push system result
