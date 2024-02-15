@@ -19,6 +19,7 @@
     extraConfig = {
       commit.verbose = true;
       init.defaultBranch = "main";
+      rerere.enabled = true;
       core.editor = "nvim";
       delta = {
         features = "line-numbers decorations";
