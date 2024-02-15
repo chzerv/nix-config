@@ -76,6 +76,9 @@ in {
         jsonnet-language-server
         texlab # LaTeX LSP
         taplo # TOML LSP/formatter/linter
+
+        # DAP
+        lldb
       ];
     };
 
