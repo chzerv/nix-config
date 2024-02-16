@@ -22,7 +22,7 @@
     lsof
     wireguard-tools
     pv
-    attic
+    cachix
   ];
 
   programs.wireshark = {

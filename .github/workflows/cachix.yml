@@ -1,0 +1,49 @@
+---
+name: "build"
+"on":
+  push:
+    branches:
+      - "main"
+    paths:
+      - "flake.lock"
+
+jobs:
+  build:
+    runs-on: "ubuntu-latest"
+    strategy:
+      fail-fast: false
+      matrix:
+        toBuild:
+          - package: .#nixosConfigurations.jupiter.config.system.build.toplevel
+          - package: .#nixosConfigurations.luna.config.system.build.toplevel
+          - package: .#pve-lxc-docker
+          - package: .#pve-vm-template
+
+    steps:
+      - name: Free up some space on the runner to avoid out-of-space errors
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf "/usr/local/share/boost"
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Clone this repository
+        uses: actions/checkout@v4
+
+      - name: Set up cachix
+        uses: cachix/cachix-action@master
+        with:
+          name: chzerv
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          pathsToPush: result
+
+      - name: Setup Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Build and push system configurations
+        run: |
+          nix build ${{ matrix.toBuild.package }}
+          cachix push chzerv ./result
