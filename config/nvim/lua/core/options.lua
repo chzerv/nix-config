@@ -71,6 +71,13 @@ opt.listchars = {
     precedes = "‹",
 }
 
+-- Change how folds look
+-- For example, folding a 4 line function will now appear as: funcName = { ... } [4ℓ]
+vim.o.foldtext =
+    [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' [' . (v:foldend - v:foldstart + 1) . 'ℓ] ']]
+vim.wo.foldnestmax = 3 -- Maximum fold nesting
+vim.wo.foldminlines = 1 -- Create a fold only if it takes 2 or more lines (default)
+
 -- Don't show trailing whitespaces in insert mode
 vim.cmd([[
     augroup ListcharsTrail autocmd!

@@ -5,7 +5,6 @@ vim.opt_local.conceallevel = 2
 vim.opt_local.formatoptions:append("t")
 
 vim.g.vim_markdown_folding_disabled = false
-vim.g.vim_markdown_folding_style_pythonic = 1
 vim.g.vim_markdown_conceal = false
 vim.g.vim_markdown_conceal_code_blocks = false
 vim.g.vim_markdown_frontmatter = true
