@@ -21,7 +21,9 @@ I have only recently dove into Nix, so the code might not be of the best quality
 - `neovim`, `tmux` and `alacritty` configurations managed via their own config files, but still "deployed" via `home-manager`
 - Automatically loaded **overlays** thanks to the [NixOS & Flakes](https://nixos-and-flakes.thiscute.world/nixpkgs/overlays) book
   - Super useful for updating or downgrading packages, adding patches and more
-- Proxmox LXC and VM templates utilizing [nixos-generators](https://github.com/nix-community/nixos-generators)
+- Usage of [nixos-generators](https://github.com/nix-community/nixos-generators) for:
+  - Proxmox LXC and VM templates
+  - Minimal NixOS ISO
 
 # Structure
 

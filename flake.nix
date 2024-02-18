@@ -110,6 +110,15 @@
         ];
         specialArgs = {inherit inputs;};
       };
+
+      iso = nixos-generators.nixosGenerate {
+        system = "x86_64-linux";
+        format = "iso";
+        modules = [
+          ./generators/iso
+        ];
+        specialArgs = {inherit inputs;};
+      };
     });
 
     devShells = myLib.forAllSystems (
