@@ -45,37 +45,37 @@ function! s:Wildignore() abort
 
     " Images, music and video
     let l:ignores += [
-            \ '*.bmp'
-            \,'*.gd2'
-            \,'*.gif'
-            \,'*.ico'
-            \,'*.jpeg'
-            \,'*.jpg'
-            \,'*.pbm'
-            \,'*.png'
-            \,'*.psd'
-            \,'*.tga'
-            \,'*.xbm'
-            \,'*.xcf'
-            \,'*.xpm'
-            \,'*.au'
-            \,'*.aup'
-            \,'*.flac'
-            \,'*.mid'
-            \,'*.m4a'
-            \,'*.mp3'
-            \,'*.ogg'
-            \,'*.opus'
-            \,'*.s3m'
-            \,'*.wav'
-            \,'*.avi'
-            \,'*.gifv'
-            \,'*.mp4'
-            \,'*.ogv'
-            \,'*.rm'
-            \,'*.swf'
-            \,'*.webm'
-            \ ]
+                \ '*.bmp'
+                \,'*.gd2'
+                \,'*.gif'
+                \,'*.ico'
+                \,'*.jpeg'
+                \,'*.jpg'
+                \,'*.pbm'
+                \,'*.png'
+                \,'*.psd'
+                \,'*.tga'
+                \,'*.xbm'
+                \,'*.xcf'
+                \,'*.xpm'
+                \,'*.au'
+                \,'*.aup'
+                \,'*.flac'
+                \,'*.mid'
+                \,'*.m4a'
+                \,'*.mp3'
+                \,'*.ogg'
+                \,'*.opus'
+                \,'*.s3m'
+                \,'*.wav'
+                \,'*.avi'
+                \,'*.gifv'
+                \,'*.mp4'
+                \,'*.ogv'
+                \,'*.rm'
+                \,'*.swf'
+                \,'*.webm'
+                \ ]
 
     " Versioning
     let l:ignores += [
@@ -83,6 +83,14 @@ function! s:Wildignore() abort
                 \,'.hg'
                 \,'.svn'
                 \ ]
+
+    " Hidden project directories
+    let l:ignores += [
+                \ '.direnv'
+                \,'.terraform'
+                \,'**/node_modules/**'
+                \ ]
+
 
     return join(l:ignores, ',')
 
