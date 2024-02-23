@@ -37,7 +37,11 @@
       git_commit = {commit_hash_length = 7;};
       lua.format = "via [ $version](bold blue) ";
       python.symbol = "[](blue) ";
-      jobs.symbol = "[](red)";
+      jobs = {
+        style = "red";
+        format = "[$symbol $number]($style)";
+      };
+
       hostname = {
         ssh_only = true;
         format = "[$hostname](bold blue) ";
