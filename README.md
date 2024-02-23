@@ -24,6 +24,7 @@ I have only recently dove into Nix, so the code might not be of the best quality
 - Usage of [nixos-generators](https://github.com/nix-community/nixos-generators) for:
   - Proxmox LXC and VM templates
   - Minimal NixOS ISO
+- Runnable Neovim wrapped with my custom config via `nix run`
 
 # Structure
 
