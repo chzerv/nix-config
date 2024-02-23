@@ -6,6 +6,8 @@ name: "build"
       - "main"
     paths:
       - "flake.lock"
+  # Allow running the workflow manually
+  workflow_dispatch:
 
 jobs:
   build:
@@ -46,11 +48,11 @@ jobs:
         uses: DeterminateSystems/magic-nix-cache-action@main
 
       - name: Build and push system configurations and ISO
-        if: matrix.toBuild.package != ".#chnvim"
+        if: matrix.toBuild.package != '.#chnvim'
         run: nix build ${{ matrix.toBuild.package }} | cachix push chzerv
 
       - name: Build and push custom Neovim
-        if: matrix.toBuild.package == ".#chnvim"
+        if: matrix.toBuild.package == '.#chnvim'
         run: |
           cd ./config/nvim
           nix build | cachix push chzerv
