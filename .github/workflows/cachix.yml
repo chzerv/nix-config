@@ -21,7 +21,6 @@ jobs:
           # - package: .#pve-lxc-docker
           # - package: .#pve-vm-template
           - package: .#iso
-          - package: .#chnvim
 
     steps:
       - name: Free up some space on the runner to avoid out-of-space errors
@@ -48,11 +47,4 @@ jobs:
         uses: DeterminateSystems/magic-nix-cache-action@main
 
       - name: Build and push system configurations and ISO
-        if: matrix.toBuild.package != '.#chnvim'
         run: nix build ${{ matrix.toBuild.package }} | cachix push chzerv
-
-      - name: Build and push custom Neovim
-        if: matrix.toBuild.package == '.#chnvim'
-        run: |
-          cd ./config/nvim
-          nix build | cachix push chzerv
