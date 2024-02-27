@@ -26,6 +26,8 @@ map("n", "<leader>sl", builtin.live_grep, { desc = "[S]earch using [L]ive grep" 
 
 map("n", "<leader>so", builtin.oldfiles, { desc = "[S]earch [O]ld files" })
 
+map("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [O]ld files" })
+
 vim.keymap.set("n", "<leader>/", function()
     builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
         winblend = 10,
