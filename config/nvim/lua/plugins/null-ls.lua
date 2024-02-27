@@ -12,7 +12,7 @@ function M.setup()
 
     local diagnostics = nls.builtins.diagnostics
     local formatting = nls.builtins.formatting
-    local code_actions = nls.builtins.code_actions
+    -- local code_actions = nls.builtins.code_actions
 
     nls.setup({
         debug = false,
@@ -32,9 +32,6 @@ function M.setup()
             formatting.prettier.with({
                 filetypes = { "html", "css", "yaml", "json", "yaml", "markdown", "graphql", "typescript", "javascript" },
             }),
-            diagnostics.yamllint,
-            formatting.rustfmt,
-            formatting.gofumpt,
             formatting.goimports,
             formatting.terraform_fmt,
             formatting.alejandra,
@@ -44,7 +41,8 @@ function M.setup()
                     "2",
                 },
             }),
-            code_actions.shellcheck,
+
+            diagnostics.yamllint,
         },
         on_attach = function(client, bufnr)
             local opts = { noremap = true, silent = true, buffer = bufnr }
