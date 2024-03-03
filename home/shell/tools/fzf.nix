@@ -15,7 +15,7 @@
       "--prompt='∼ ' --pointer='▶' --marker='✓'"
       "--bind '?:toggle-preview'"
       "--bind 'ctrl-a:select-all'"
-      "--bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'"
+      "--bind 'ctrl-y:execute-silent(echo {+} | wlcopy -n)'"
       "--bind 'ctrl-e:execute(echo {+} | xargs -o nvim)'"
       "--bind 'ctrl-v:execute(emacs {+})'"
       "--bind 'alt-k:preview-up,alt-p:preview-up'"
