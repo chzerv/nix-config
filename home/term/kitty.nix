@@ -9,10 +9,10 @@ in {
     enable = opts.term.kitty && type != "server";
     shellIntegration.enableFishIntegration = false;
     font = {
-      name = "Fira Mono";
-      size = 12;
+      name = "Monaspace Argon";
+      size = 11;
     };
-    theme = "Catppuccin-Mocha";
+    theme = "Catppuccin-Macchiato";
     settings = {
       # Performance tuning
       sync_to_monitor = "no";

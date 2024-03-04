@@ -15,7 +15,7 @@
     term = {
       kitty = true;
       alacritty = true;
-      default = "alacritty";
+      default = "kitty";
     };
 
     services = {
