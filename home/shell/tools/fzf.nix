@@ -11,7 +11,7 @@
       "--height=70%"
       "--multi"
       "--preview-window right:70%"
-      "--color='hl:148,hl+:154,pointer:032,marker:010,bg+:237,gutter:008'"
+      "--color='bg+:-1,gutter:-1'"
       "--prompt='∼ ' --pointer='▶' --marker='✓'"
       "--bind '?:toggle-preview'"
       "--bind 'ctrl-a:select-all'"
