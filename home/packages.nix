@@ -1,12 +1,9 @@
 {
   pkgs,
   lib,
-  config,
   type,
   ...
-}: let
-  opts = config.local.hm;
-in {
+}: {
   home.packages = with pkgs;
     [
       unzip
@@ -14,6 +11,8 @@ in {
       vgrep
       fd
       jq
+      jqp
+      yq-go
       just
       dogdns
       httpie
