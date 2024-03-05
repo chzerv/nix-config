@@ -4,34 +4,56 @@
 # Slightly modified version of ThePrimeagean's tmux-sessionizer script:
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/bin/tmux-sessionizer
 #
-# Select a project from ~/Projects using fzf and open it in a new tmux session.
+# Uses `zoxide` to get your most frequently used directories inside your projects directory
+# and `fzf` to further filter this list.
+#
+# It then creates a `tmux` session named after the selected project and attaches to it.
+#
 # The first pane is named "main" for integration with the tmux-harpoon script.
 #
+#
+# Requirements: fzf, zoxide, fd
+#
 
-PROJECTS=~/Projects
+# Where are your projects located
+PROJECTS_DIR="$HOME/Projects"
 
-project=$(fd --type d --hidden '.git$' "$PROJECTS" --exclude "00_Learning" |
-    sed 's/\.git\///' |
-    sed "s;$PROJECTS/;;" |
-    fzf --cycle --prompt ">" --no-sort
+# Find the most frequently accessed projects via `zoxide and filter them`
+PROJECT=$(
+  zoxide query -l |
+    grep "$PROJECTS_DIR" |
+    fzf \
+      --border=rounded \
+      --exit-0 \
+      --sort \
+      --pointer="▶ " \
+      --marker="✓" \
+      --color="bg+:-1,marker:-1,gutter:-1" \
+      --header="ctrl-f: Search inside the selected directory" \
+      --bind 'ctrl-f:execute[fd --type d . {} --min-depth 1 --max-depth 1 | fzf --border=rounded --exit-0 --reverse --sort --pointer="▶ " --marker="✓" --color="bg+:-1,marker:-1,gutter:-1"]+close'
 )
 
-if [[ -z $project ]]; then
-    exit 0
+if [[ -z $PROJECT ]]; then
+  exit 0
 fi
 
-project_name=$(basename "$project")
+PROJECT_BASENAME=$(basename "$PROJECT")
 
-tmux_running=$(pgrep tmux)
+# Check if tmux is running
+TMUX_RUNNING=$(pgrep tmux | head -n 1)
 
 # If tmux is not running, create a new session named after the project, change directory into the project's name and rename the pane to "main"
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s "$project_name" -c "$PROJECTS/$project" -n "main"
-    exit 0
+if [[ -z $TMUX_RUNNING ]]; then
+  tmux new-session -s "$PROJECT_BASENAME" -c "$PROJECT" -n "main"
+  exit 0
 fi
 
-if ! tmux has-session -t="$project_name" 2>/dev/null; then
-    tmux new-session -ds "$project_name" -c "$PROJECTS/$project" -n "main"
-fi
+if [[ -n $TMUX ]]; then
+  if ! tmux has-session -t "$PROJECT_BASENAME"; then
+    tmux new -ds "$PROJECT_BASENAME" -n "main"
+  fi
 
-tmux switch-client -t "$project_name"
+  tmux switch-client -t "$PROJECT_BASENAME"
+else
+  tmux attach -t "$PROJECT_BASENAME"
+fi

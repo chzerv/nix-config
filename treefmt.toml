@@ -10,13 +10,13 @@ excludes = []
 command = "shfmt"
 options = ["--indent", "2"]
 includes = [ "./home/shell/scripts/bin/*" ]
-excludes = ["git-add-fzf"] # This is a fish script
+excludes = ["git-add-fzf", "tmux-sm"] # fish scripts
 
 [formatter.shellcheck]
 command = "shellcheck"
 options = []
 includes = [ "./home/shell/scripts/bin/*" ]
-excludes = ["git-add-fzf"] # This is a fish script
+excludes = ["git-add-fzf", "tmux-sm"] # fish scripts
 
 [formatter.lua]
 command = "stylua"

@@ -33,5 +33,5 @@ bindings = [ { mouse = "Right", mods = "Control", action = "Paste" }, ]
 
 [keyboard]
 bindings = [
-    { key = "A", mods = "Control|Shift", chars = "tmux-create-or-attach\n" },
+    { key = "A", mods = "Control|Shift", chars = "tmux-sm\n" },
 ]

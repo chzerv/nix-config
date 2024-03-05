@@ -1,0 +1,76 @@
+#!/usr/bin/env fish
+
+#
+# Tmux Session Manager
+#
+# Small script for managing tmux sessions
+# Allows for:
+#   + Switching between sessions
+#   + Creating a new session
+#   + Creating a new session with a project dir as the working dir (uses my `tmux-sessionizer` script)
+#   + Renaming a session
+#   + Deleting a session
+#
+
+# Get the current tmux session
+set CURRENT_SESSION (tmux display-message -p '#S' 2>/dev/null)
+
+# Get a list of all tmux sessions except the current one
+set SESSIONS (tmux list-sessions -F '#S' 2>/dev/null)
+
+set fzf_args "-p 65%,65%" \
+    "--border=rounded" \
+    "--exit-0" \
+    "--tac" \
+    "--reverse" \
+    "--sort" \
+    "--prompt= " \
+    "--pointer=▶ " \
+    "--marker=✓" \
+    "--color=bg+:-1,marker:-1,gutter:-1" \
+    "--header='ctrl-a: New session / ctrl-d: Delete session / ctrl-r: Rename session / alt-p: Open a project'" \
+    "--preview=tmux capture-pane -ep -t {}" \
+    "--preview-window=bottom:75%" \
+
+# Check if tmux is running
+set TMUX_RUNNING (pgrep tmux | head -n 1)
+
+if test -z $TMUX_RUNNING
+    # set SELECTED_SESSION ( echo "" | fzf --ansi --height 25% --prompt " New session name " --header "No existing sessions found. Creating and attaching to a new session.." --print-query )
+    echo -e "Create a new session and attach to it!"
+    read -P " New session name: " SELECTED_SESSION
+
+    tmux new-session -s $SELECTED_SESSION
+
+    exit 0
+else
+    set SELECTED_SESSION (printf %s\n $SESSIONS | fzf-tmux $fzf_args \
+        --border-label "Current session: \"$CURRENT_SESSION\" " \
+        --bind 'ctrl-r:execute[set new_ses (echo "" | fzf --header "Renaming session {}" --print-query --prompt="New name: "); tmux rename-session -t {} $new_ses;]+reload:tmux list-sessions -F "#S"' \
+        --bind 'ctrl-a:execute[set new_ses (echo "" | fzf --header "Create new session" --print-query --prompt="New session name: "); tmux new -s $new_ses -n "main" -d;]+reload(tmux list-sessions -F "#S")' \
+        --bind 'ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F "#S")' \
+        --bind 'ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F "#S")' \
+        --bind 'alt-p:become(bash -c "tmux-sessionizer")+close'
+    )
+end
+
+# If no session is selected, exit
+# This is needed because otherwise, even if the user would cancel the program e.g., with Ctrl-C, a session would be selected
+if test -z $SELECTED_SESSION
+    exit
+end
+
+# If the script is called from within tmux, check if the selected session already exists.
+# If it exists, just switch to it.
+# If it doesn't exist, create it (without attaching to it) and then switch to it.
+# `switch-client` is used instead of `attach` to avoid nested sessions
+if test -n "$TMUX"
+    if ! tmux has-session -t $SELECTED_SESSION
+        tmux new -ds $SELECTED_SESSION -n "main"
+    end
+
+    tmux switch-client -t $SELECTED_SESSION
+else
+    # If the script is called ouside tmux, attach to the selected session
+    tmux attach -t $SELECTED_SESSION
+end
