@@ -68,6 +68,5 @@ return {
         -- Setup diagnostics
         require("plugins.lsp.diagnostics").setup()
         require("plugins.null-ls").setup()
-        require("plugins.rust-tools").setup()
     end,
 }
