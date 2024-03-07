@@ -10,43 +10,27 @@ function M.lsp_mappings(client, bufnr)
     local opts = { noremap = true, silent = true, buffer = bufnr }
     local map = vim.keymap.set
 
-    local has_rt, rt = pcall(require, "rust-tools")
-
-    if client.name == "rust_analyzer" and has_rt then
-        map("n", "K", rt.hover_actions.hover_actions, opts)
-    else
-        map("n", "K", vim.lsp.buf.hover, opts)
-    end
+    map("n", "K", vim.lsp.buf.hover, opts)
 
     map("n", "gd", vim.lsp.buf.definition, opts)
     map("n", "2gd", ":vsplit | lua vim.lsp.buf.definition()<CR>", opts)
     map("n", "gD", vim.lsp.buf.declaration, opts)
-    -- map("n", "gr", vim.lsp.buf.references, opts)
     map("n", "gr", require("telescope.builtin").lsp_references, opts)
+
+    map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, opts)
+
     map("n", "<leader>ct", vim.lsp.buf.type_definition, opts)
     map("n", "<leader>ci", vim.lsp.buf.implementation, opts)
-    map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, opts)
 
     map("n", "<leader>cr", vim.lsp.buf.rename, opts)
     map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+
     map("n", "<leader>cs", "<cmd>Telescope lsp_document_symbols theme=ivy<cr>", opts)
 
-    -- Diagnostics
-    map("n", "<leader>df", function()
-        vim.diagnostic.open_float({ scope = "line" })
-    end, opts)
-
-    map("n", "<leader>dq", vim.diagnostic.setqflist, opts)
-
-    map("n", "<leader>dt", "<cmd>Telescope diagnostics theme=ivy<cr>", opts)
-
-    map("n", "]d", function()
-        vim.diagnostic.goto_next({ float = { border = "rounded" } })
-    end, opts)
-
-    map("n", "[d", function()
-        vim.diagnostic.goto_prev({ float = { border = "rounded" } })
-    end, opts)
+    -- Format using the LSP provided formatter
+    if client.server_capabilities.documentFormattingProvider then
+        vim.keymap.set({ "n", "v" }, "<leader>cf", vim.lsp.buf.format, opts)
+    end
 end
 
 -- Format on save
