@@ -68,6 +68,7 @@ require("telescope").setup({
         },
         buffers = {
             sort_mru = true,
+            sort_lastused = true,
             ignore_current_buffer = true,
             theme = "dropdown",
             previewer = false,

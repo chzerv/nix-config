@@ -61,6 +61,8 @@ opt.diffopt = { "filler", "internal", "algorithm:histogram", "indent-heuristic",
 opt.linebreak = true -- Break lines on spaces or TABs
 opt.showbreak = "↳ " -- String to put at the start of wrapped lines
 
+opt.smoothscroll = true
+
 -- Visualize tabs, spaces and non-breaking spaces
 opt.list = true
 opt.listchars = {
