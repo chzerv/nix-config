@@ -3,17 +3,9 @@
 return {
     settings = {
         gopls = {
-            experimentalPostfixCompletions = true,
-            usePlaceholders = true,
-            analyses = {
-                unreachable = true,
-                unusedparams = true,
-                nilness = true,
-                shadow = true,
-                fieldalignment = true,
-            },
+            gofumpt = true, -- Format using gofumpt
             hints = {
-                assignVariableTypes = true,
+                assignVariableTypes = true, --
                 compositeLiteralFields = true,
                 compositeLiteralTypes = true,
                 constantValues = true,
@@ -21,7 +13,18 @@ return {
                 parameterNames = true,
                 rangeVariableTypes = true,
             },
-            staticcheck = true,
+            analyses = {
+                unusedparams = true, -- Check for unused function params
+                unreachable = true, -- Check for unreachable code
+                unusedwrite = true, -- Report writes to struct fields or arrays that are never read
+                nilness = true, -- Check for impossible nil comparisons
+                fieldalignment = true, -- Reorganize struct fields so they use less memory
+                useany = true, -- Check for constraints that could be simplified to `any`
+                shadow = true, -- Check for possible unintended variable shadowing
+            },
+            semanticTokens = true, -- Enable semantic tokens
+            usePlaceholders = true, -- Placeholders for func params
+            staticcheck = true, -- Additional analyses from staticcheck.io
         },
     },
 }
