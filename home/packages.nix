@@ -47,6 +47,7 @@
       ffmpeg
       vlc
       nurl
+      gh
       note # Built in pkgs/note
     ];
 
