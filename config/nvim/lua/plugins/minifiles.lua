@@ -47,64 +47,62 @@ local toggle_dotfiles = function()
 end
 
 return {
-    {
-        "echasnovski/mini.files",
-        -- lazy = true,
-        keys = {
-            {
-                "-",
-                function()
-                    local bufname = vim.api.nvim_buf_get_name(0)
-                    local path = vim.fn.fnamemodify(bufname, ":p")
+    "echasnovski/mini.files",
+    event = "VeryLazy",
+    keys = {
+        {
+            "-",
+            function()
+                local bufname = vim.api.nvim_buf_get_name(0)
+                local path = vim.fn.fnamemodify(bufname, ":p")
 
-                    if path and vim.uv.fs_stat(path) then
-                        require("mini.files").open(bufname, false)
-                    end
-                end,
-                desc = "File explorer",
-            },
+                if path and vim.uv.fs_stat(path) then
+                    require("mini.files").open(bufname, false)
+                end
+            end,
+            desc = "File explorer",
         },
-        opts = {
-            mappings = {
-                show_help = "?",
-                go_in_plus = "<cr>",
-                go_out_plus = "H",
-            },
-            windows = { width_nofocus = 25 },
-            -- Move stuff to the minifiles trash instead of it being gone forever.
-            options = { permanent_delete = false },
-        },
-        config = function(_, opts)
-            local minifiles = require("mini.files")
-
-            minifiles.setup(opts)
-
-            vim.api.nvim_create_autocmd("User", {
-                desc = "Add rounded corners to minifiles window",
-                pattern = "MiniFilesWindowOpen",
-                callback = function(args)
-                    vim.api.nvim_win_set_config(args.data.win_id, { border = "rounded" })
-                end,
-            })
-
-            vim.api.nvim_create_autocmd("User", {
-                desc = "Add minifiles split keymaps",
-                pattern = "MiniFilesBufferCreate",
-                callback = function(args)
-                    local buf_id = args.data.buf_id
-                    map_split(buf_id, "<C-s>", "belowright horizontal")
-                    map_split(buf_id, "<C-v>", "belowright vertical")
-                end,
-            })
-
-            vim.api.nvim_create_autocmd("User", {
-                desc = "Show hidden files",
-                pattern = "MiniFilesBufferCreate",
-                callback = function(args)
-                    local buf_id = args.data.buf_id
-                    vim.keymap.set("n", "<C-h>", toggle_dotfiles, { buffer = buf_id })
-                end,
-            })
-        end,
     },
+    opts = {
+        mappings = {
+            show_help = "?",
+            go_in_plus = "<cr>",
+            go_out_plus = "H",
+        },
+        windows = { width_nofocus = 25 },
+        -- Move stuff to the minifiles trash instead of it being gone forever.
+        options = { permanent_delete = false },
+    },
+    config = function(_, opts)
+        local minifiles = require("mini.files")
+
+        minifiles.setup(opts)
+
+        vim.api.nvim_create_autocmd("User", {
+            desc = "Add rounded corners to minifiles window",
+            pattern = "MiniFilesWindowOpen",
+            callback = function(args)
+                vim.api.nvim_win_set_config(args.data.win_id, { border = "rounded" })
+            end,
+        })
+
+        vim.api.nvim_create_autocmd("User", {
+            desc = "Add minifiles split keymaps",
+            pattern = "MiniFilesBufferCreate",
+            callback = function(args)
+                local buf_id = args.data.buf_id
+                map_split(buf_id, "<C-s>", "belowright horizontal")
+                map_split(buf_id, "<C-v>", "belowright vertical")
+            end,
+        })
+
+        vim.api.nvim_create_autocmd("User", {
+            desc = "Show hidden files",
+            pattern = "MiniFilesBufferCreate",
+            callback = function(args)
+                local buf_id = args.data.buf_id
+                vim.keymap.set("n", "<C-h>", toggle_dotfiles, { buffer = buf_id })
+            end,
+        })
+    end,
 }

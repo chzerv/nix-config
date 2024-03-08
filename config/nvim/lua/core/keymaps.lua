@@ -81,7 +81,15 @@ map("n", "gh", "yiw:help <C-R><C-W><CR>", opts)
 
 -- Search within visual selection
 -- https://www.reddit.com/r/neovim/comments/zy3qq0/til_search_within_visual_selection/
-vim.keymap.set("v", "<m-/>", "<esc>/\\%V")
+vim.keymap.set("v", "/", "<esc>/\\%V")
+
+-- Move lines
+map("n", "<C-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
+map("n", "<C-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
+map("i", "<C-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+map("i", "<C-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+map("v", "<C-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+map("v", "<C-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 
 -- Resize windows using Ctrl + arrow keys
 vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
