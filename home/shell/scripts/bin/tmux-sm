@@ -20,7 +20,7 @@ set SESSIONS (tmux list-sessions -F '#S' 2>/dev/null)
 
 set fzf_args "-p 65%,65%" \
     "--border=rounded" \
-    "--exit-0" \
+    # "--exit-0" \
     "--tac" \
     "--reverse" \
     "--sort" \
