@@ -15,10 +15,11 @@ in {
     term = {
       kitty = mkEnableOption "Setup kitty";
       alacritty = mkEnableOption "Setup alacritty";
+      foot = mkEnableOption "Setup foot";
       default = mkOption {
-        type = types.nullOr (types.enum ["kitty" "alacritty"]);
+        type = types.nullOr (types.enum ["kitty" "alacritty" "foot"]);
         description = "Default terminal to use";
-        default = "alacritty";
+        default = "foot";
       };
     };
 

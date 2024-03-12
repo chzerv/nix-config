@@ -13,9 +13,8 @@
     };
 
     term = {
-      kitty = true;
-      alacritty = true;
-      default = "kitty";
+      foot = true;
+      default = "foot";
     };
 
     services = {
