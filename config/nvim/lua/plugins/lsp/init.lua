@@ -18,6 +18,7 @@ return {
             "bashls",
             "nil_ls",
             "templ",
+            "gleam",
         }
 
         local lspconfig = require("lspconfig")

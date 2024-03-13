@@ -43,6 +43,7 @@ return {
                 "markdown_inline",
                 "templ",
                 "nix",
+                "gleam",
             },
             sync_install = false,
             ignore_install = {},
