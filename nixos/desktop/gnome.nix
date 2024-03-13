@@ -33,7 +33,7 @@
     ffmpegthumbnailer
     gnome.dconf-editor
     gsettings-desktop-schemas # collection of GSettings schemas for various GNOME components
-    pinentry-gnome
+    pinentry
   ];
 
   services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
