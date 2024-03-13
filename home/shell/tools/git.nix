@@ -17,6 +17,7 @@
         # Show the most recent commit matching a query
         query = "!f() { git show :/\"$@\"; }; f";
         unstage = "reset HEAD --"; # git unstage path/to/file
+        vi = "!nvim -c 'Git | wincmd o' ."; # Open git fugitive in Neovim
       };
       extraConfig = {
         commit.verbose = true;
