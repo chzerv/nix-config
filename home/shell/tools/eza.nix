@@ -1,7 +1,7 @@
 {
   programs.eza = {
     enable = true;
-    enableAliases = false;
+    enableFishIntegration = false;
     extraOptions = [
       "--group-directories-first"
     ];
