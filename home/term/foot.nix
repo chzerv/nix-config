@@ -30,6 +30,11 @@ in {
         primary-paste = "Shift+Insert";
       };
 
+      scrollback = {
+        lines = 5000;
+        multiplier = 3.0;
+      };
+
       mouse = {
         hide-when-typing = "yes";
       };
