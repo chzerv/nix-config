@@ -32,9 +32,6 @@
     # Neovim nightly
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
-    # Neovim wrapped with my custom config
-    chnvim.url = "/home/chzerv/nix-config/config/nvim";
-
     # Contains every possible VSCode extension there is
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
@@ -122,8 +119,6 @@
         ];
         specialArgs = {inherit inputs;};
       };
-
-      chnvim = inputs.chnvim.packages.${pkgs.system}.default;
     });
 
     devShells = myLib.forAllSystems (
