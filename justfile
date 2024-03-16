@@ -1,13 +1,13 @@
-system_rebuild := "sudo nixos-rebuild switch --flake ."
-home_rebuild := "home-manager switch --flake ."
+nh_system_rebuild := "nh os switch ."
+nh_home_rebuild := "nh home switch ."
 
-update:
+up:
 	nix flake update
-	{{ system_rebuild }}
-	{{ home_rebuild }}
+	{{ nh_system_rebuild }}
+	{{ nh_home_rebuild }}
 
-system:
-	{{ system_rebuild }}
+sys:
+	{{ nh_system_rebuild }}
 
-home:
-	{{ home_rebuild }}
+hm:
+	{{ nh_home_rebuild }}

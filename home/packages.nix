@@ -25,6 +25,7 @@
       git
       chafa
       python3
+      nh
     ]
     ++ lib.optionals (type != "server") [
       firefox
