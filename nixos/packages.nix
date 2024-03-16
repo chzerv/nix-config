@@ -23,7 +23,6 @@
     wireguard-tools
     pv
     cachix
-    linux-doc
   ];
 
   programs.wireshark = {
