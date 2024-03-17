@@ -20,5 +20,7 @@
     services = {
       syncthing = true;
     };
+
+    desktop.gnome = true;
   };
 }
