@@ -4,6 +4,7 @@
     ./flatpak.nix
     ./gaming.nix
     ./gnome.nix
+    ./plasma.nix
     ./fonts.nix
     ./smb_mount.nix
   ];

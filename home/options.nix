@@ -26,5 +26,9 @@ in {
     services = {
       syncthing = mkEnableOption "Enable syncthing as a user service";
     };
+
+    desktop = {
+      gnome = mkEnableOption "Apply GNOME user tweaks";
+    };
   };
 }
