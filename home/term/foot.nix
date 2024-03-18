@@ -1,6 +1,8 @@
 {
   config,
   type,
+  pkgs,
+  lib,
   ...
 }: let
   opts = config.local.hm;
@@ -50,5 +52,11 @@ in {
       url = "https://raw.githubusercontent.com/catppuccin/foot/main/catppuccin-macchiato.ini";
       sha256 = "0p0zcbd7422956618kwznx91bnz1bagprc0045a5gd6y30w7z38d";
     };
+  };
+
+  # Temporary fix for huge cursors in HiDPI screens
+  # https://codeberg.org/dnkl/foot/issues/1426
+  systemd.user.services.foot = lib.mkIf (type == "laptop") {
+    Service.Environment = "XCURSOR_SIZE=12";
   };
 }
