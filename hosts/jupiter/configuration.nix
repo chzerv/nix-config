@@ -47,8 +47,8 @@
         plasma6 = true;
       };
       virt = {
-        podman = true;
-        docker = false;
+        podman = false;
+        docker = true;
         libvirt = true;
         vagrant = true;
       };
