@@ -7,6 +7,5 @@
     ./opensnitch.nix
     ./tlp.nix
     ./power-profiles-daemon.nix
-    ./gnupg-agent.nix
   ];
 }
