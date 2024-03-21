@@ -23,15 +23,15 @@ M.prompt_grep_string = function()
 end
 
 M.prompt_find_files = function()
+    local dir_to_seach
+
+    local _ = vim.ui.input({ prompt = "Search in > ", completion = "dir" }, function(input)
+        dir_to_seach = input
+    end)
+
     local opts = {
         path_display = { "truncate" },
-        cwd = vim.ui.input({ completion = "dir", prompt = "Search in > " }, function(input)
-            if not input then
-                return vim.fn.pwd
-            else
-                return input
-            end
-        end),
+        cwd = dir_to_seach,
     }
 
     builtin.find_files(opts)
