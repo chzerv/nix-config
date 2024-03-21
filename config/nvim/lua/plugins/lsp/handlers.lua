@@ -36,7 +36,7 @@ end
 -- Format on save
 function M.fmt_on_save(client, bufnr)
     local augroup = vim.api.nvim_create_augroup("Formatting", { clear = true })
-    if client.supports_method("textDocument/formatting") then
+    if client.supports_method(vim.lsp.protocol.Methods.textDocument_formatting) then
         vim.api.nvim_create_autocmd("BufWritePre", {
             group = augroup,
             buffer = bufnr,
@@ -104,6 +104,30 @@ function M.codelens(client, bufnr)
             "<cmd>lua vim.lsp.codelens.run()<CR>",
             { noremap = true, silent = true, buffer = bufnr }
         )
+    end
+end
+
+function M.inlay_hints(client, bufnr)
+    if client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+        local inlay_hints_augroup = vim.api.nvim_create_augroup("inlay_hints_augroup", { clear = false })
+
+        vim.api.nvim_create_autocmd("InsertEnter", {
+            group = inlay_hints_augroup,
+            desc = "Enable inlay hints",
+            buffer = bufnr,
+            callback = function()
+                vim.lsp.inlay_hint.enable(bufnr, false)
+            end,
+        })
+
+        vim.api.nvim_create_autocmd("InsertLeave", {
+            group = inlay_hints_augroup,
+            desc = "Disable inlay hints",
+            buffer = bufnr,
+            callback = function()
+                vim.lsp.inlay_hint.enable(bufnr, true)
+            end,
+        })
     end
 end
 
