@@ -5,12 +5,12 @@ return {
                 args = {
                     "-pdflatex=xelatex -interaction=nonstopmode -shell-escape %O %S",
                 },
-                executable = "/usr/bin/latexmk",
+                executable = vim.fn.system("which latexmk"),
                 forwardSearchAfter = true,
                 onSave = true,
             },
             forwardSearch = {
-                executable = "/usr/bin/zathura",
+                executable = vim.fn.system("which okular"),
                 args = { "--synctex-forward", "%l:1:%f", "%p" },
                 onSave = true,
             },
