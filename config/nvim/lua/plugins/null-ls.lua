@@ -30,15 +30,24 @@ function M.setup()
                 },
             }),
             formatting.prettier.with({
-                filetypes = { "html", "css", "yaml", "json", "yaml", "markdown", "graphql", "typescript", "javascript" },
+                filetypes = { "html", "css", "json", "markdown", "graphql", "typescript", "javascript" },
             }),
             formatting.goimports,
             formatting.terraform_fmt,
             formatting.alejandra,
+
             formatting.shfmt.with({
                 extra_args = {
                     "--indent",
                     "2",
+                },
+            }),
+
+            -- https://github.com/google/yamlfmt/blob/main/docs/config-file.md#basic-formatter
+            formatting.yamlfmt.with({
+                extra_args = {
+                    "-formatter",
+                    "indent=2,include_document_start=true,retain_line_breaks_single=true",
                 },
             }),
 

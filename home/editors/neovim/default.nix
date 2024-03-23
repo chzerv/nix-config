@@ -36,6 +36,7 @@ in {
         ## YAML
         nodePackages_latest.yaml-language-server # LSP
         yamllint # Linter
+        yamlfmt # Formatter
 
         ## Terraform
         terraform-ls # LSP
