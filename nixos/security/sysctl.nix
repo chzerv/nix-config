@@ -16,10 +16,6 @@ in {
       # Disable kexec, which allows replacing the current running kernel
       "kernel.kexec_load_disabled" = lib.mkDefault 1;
 
-      # Hide kernel pointers from processes, unless they have CAP_SYSLOG set
-      # https://docs.kernel.org/admin-guide/sysctl/kernel.html#kptr-restrict
-      "kernel.kptr_restrict" = lib.mkDefault 1;
-
       # TCP/IP stack hardening
 
       # Help against SYS flood attacks
