@@ -44,6 +44,11 @@ in {
       csd = {
         preferred = "none";
       };
+
+      colors = {
+        # Opacity
+        alpha = 0.95;
+      };
     };
   };
 

@@ -6,15 +6,17 @@ import = [
 term = "xterm-256color"
 
 [window]
-opacity = 1
-blur = true
+opacity = 0.95
+blur = false
 decorations = "none"
-startup_mode = "Windowed"
-dynamic_padding = true
-padding = { x = 6, y = 0 }
+padding = { x = 0, y = 0 }
+
+[colors]
+draw_bold_text_with_bright_colors = true
 
 [cursor]
-style = "Beam"
+style = "Block"
+unfocused_hollow = true
 
 [font]
 size = 11.0
@@ -34,4 +36,5 @@ bindings = [ { mouse = "Right", mods = "Control", action = "Paste" }, ]
 [keyboard]
 bindings = [
     { key = "A", mods = "Control|Shift", chars = "tmux-sm\n" },
+    { key = "F", mods = "Control|Shift", chars = "tmux-sessionizer\n" },
 ]
