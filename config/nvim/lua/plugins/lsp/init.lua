@@ -46,7 +46,7 @@ return {
 
                     -- Extra LSP functionality to enable
                     handlers.fmt_on_save(client, bufnr)
-                    handlers.inlay_hints(client, bufnr)
+                    -- handlers.inlay_hints(client, bufnr)
 
                     if server == "ansiblels" then
                         -- LSP hover provides nothing of value for Ansible. A more useful thing to do would be to call 'ansible-doc'.
