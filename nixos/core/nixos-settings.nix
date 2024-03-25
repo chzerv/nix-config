@@ -45,7 +45,4 @@
     info.enable = false;
     doc.enable = false;
   };
-
-  # https://github.com/Mic92/nix-ld
-  # programs.nix-ld.enable = true;
 }
