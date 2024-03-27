@@ -15,7 +15,7 @@ function M.lsp_mappings(client, bufnr)
     map("n", "gd", vim.lsp.buf.definition, opts)
     map("n", "2gd", ":vsplit | lua vim.lsp.buf.definition()<CR>", opts)
     map("n", "gD", vim.lsp.buf.declaration, opts)
-    map("n", "gr", require("telescope.builtin").lsp_references, opts)
+    map("n", "gr", vim.lsp.buf.references, opts)
 
     map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, opts)
 
