@@ -87,6 +87,16 @@ require("telescope").setup({
                 width = 0.65,
             },
         },
+        lsp_document_symbols = {
+            theme = "ivy",
+            previewer = false,
+            -- By default, the symbol width is set to 30. As a result, in languages like Go
+            -- where methods are defined as `func (svc *Service) FunctionExamle()`,
+            -- the symbol names are cut off.
+            symbol_width = 50,
+            symbol_type_width = 50,
+            ignore_symbols = { "field" }, -- Ignore "field" fields, e.g., struct fields
+        },
         diagnostics = {
             sorting_strategy = "ascending",
             -- layout_strategy = "vertical",
