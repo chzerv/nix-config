@@ -68,6 +68,8 @@ return {
             show_help = "?",
             go_in_plus = "<cr>",
             go_out_plus = "H",
+            go_in = "",
+            go_out = "",
         },
         windows = { width_nofocus = 25 },
         -- Move stuff to the minifiles trash instead of it being gone forever.
