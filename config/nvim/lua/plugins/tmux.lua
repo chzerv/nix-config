@@ -17,5 +17,8 @@ return {
     },
     init = function()
         vim.g.tmux_navigator_no_mappings = 1
+        -- Fixes an issue where moving out of (Neo)vim is very slow. See the linked comment:
+        -- https://github.com/christoomey/vim-tmux-navigator/issues/72#issuecomment-103578088
+        vim.opt.shell = "/usr/bin/env bash -i"
     end,
 }
