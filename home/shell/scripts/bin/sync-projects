@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+####################################################################################
+## Simple script to push and pull my ~/Projects directory to my backups smb share
+####################################################################################
+
+BACKUP_TARGET="/media/smb"
+
+function push_to_backup_target() {
+  echo -e "Backing up Projects...\n\n"
+
+  rsync --progress -a --delete "$HOME/Projects" "$BACKUP_TARGET" \
+    --exclude "debug" \
+    --exclude "target" \
+    --exclude "*venv*" \
+    --exclude ".vagrant.d" \
+    --exclude ".terraform" \
+    --exclude ".direnv"
+}
+
+function pull_from_backup_target() {
+  echo -e "Pulling Projects backups...\n\n"
+
+  rsync --progress -a --delete "$BACKUP_TARGET" "$HOME/Projects"
+
+  find "$HOME/Projects" -type d -exec chmod 755 {} +
+  find "$HOME/Projects" -type f -exec chmod 644 {} +
+  find "$HOME/Projects" -type f -name "*.sh" -exec chmod +x {} +
+}
+
+function help() {
+  echo "Backup Projects directory to SMB share"
+  echo
+  echo "Syntax: sync-projects [push|pull]"
+  echo
+  echo "push     Push local Projects directory to the target"
+  echo "pull     Pull the backed-up Projects"
+  echo
+}
+
+if [ "$#" -eq 0 ] || [ "$#" -gt 1 ]; then
+  help
+elif [[ "$*" = "push" ]]; then
+  push_to_backup_target
+elif [[ "$*" = "pull" ]]; then
+  pull_from_backup_target
+fi
