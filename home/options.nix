@@ -14,12 +14,11 @@ in {
 
     term = {
       kitty = mkEnableOption "Setup kitty";
-      alacritty = mkEnableOption "Setup alacritty";
-      foot = mkEnableOption "Setup foot";
+      wezterm = mkEnableOption "Setup wezterm";
       default = mkOption {
-        type = types.nullOr (types.enum ["kitty" "alacritty" "foot"]);
+        type = types.nullOr (types.enum ["kitty" "wezterm"]);
         description = "Default terminal to use";
-        default = "foot";
+        default = "kitty";
       };
     };
 
