@@ -49,8 +49,9 @@
         ""
       ];
     };
+
     lazygit = {
-      enable = true;
+      enable = false;
       settings = {
         git = {
           paging = {
