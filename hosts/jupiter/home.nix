@@ -9,7 +9,6 @@
   config.local.hm = {
     editor = {
       neovim = true;
-      vscode = true;
     };
 
     term = {
