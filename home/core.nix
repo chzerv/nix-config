@@ -42,6 +42,9 @@
     };
   };
 
+  # https://sr.ht/~rycee/sd-switch/
+  systemd.user.startServices = "sd-switch";
+
   # Let home-manager manage itself
   programs.home-manager.enable = true;
 }
