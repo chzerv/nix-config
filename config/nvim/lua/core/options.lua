@@ -28,8 +28,8 @@ opt.undodir = vim.fn.stdpath("data") .. "/cache/undo"
 
 -- Completion
 opt.pumheight = 10 -- Only show 10 completion candidates
-opt.pumblend = 10 -- Add trnsparency to the pummenu
-opt.completeopt = { "menuone", "noselect" }
+opt.pumblend = 10 -- Add transparency to the pummenu
+opt.completeopt = { "menu", "menuone", "noselect" }
 
 -- Command line completion
 opt.wildignorecase = true
