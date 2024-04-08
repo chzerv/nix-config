@@ -6,10 +6,10 @@
       format = lib.concatStrings [
         "$username"
         "$hostname"
-        "$kubernetes"
         "$directory"
         "$git_branch"
         "$git_status"
+        "$kubernetes"
         "$rust"
         "$nodejs"
         "$lua"
@@ -20,12 +20,12 @@
         "$nix_shell"
         "$line_break"
         "$character"
+        "$jobs"
         ""
       ];
 
       right_format = lib.concatStrings [
         "$cmd_duration"
-        "$jobs"
       ];
 
       add_newline = false;
