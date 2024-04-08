@@ -17,6 +17,7 @@ in {
       extraPackages = with pkgs; [
         # Dependencies for packages to properly work
         luajit
+        fswatch # According to :checkhealth, fswatch is preferred over libuv-watchdirs
         luajitPackages.luarocks
         luajitPackages.jsregexp
         gnumake
