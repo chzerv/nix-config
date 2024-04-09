@@ -43,7 +43,7 @@
         flatpak = true;
         plymouth = true;
         mount_smb_share = true;
-        plasma6 = true;
+        gnome = true;
       };
       virt = {
         podman = false;

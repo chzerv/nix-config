@@ -21,6 +21,6 @@
       syncthing = true;
     };
 
-    desktop.gnome = false;
+    desktop.gnome = true;
   };
 }
