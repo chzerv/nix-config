@@ -17,8 +17,6 @@ in {
       };
     };
 
-    services.spice-vdagentd.enable = true;
-
     # Add user to the "libvirt" group
     users.users.${username}.extraGroups = ["libvirtd"];
 
