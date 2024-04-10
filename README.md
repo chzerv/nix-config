@@ -1,6 +1,6 @@
 <div align="center">
 <h1>
-  <img width="96" src="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nix-snowflake.svg"></img> <br>
+  <img width="96" src="https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nix-snowflake-colours.svg"></img> <br>
   NixOS & Home Manager Configuration
 <p></p>
   <img src="https://builtwithnix.org/badge.svg">
