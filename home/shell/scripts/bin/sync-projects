@@ -21,7 +21,7 @@ function push_to_backup_target() {
 function pull_from_backup_target() {
   echo -e "Pulling Projects backups...\n\n"
 
-  rsync --progress -a --delete "$BACKUP_TARGET" "$HOME/Projects"
+  rsync --progress -a --delete "$BACKUP_TARGET/Projects/" "$HOME/Projects"
 
   find "$HOME/Projects" -type d -exec chmod 755 {} +
   find "$HOME/Projects" -type f -exec chmod 644 {} +
