@@ -9,13 +9,14 @@ BACKUP_TARGET="/media/smb"
 function push_to_backup_target() {
   echo -e "Backing up Projects...\n\n"
 
-  rsync --progress -a --delete "$HOME/Projects" "$BACKUP_TARGET" \
+  rsync --progress -a --delete-after "$HOME/Projects" "$BACKUP_TARGET" \
     --exclude "debug" \
     --exclude "target" \
     --exclude "*venv*" \
     --exclude ".vagrant.d" \
     --exclude ".terraform" \
-    --exclude ".direnv"
+    --exclude ".direnv" \
+    --exclude "pg-data"
 }
 
 function pull_from_backup_target() {
