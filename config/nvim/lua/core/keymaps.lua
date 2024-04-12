@@ -7,8 +7,8 @@ g.mapleader = " "
 g.maplocalleader = "\\"
 
 -- Center the cursor after scrolling down/up
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-u>", "<C-u>zz")
+map("n", "<C-d>", "<C-d>M")
+map("n", "<C-u>", "<C-u>M")
 
 -- Center the cursor and open folds when navigating through search matches
 map("n", "n", "nzzzv")
@@ -67,7 +67,7 @@ map("n", "<Esc>", "<cmd> :noh <CR>")
 map("n", "<leader>q/", [[<Cmd>execute 'vimgrep /'.@/.'/g %'<CR>copen<CR><CR>nohls<CR>]])
 
 -- Substitute the word under cursor...
-map("n", "<leader>rl", ":s/<C-R><C-W>//g<left><left>") -- line wise
+map("n", "<leader>rl", ":s/<C-R><C-W>//g<left><left>")  -- line wise
 map("n", "<leader>rb", ":%s/<C-R><C-W>//g<left><left>") -- buffer wise
 
 -- Substitution in visual selection

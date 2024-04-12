@@ -12,9 +12,8 @@
     };
 
     term = {
-      wezterm = true;
-      kitty = true;
-      default = "wezterm";
+      foot = true;
+      default = "foot";
     };
 
     services = {
