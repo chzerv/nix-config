@@ -13,12 +13,18 @@ return {
             completion = {
                 enable = true,
                 showWord = "Disable",
-                keywordSnippet = "Disable",
+                -- When selecting a function from the auto-completion, also complete its params
+                keywordSnippet = "Replace",
+                callSnippet = "Replace",
             },
 
             workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = { os.getenv("VIMRUNTIME") },
+                checkThirdParty = false,
+                -- Make the server aware of Neovim runtime files and the `luv` library
+                library = {
+                    vim.env.VIMRUNTIME,
+                    "${3rd}/luv/library",
+                },
             },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {
