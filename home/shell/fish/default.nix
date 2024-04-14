@@ -1,36 +1,6 @@
 {pkgs, ...}: {
   programs.fish = {
     enable = true;
-    plugins = [
-      {
-        name = "nix.fish";
-        src = pkgs.fetchFromGitHub {
-          owner = "kidonng";
-          repo = "nix.fish";
-          rev = "ad57d970841ae4a24521b5b1a68121cf385ba71e";
-          sha256 = "13x3bfif906nszf4mgsqxfshnjcn6qm4qw1gv7nw89wi4cdp9i8q";
-        };
-      }
-      {
-        name = "fifc";
-        src = pkgs.fetchFromGitHub {
-          owner = "gazorby";
-          repo = "fifc";
-          rev = "2ee5beec7dfd28101026357633616a211fe240ae";
-          sha256 = "00f6vklsknnav09abrsfy2m577r30m0pphy0hr86b1w0nnvspdin";
-        };
-      }
-      {
-        name = "bd";
-        src = pkgs.fetchFromGitHub {
-          owner = "0rax";
-          repo = "fish-bd";
-          rev = "master";
-          # Find out with: 'nurl https://github.com/0rax/fish-bd master'
-          sha256 = "sha256-GeWjoakXa0t2TsMC/wpLEmsSVGhHFhBVK3v9eyQdzv0=";
-        };
-      }
-    ];
 
     interactiveShellInit = ''
       # Disable greeting
@@ -44,10 +14,6 @@
       fish_add_path "$HOME/.node_modules/bin"
       fish_add_path "$HOME/go/bin"
 
-      # fifc setup: Use neovim and C-x instead of TAB
-      set -Ux fifc_editor nvim
-      set -U fifc_keybinding \cx
-
       set -x EDITOR nvim
       set -x MANPAGER 'nvim --clean +Man!'
       set -x npm_config_prefix "$HOME/.node_modules/"
@@ -59,7 +25,6 @@
       cp = "cp -i -v";
       rm = "rm -i -v";
       dd = "dd status=progress";
-      lg = "lazygit";
       ":q" = "exit";
       ":Q" = "exit";
       sshfs = "sshfs - o idmap=user,ServerAliveInterval=5,ServerAliveCountMax=3,reconnect";
