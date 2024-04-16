@@ -70,7 +70,12 @@
       algorithm = "zstd";
     };
 
+    environment = {
+      shells = [pkgs.fish pkgs.bashInteractive];
+    };
+
     programs.fish.enable = true;
+
     users = {
       users = {
         ${username} = {
