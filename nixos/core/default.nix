@@ -2,7 +2,7 @@
   imports = [
     ./sops.nix
     ./network.nix
-    ./nixos-settings.nix
+    ./nix.nix
     ./system.nix
   ];
 }

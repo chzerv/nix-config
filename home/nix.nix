@@ -2,7 +2,6 @@
   lib,
   username,
   inputs,
-  outputs,
   pkgs,
   ...
 } @ args: {

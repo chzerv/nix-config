@@ -1,7 +1,7 @@
 {
   imports = [
     ./options.nix
-    ./core.nix
+    ./nix.nix
 
     ./packages.nix
     ./term
