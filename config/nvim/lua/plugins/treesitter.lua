@@ -9,6 +9,7 @@ return {
     event = "BufReadPost",
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
+        "JoosepAlviste/nvim-ts-context-commentstring",
     },
     config = function()
         local ts = require("nvim-treesitter.configs")
