@@ -6,6 +6,10 @@ up:
 	{{ nh_system_rebuild }}
 	{{ nh_home_rebuild }}
 
+build-all:
+	{{ nh_system_rebuild }}
+	{{ nh_home_rebuild }}
+
 sys:
 	{{ nh_system_rebuild }}
 
