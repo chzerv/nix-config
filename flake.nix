@@ -74,6 +74,12 @@
           disko.nixosModules.disko
         ];
       };
+
+      rpi4 = myLib.mkNixosConfig {
+        hostname = "rpi4";
+        username = "xci";
+        type = "server";
+      };
     };
 
     # Home Manager Configurations
@@ -116,6 +122,15 @@
         format = "iso";
         modules = [
           ./generators/iso
+        ];
+        specialArgs = {inherit inputs;};
+      };
+
+      rpi4-sd-image = nixos-generators.nixosGenerate {
+        system = "aarch64-linux";
+        format = "sd-aarch64-installer";
+        modules = [
+          ./generators/rpi4-sd-image
         ];
         specialArgs = {inherit inputs;};
       };

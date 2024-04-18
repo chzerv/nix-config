@@ -63,6 +63,7 @@
         # Enable sysrq
         "kernel.sysrq" = 1;
       };
+      binfmt.emulatedSystems = ["aarch64-linux"];
     };
 
     zramSwap = {
