@@ -17,6 +17,7 @@
       killall
       usbutils
       lm_sensors
+      htop
       pciutils
       man-pages
       iperf3
