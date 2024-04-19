@@ -22,6 +22,7 @@ in {
       tlp = mkEnableOption "Use TLP for power-saving";
       ppd = mkEnableOption "Use power-profiles-daemon for power-saving";
       adguard = mkEnableOption "Setup AdGuard Home";
+      node_exporter = mkEnableOption "Setup node_exporter";
       tailscale = {
         enable = mkEnableOption "Enable tailscale";
         routingFeatures = mkOption {

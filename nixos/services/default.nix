@@ -8,5 +8,6 @@
     ./tlp.nix
     ./power-profiles-daemon.nix
     ./adguard.nix
+    ./node_exporter.nix
   ];
 }
