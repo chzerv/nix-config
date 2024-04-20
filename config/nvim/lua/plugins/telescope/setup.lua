@@ -4,10 +4,24 @@ local actions_layout = require("telescope.actions.layout")
 require("telescope").setup({
     defaults = {
         path_display = { "truncate" },
+
+        -- Layout config
+        layout_strategy = "horizontal",
         layout_config = {
+            width = 0.8,
+            height = 0.65,
             preview_cutoff = 120,
-            prompt_position = "top",
+
+            horizontal = {
+                prompt_position = "top",
+                preview_width = 0.55,
+                results_width = 0.8,
+            },
+            vertical = {
+                mirror = false,
+            },
         },
+
         mappings = {
             i = {
                 ["<C-x>"] = false,
@@ -18,6 +32,7 @@ require("telescope").setup({
                 ["<C-Up>"] = actions.cycle_history_prev,
             },
         },
+
         vimgrep_arguments = {
             "rg",
             "--color=never",
@@ -30,6 +45,7 @@ require("telescope").setup({
             "--trim",
             "--glob=!.git/",
         },
+
         file_ignore_patterns = {
             "node_modules",
             ".terraform",
@@ -38,16 +54,19 @@ require("telescope").setup({
             ".venv",
         },
     },
+
     pickers = {
         live_grep = {
             only_sort_text = true,
             path_display = { "tail" },
         },
+
         find_files = {
             find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
             theme = "dropdown",
             previewer = false,
         },
+
         git_files = {
             theme = "dropdown",
             previewer = false,
@@ -61,11 +80,13 @@ require("telescope").setup({
                 },
             },
         },
+
         oldfiles = {
             only_cwd = true,
             theme = "dropdown",
             previewer = false,
         },
+
         buffers = {
             sort_mru = true,
             sort_lastused = true,
@@ -78,6 +99,7 @@ require("telescope").setup({
                 },
             },
         },
+
         lsp_references = {
             show_line = false,
             -- Show the first reference at the top
@@ -87,6 +109,7 @@ require("telescope").setup({
                 width = 0.65,
             },
         },
+
         lsp_document_symbols = {
             theme = "ivy",
             previewer = false,
@@ -97,6 +120,7 @@ require("telescope").setup({
             symbol_type_width = 50,
             ignore_symbols = { "field" }, -- Ignore "field" fields, e.g., struct fields
         },
+
         diagnostics = {
             sorting_strategy = "ascending",
             -- layout_strategy = "vertical",
@@ -104,11 +128,13 @@ require("telescope").setup({
             --     width = 0.65,
             -- },
         },
+
         help_tags = {
             theme = "ivy",
             previewer = true,
         },
     },
+
     extensions = {
         fzf = {
             fuzzy = true,
