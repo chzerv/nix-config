@@ -12,13 +12,6 @@ opt.smartcase = true -- unless there is a capital letter in the query
 opt.incsearch = true -- Show search results as you type
 opt.hlsearch = true -- Highlight matching search results
 
--- Use 'ripgrep' for grepping
-opt.grepprg = "rg --smart-case --vimgrep"
-opt.grepformat = {
-    "%f:%l:%c:%m",
-    "%f:%l:%m",
-}
-
 -- Backup, undo and swap files
 opt.backup = false -- Disable permanent backups..
 opt.writebackup = true -- but enable temporary backups
@@ -89,7 +82,7 @@ vim.cmd([[
 ]])
 
 opt.shortmess:append({
-    I = false, -- Show the intro screen
+    I = true, -- Don't show the intro screen
     W = true, -- Don't print "written" when editing
     a = true, -- Use abbreviations in messages, e.g., [RO] intead of [readonly]
     c = true, -- Don't show ins-completion-menu messages (match 1 of 2)

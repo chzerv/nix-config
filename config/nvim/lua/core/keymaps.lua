@@ -67,7 +67,7 @@ map("n", "<Esc>", "<cmd> :noh <CR>")
 map("n", "<leader>q/", [[<Cmd>execute 'vimgrep /'.@/.'/g %'<CR>copen<CR><CR>nohls<CR>]])
 
 -- Substitute the word under cursor...
-map("n", "<leader>rl", ":s/<C-R><C-W>//g<left><left>")  -- line wise
+map("n", "<leader>rl", ":s/<C-R><C-W>//g<left><left>") -- line wise
 map("n", "<leader>rb", ":%s/<C-R><C-W>//g<left><left>") -- buffer wise
 
 -- Substitution in visual selection
@@ -86,8 +86,6 @@ vim.keymap.set("v", "/", "<esc>/\\%V")
 -- Move lines
 map("n", "<C-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
 map("n", "<C-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
-map("i", "<C-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
-map("i", "<C-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
 map("v", "<C-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 map("v", "<C-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 
