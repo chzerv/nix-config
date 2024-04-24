@@ -42,10 +42,13 @@ return {
             local opts = {
                 capabilities = capabilities,
                 on_attach = function(client, bufnr)
+                    -- Extra LSP functionality to enable
+
                     handlers.lsp_mappings(client, bufnr)
 
-                    -- Extra LSP functionality to enable
-                    handlers.fmt_on_save(client, bufnr)
+                    -- Let conform.nvim handle format_on_save, which can automatically fallback to the LSP provided formatter
+                    -- handlers.fmt_on_save(client, bufnr)
+
                     -- handlers.inlay_hints(client, bufnr)
 
                     if server == "ansiblels" then
@@ -68,6 +71,5 @@ return {
 
         -- Setup diagnostics
         require("plugins.lsp.diagnostics").setup()
-        require("plugins.null-ls").setup()
     end,
 }

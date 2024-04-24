@@ -1,10 +1,5 @@
 local M = {}
 
--- Let null-ls handle formatting
-function M.disable_formatting(client)
-    client.server_capabilities.documentFormattingProvider = false
-end
-
 -- LSP specific mappings
 function M.lsp_mappings(client, bufnr)
     local opts = { noremap = true, silent = true, buffer = bufnr }
@@ -26,11 +21,6 @@ function M.lsp_mappings(client, bufnr)
     map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 
     map("n", "<leader>cs", "<cmd>Telescope lsp_document_symbols<cr>", opts)
-
-    -- Format using the LSP provided formatter
-    if client.server_capabilities.documentFormattingProvider then
-        vim.keymap.set({ "n", "v" }, "<leader>cf", vim.lsp.buf.format, opts)
-    end
 end
 
 -- Format on save
