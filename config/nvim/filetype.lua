@@ -21,7 +21,6 @@ vim.filetype.add({
     filename = {
         ["go.mod"] = "go",
         ["cloud-init.cfg"] = "yaml",
-        ["justfile"] = "make",
         ["gitconfig"] = "gitconfig",
     },
 })

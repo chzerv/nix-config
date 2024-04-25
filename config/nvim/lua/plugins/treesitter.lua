@@ -30,6 +30,7 @@ return {
                 "yaml",
                 "fish",
                 "make",
+                "just",
                 "hcl",
                 "terraform",
                 "toml",
