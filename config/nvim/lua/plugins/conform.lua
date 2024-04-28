@@ -36,13 +36,24 @@ return {
 
         formatters = {
             -- https://github.com/stevearc/conform.nvim/blob/master/doc/advanced_topics.md#injected-language-formatting-code-blocks
-            injected = {},
+            injected = {
+                options = {
+                    ignore_errors = true,
+                    -- Map of treesitter language to formatters
+                    lang_to_formatters = {
+                        yaml = {}, -- Don't formatter YAML (mainly used for frontmatter)
+                    },
+                },
+            },
+
             shfmt = {
                 prepend_args = { "--indent", "2" },
             },
+
             stylua = {
                 prepend_args = { "--indent-type", "Spaces", "--indent-width", "4", "--quote-style", "ForceDouble" },
             },
+
             yamlfmt = {
                 prepend_args = { "-formatter", "indent=2,include_document_start=true,retain_line_breaks_single=true" },
             },
