@@ -37,9 +37,13 @@
       python312Packages.cachetools
     ];
 
-  programs.wireshark = {
-    enable = type != "server";
-    package = pkgs.wireshark;
+  programs = lib.mkIf (type != "server") {
+    wireshark = {
+      enable = true;
+      package = pkgs.wireshark;
+    };
+
+    adb.enable = true;
   };
 
   users.users.${username} = lib.mkIf (type != "server") {
