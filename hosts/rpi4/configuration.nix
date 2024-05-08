@@ -47,6 +47,7 @@
           openssh.authorizedKeys.keys = [
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOiulyvJZgSwvB4BLPaT73nEBBP/N3cClBteYYENH2/u chzerv@DESKTOP-MA88Q7C"
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH3BmmYPJFi2QBh7luMiYgRqGaZJUM6B7mtgs6AjkYAl chzerv@vader"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAABh4yQqX7sPHcvnvvXHcIUtOPsSytChoBkyTARhZWt"
           ];
         };
       };
