@@ -41,6 +41,7 @@ return {
                 "ini",
                 "vim",
                 "vimdoc",
+                "regex",
                 "markdown",
                 "markdown_inline",
                 "templ",
