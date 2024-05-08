@@ -10,9 +10,9 @@ in {
     services.adguardhome = {
       enable = true;
       openFirewall = true;
+      host = "0.0.0.0";
+      port = 3000;
       settings = {
-        bind_port = 3000;
-        bind_host = "0.0.0.0";
         schema_version = pkgs.adguardhome.schema_version;
       };
       mutableSettings = true;
