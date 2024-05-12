@@ -15,42 +15,32 @@ vim.g.vim_markdown_no_extensions_in_markdown = false
 vim.g.vim_markdown_follow_anchor = true
 vim.g.vim_markdown_new_list_item_indent = 2
 
--- https://github.com/kylechui/nvim-surround/discussions/53
-local ok, surround = pcall(require, "nvim-surround")
-if ok then
-    surround.buffer_setup({
-        aliases = {
-            ["b"] = false,
+vim.b.minisurround_config = {
+    custom_surroundings = {
+        -- Bold
+        b = {
+            output = { left = "**", right = "**" },
         },
-        surrounds = {
-            -- Italics
-            ["i"] = {
-                add = { "*", "*" },
-            },
-            -- Bold
-            ["b"] = {
-                add = { "**", "**" },
-            },
-            -- Surround word with link from the clipboard
-            ["l"] = {
-                add = function()
-                    local clipboard = vim.fn.getreg("+"):gsub("\n", "")
-                    return {
-                        { "[" },
-                        { "](" .. clipboard .. ")" },
-                    }
-                end,
-            },
-            -- Surround visual selection with a code block of a user specified language
-            ["c"] = {
-                add = function()
-                    local lang = require("plugins.nvim-surround").get_input("Enter code block language: ") or ""
-                    return {
-                        { "```" .. lang },
-                        { "```" },
-                    }
-                end,
-            },
+
+        -- Italics
+        i = {
+            output = { left = "*", right = "*" },
         },
-    })
-end
+
+        -- Surround word with link from the clipboard
+        l = {
+            output = function()
+                local clipboard = vim.fn.getreg("+"):gsub("\n", "")
+                return { left = "[", right = "](" .. clipboard .. ")" }
+            end,
+        },
+
+        -- Surround visual selection with a code block of a user specified language
+        c = {
+            output = function()
+                local lang = MiniSurround.user_input("Enter code block language: ") or ""
+                return { left = "```" .. lang .. "\n", right = "\n```" }
+            end,
+        },
+    },
+}
