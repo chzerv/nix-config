@@ -29,6 +29,7 @@ in {
 
     desktop = {
       gnome = mkEnableOption "Apply GNOME user tweaks";
+      hidpi = mkEnableOption "Apply tweaks for HiDPI monitors";
     };
   };
 }

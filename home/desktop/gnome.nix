@@ -84,11 +84,15 @@ in {
           resize-with-right-button = true;
         };
       }
+      # Laptop specific settings
       // lib.attrsets.optionalAttrs (type == "laptop") {
         "org/gnome/desktop/peripherals/touchpad" = {
           tap-to-click = true;
           two-finger-scrolling-enabled = true;
         };
+      }
+      # HiDPI tweaks
+      // lib.attrsets.optionalAttrs (opts.desktop.hidpi) {
         "org/gnome/mutter" = {
           # Fractional scaling and logical monitor layour for HiDPI screens
           experimental-features = ["scale-monitor-framebuffer"];

@@ -66,7 +66,7 @@ in {
 
   # Temporary fix for huge cursors in HiDPI screens
   # https://codeberg.org/dnkl/foot/issues/1426
-  systemd.user.services.foot = lib.mkIf (type == "laptop") {
+  systemd.user.services.foot = lib.mkIf (opts.desktop.hidpi) {
     Service.Environment = "XCURSOR_SIZE=12";
   };
 }
