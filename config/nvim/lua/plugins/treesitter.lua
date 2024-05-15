@@ -47,6 +47,8 @@ return {
                 "templ",
                 "nix",
                 "gleam",
+                "elixir",
+                "heex",
             },
             sync_install = false,
             ignore_install = {},

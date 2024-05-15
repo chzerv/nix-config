@@ -19,6 +19,7 @@ return {
             "nil_ls",
             "templ",
             "gleam",
+            "elixirls",
         }
 
         local lspconfig = require("lspconfig")
