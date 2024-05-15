@@ -32,7 +32,7 @@ return {
         },
 
         -- Enable format on save
-        format_on_save = { async = true, lsp_fallback = true },
+        format_on_save = { lsp_fallback = true },
 
         formatters = {
             -- https://github.com/stevearc/conform.nvim/blob/master/doc/advanced_topics.md#injected-language-formatting-code-blocks
