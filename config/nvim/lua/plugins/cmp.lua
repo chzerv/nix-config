@@ -80,6 +80,14 @@ return {
                 { name = "buffer", keyword_length = 3 },
                 { name = "path" },
             },
+
+            cmp.setup.filetype({ "sql" }, {
+                sources = {
+                    { name = "vim-dadbod-completion" },
+                    { name = "buffer" },
+                },
+            }),
+
             formatting = {
                 fields = { "abbr", "kind", "menu" },
                 format = function(entry, item)
