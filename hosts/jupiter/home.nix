@@ -20,6 +20,9 @@
       syncthing = true;
     };
 
-    desktop.gnome = true;
+    desktop = {
+      gnome = true;
+      hidpi = true;
+    };
   };
 }
