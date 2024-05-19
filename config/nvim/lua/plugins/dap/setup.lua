@@ -1,19 +1,14 @@
+-- Amazing video from TJ on nvim-dap: https://www.youtube.com/watch?v=lyNfnI-B640
 local dap = require("dap")
 local map = vim.keymap.set
 
 -- Setup adapters
 require("plugins.dap.adapters.rust")
+require("plugins.dap.adapters.elixir")
 require("dap-go").setup()
 
 -- Setup dapui
 local dapui = require("dapui")
-dapui.setup()
-
--- Dap signs
-vim.fn.sign_define("DapBreakpointRejected", { text = "ﰸ", texthl = "DiagnosticError", linehl = "", numhl = "" })
-vim.fn.sign_define("DapBreakpoint", { text = "⬤", texthl = "DiagnosticError", linehl = "", numhl = "" })
-vim.fn.sign_define("DapStopped", { text = "➔", texthl = "DiagnosticWarn", linehl = "", numhl = "" })
-vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
 
 local function dap_close()
     local breakpoints = require("dap.breakpoints")
@@ -25,32 +20,36 @@ local function dap_close()
 end
 
 -- Keymaps
-map("n", "<F5>", [[<cmd>lua require('dap').continue()<cr>]], { desc = "Dap Continue" })
-map("n", "<F10>", [[<cmd>lua require('dap').step_over()<cr>]], { desc = "Dap Step over" })
-map("n", "<F11>", [[<cmd>lua require('dap').step_into()<cr>]], { desc = "Dap Step into" })
-map("n", "<F12>", [[<cmd>lua require('dap').step_out()<cr>]], { desc = "Dap Step out" })
+map("n", "<leader>du", dapui.toggle)
+map("n", "<leader>dc", dap_close)
 
-map("n", "<leader>db", [[<cmd>lua require('dap').toggle_breakpoint()<cr>]], { desc = "[D]ap [B]reakpoint" })
-map(
-    "n",
-    "<leader>dB",
-    [[<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>]],
-    { desc = "[D]ap conditional [B]reakpoint" }
-)
-map(
-    "n",
-    "<leader>dl",
-    [[<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>]],
-    { desc = "[D]ap [L]og Breakpoint" }
-)
+map("n", "<space>db", dap.toggle_breakpoint)
+map("n", "<space>gb", dap.run_to_cursor)
 
-map("n", "<leader>dc", dap_close, { desc = "[D]ap [C]lose" })
+-- Eval var under cursor
+map("n", "<space>?", function()
+    require("dapui").eval(nil, { enter = true })
+end)
 
-map("n", "<leader>dh", [[<cmd>lua require('dap.ui.widgets').hover()<cr>]], { desc = "[D]ap [H]over" })
+map("n", "<F5>", dap.continue)
+map("n", "<F6>", dap.step_over)
+map("n", "<F7>", dap.step_into)
+map("n", "<F8>", dap.step_out)
+map("n", "<F9>", dap.step_back)
+map("n", "<F12>", dap.restart)
 
-map("n", "<leader>du", [[<cmd>lua require('dapui').toggle()<cr>]], { desc = "[D]ap Toggle dap-[U]i" })
+dap.listeners.before.attach.dapui_config = function()
+    dapui.open()
+end
 
--- Automatically open dap-ui
-dap.listeners.after.event_initialized["dapui_config"] = function()
-    dapui.open({})
+dap.listeners.before.launch.dapui_config = function()
+    dapui.open()
+end
+
+dap.listeners.before.event_terminated.dapui_config = function()
+    dapui.close()
+end
+
+dap.listeners.before.event_exited.dapui_config = function()
+    dapui.close()
 end
