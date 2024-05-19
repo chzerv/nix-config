@@ -2,9 +2,29 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-        "hrsh7th/cmp-nvim-lsp",
+        {
+            "j-hui/fidget.nvim",
+            opts = { notification = { window = { winblend = 0 } } },
+        },
     },
     config = function()
+        local lspconfig = require("lspconfig")
+        require("plugins.lsp.diagnostics")
+
+        local capabilities = vim.tbl_deep_extend(
+            "force",
+            vim.lsp.protocol.make_client_capabilities(),
+            require("cmp_nvim_lsp").default_capabilities()
+        )
+
+        -- Prettier hover and signature help
+        vim.lsp.handlers["textDocument/hover"] =
+            vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded", silent = true, max_height = 20 })
+        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+            vim.lsp.handlers.signature_help,
+            { border = "rounded", silent = true, max_height = 20, relative = "cursor" }
+        )
+
         local servers = {
             "gopls",
             "yamlls",
@@ -18,49 +38,17 @@ return {
             "bashls",
             "nil_ls",
             "templ",
-            "gleam",
             "elixirls",
         }
 
-        local lspconfig = require("lspconfig")
-        local handlers = require("plugins.lsp.handlers")
-
-        -- Override handlers
-        vim.lsp.handlers["textDocument/hover"] =
-            vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded", silent = true, max_height = 20 })
-        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-            vim.lsp.handlers.signature_help,
-            { border = "rounded", silent = true, max_height = 20, relative = "cursor" }
-        )
-
-        local capabilities = vim.tbl_deep_extend(
-            "force",
-            vim.lsp.protocol.make_client_capabilities(),
-            require("cmp_nvim_lsp").default_capabilities()
-        )
-
+        -- Setup LSP servers
+        -- Custom configuration for a server can be placed in 'plugins/lsp/servers/<server>.lua'
+        -- and will be automatically included in the setup
         for _, server in ipairs(servers) do
             local opts = {
                 capabilities = capabilities,
-                on_attach = function(client, bufnr)
-                    -- Extra LSP functionality to enable
-
-                    handlers.lsp_mappings(client, bufnr)
-
-                    -- Let conform.nvim handle format_on_save, which can automatically fallback to the LSP provided formatter
-                    -- handlers.fmt_on_save(client, bufnr)
-
-                    -- handlers.inlay_hints(client, bufnr)
-
-                    if server == "ansiblels" then
-                        -- LSP hover provides nothing of value for Ansible. A more useful thing to do would be to call 'ansible-doc'.
-                        -- To do so, we set 'keywordprg' to 'ansible-doc' in 'after/ftplugin/ansible.lua' and call it via the regular 'K' command.
-                        vim.keymap.del("n", "K", { buffer = bufnr })
-                    end
-                end,
             }
 
-            -- If there is a custom configuration for a server...
             local has_custom_opts, custom_opts = pcall(require, "plugins.lsp.servers." .. server)
 
             if has_custom_opts then
@@ -70,7 +58,42 @@ return {
             lspconfig[server].setup(opts)
         end
 
-        -- Setup diagnostics
-        require("plugins.lsp.diagnostics").setup()
+        -- Filetypes to disable semantic tokens for
+        local disable_semantic_tokens_ft = {
+            lua = true,
+        }
+
+        vim.api.nvim_create_autocmd("LspAttach", {
+            callback = function(args)
+                local bufnr = args.buf
+                local client = assert(vim.lsp.get_client_by_id(args.data.client_id), "No valid client found!")
+
+                vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
+
+                vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
+                vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = 0 })
+                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0 })
+                vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = 0 })
+                vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+
+                vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { buffer = 0 })
+                vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = 0 })
+
+                local fzf_installed, _ = pcall(require, "fzf-lua")
+
+                if fzf_installed then
+                    vim.keymap.set("n", "<leader>cs", "<cmd>FzfLua lsp_workspace_symbols<cr>", { buffer = 0 })
+                end
+
+                local ft = vim.bo[bufnr].filetype
+
+                if disable_semantic_tokens_ft[ft] then
+                    client.server_capabilities.semanticTokensProvider = nil
+                end
+
+                -- Enable inlay hints
+                require("plugins.lsp.handlers").inlay_hints(client, bufnr)
+            end,
+        })
     end,
 }
