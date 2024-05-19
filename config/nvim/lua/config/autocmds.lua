@@ -15,7 +15,7 @@ aucmd("InsertEnter", {
 aucmd("InsertLeave", {
     group = ui_opts_grp,
     callback = function()
-        vim.opt_local.listchars:append({trail = "•"})
+        vim.opt_local.listchars:append({ trail = "•" })
         vim.opt_local.cursorline = true
     end,
     desc = "Show trailing whitespaces and the cursorline in insert mode",

@@ -50,8 +50,18 @@ map("n", "gk", "k")
 map("n", "gj", "j")
 
 -- Put blank lines below/above current line
-map("n", "[<Space>", "<CMD>put! =repeat(nr2char(10), v:count1) <Bar> ']+1<CR>", { desc = "Put a blank line above the cursor" })
-map("n", "]<Space>", "<CMD>put =repeat(nr2char(10), v:count1) <Bar> '[-1<CR>", { desc = "Put a blank line below the cursor" })
+map(
+    "n",
+    "[<Space>",
+    "<CMD>put! =repeat(nr2char(10), v:count1) <Bar> ']+1<CR>",
+    { desc = "Put a blank line above the cursor" }
+)
+map(
+    "n",
+    "]<Space>",
+    "<CMD>put =repeat(nr2char(10), v:count1) <Bar> '[-1<CR>",
+    { desc = "Put a blank line below the cursor" }
+)
 
 -- Toggle spellcheck
 -- The blank string in the mode indicates that this is a 'map' mapping
@@ -83,8 +93,8 @@ map("n", "gh", "yiw:help <C-R><C-W><CR>")
 map("v", "/", "<esc>/\\%V")
 
 -- Execute macro over visual selection
-map('x', '@', function()
-    return ':norm @' .. vim.fn.getcharstr() .. '<cr>'
+map("x", "@", function()
+    return ":norm @" .. vim.fn.getcharstr() .. "<cr>"
 end, { expr = true, desc = "Execute macro over visual selection" })
 
 -- Move lines
@@ -94,10 +104,10 @@ map("v", "<C-k>", ":m '<-2<cr>gv=gv", { desc = "Move line up" })
 map("v", "<C-j>", ":m '>+1<cr>gv=gv", { desc = "Move line down" })
 
 -- Switch between windows
-map('n', '<A-k>', '<C-w>k', { desc = 'Move to the top window'})
-map('n', '<A-j>', '<C-w>j', { desc = 'Move to the bottom window'})
-map('n', '<A-h>', '<C-w>h', { desc = 'Move to the left window'})
-map('n', '<A-l>', '<C-w>l', { desc = 'Move to the right window'})
+map("n", "<A-k>", "<C-w>k", { desc = "Move to the top window" })
+map("n", "<A-j>", "<C-w>j", { desc = "Move to the bottom window" })
+map("n", "<A-h>", "<C-w>h", { desc = "Move to the left window" })
+map("n", "<A-l>", "<C-w>l", { desc = "Move to the right window" })
 
 -- Resize windows using Ctrl + arrow keys
 map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
@@ -148,5 +158,5 @@ map("t", "<A-h>", "<C-\\><C-n><C-w>h")
 map("t", "<A-l>", "<C-\\><C-n><C-w>l")
 
 -- Command Line Bindings
-vim.keymap.set("c", "<C-a>", "<Home>", { noremap = true})
-vim.keymap.set("c", "<C-e>", "<End>", { noremap = true})
+vim.keymap.set("c", "<C-a>", "<Home>", { noremap = true })
+vim.keymap.set("c", "<C-e>", "<End>", { noremap = true })

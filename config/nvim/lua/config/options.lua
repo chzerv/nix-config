@@ -66,7 +66,6 @@ opt.shortmess:append({
     s = true, -- Don't show "Search hit BOTTOM" message
 })
 
-
 -- Ignore files when expanding wildcards
 opt.wildignore = [[
 *.7z,*bz2,*.gz,*.rar,*tar,*xz,*.zip
@@ -83,4 +82,3 @@ opt.wildignore = [[
 */tmp/*,**/node_modules/**,**/target/**,**.terraform/**,.DS_Store
 ._*
 ]]
-
