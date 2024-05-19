@@ -1,21 +1,26 @@
+-- Bootstrap 'lazy.nvim'
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.uv.fs_stat(lazypath) then
+
+-- Download lazy.nvim if it doesn't exist
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
     vim.fn.system({
         "git",
         "clone",
         "--filter=blob:none",
         "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
+        "--branch=stable",
         lazypath,
     })
 end
 
+-- Add 'lazypath' to the runtimepath so Neovim can find it
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins", {
+-- Setup lazy, and load my `lua/plugins/` folder
+require("lazy").setup({ import = "plugins" }, {
     defaults = { lazy = true },
-    checker = { enabled = false },
     change_detection = { enabled = false },
+    checker = { enabled = false },
     performance = {
         cache = { enabled = true },
         rtp = {
@@ -25,9 +30,9 @@ require("lazy").setup("plugins", {
                 "matchparen",
                 "rplugin",
                 "tarPlugin",
+                "zipPlugin",
                 "tohtml",
                 "tutor",
-                "zipPlugin",
             },
         },
     },

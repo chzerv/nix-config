@@ -12,8 +12,7 @@ return {
                 ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
 
                 -- Gitlab CI
-                ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] =
-                ".gitlab-ci.yml",
+                ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = ".gitlab-ci.yml",
 
                 -- Kubernetes
                 kubernetes = { "k8s/*.yaml", "manifests/*.yaml" },
@@ -21,8 +20,7 @@ return {
                 ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
 
                 -- docker-compose
-                ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] =
-                "docker-compose*.{yml, yaml}",
+                ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "docker-compose*.{yml, yaml}",
             },
         },
         redhat = {

@@ -5,7 +5,7 @@ local i = ls.insert_node
 
 ls.add_snippets("go", {
     s(
-        "err",
+        "ife",
         fmt(
             [[
             if err != nil {{

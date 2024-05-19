@@ -1,13 +1,25 @@
------------------
--- Autocommands
------------------
-
 local augroup = vim.api.nvim_create_augroup
 local aucmd = vim.api.nvim_create_autocmd
-local cmd = vim.cmd
-local opt = vim.opt
-local opt_local = vim.opt_local
-local fn = vim.fn
+
+-- Show trailing whitespaces and the cursorline when in normal mode
+local ui_opts_grp = augroup("UI_OPTS", { clear = true })
+aucmd("InsertEnter", {
+    group = ui_opts_grp,
+    callback = function()
+        vim.opt_local.listchars:remove("trail")
+        vim.opt_local.cursorline = false
+    end,
+    desc = "Hide trailing whitespaces and the cursorline in insert mode",
+})
+
+aucmd("InsertLeave", {
+    group = ui_opts_grp,
+    callback = function()
+        vim.opt_local.listchars:append({ trail = "•" })
+        vim.opt_local.cursorline = true
+    end,
+    desc = "Show trailing whitespaces and the cursorline in insert mode",
+})
 
 -- Highlight yanked text
 aucmd("TextYankPost", {
@@ -26,16 +38,18 @@ aucmd("TextYankPost", {
 aucmd("TermOpen", {
     group = augroup("TerminalGroup", { clear = true }),
     callback = function()
-        opt_local.relativenumber = false
-        opt_local.number = false
+        vim.opt_local.relativenumber = false
+        vim.opt_local.number = false
+        vim.opt_local.scrolloff = 0
         vim.cmd("startinsert")
     end,
-    desc = "Disable numbers and enter insert mode in the terminal",
+    desc = "Disable numbers and scrolloff and enter insert mode when opening a terminal",
 })
 
 -- Restore cursor to the position it was last in
 -- https://this-week-in-neovim.org/2023/Jan/2#tips
-vim.api.nvim_create_autocmd("BufReadPost", {
+aucmd("BufReadPost", {
+    group = augroup("RestoreCursorGroup", { clear = true }),
     callback = function()
         if vim.bo.filetype ~= "gitcommit" then
             local mark = vim.api.nvim_buf_get_mark(0, "\"")
@@ -45,16 +59,15 @@ vim.api.nvim_create_autocmd("BufReadPost", {
             end
         end
     end,
-    group = augroup("RestoreCursorGroup", { clear = true }),
 })
 
 -- Automatically create a non-existing directory when writing a new file
 aucmd("BufWritePre", {
     group = augroup("MkNonExDir", { clear = true }),
     callback = function()
-        local path = fn.expand("%:p:h")
-        if fn.isdirectory(path) == 0 then
-            fn.mkdir(path, "p")
+        local path = vim.fn.expand("%:p:h")
+        if vim.fn.isdirectory(path) == 0 then
+            vim.fn.mkdir(path, "p")
         end
     end,
     desc = "Create non-existing dir when writing a new file",

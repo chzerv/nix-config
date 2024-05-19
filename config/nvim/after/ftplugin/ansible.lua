@@ -1,7 +1,3 @@
-if vim.fn.executable("ansible-doc") then
-    vim.bo.keywordprg = ":sp term://ansible-doc"
-end
-
 -- All credits to: https://github.com/mfussenegger/nvim-ansible/
 -- Replace the "tasks" directory with "files" and "templates" and add the directories to the "path"
 -- E.g., If we are in $HOME/projects/ansible/tasks/main.yml, "path" contains:
