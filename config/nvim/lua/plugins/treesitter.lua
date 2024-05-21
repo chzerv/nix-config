@@ -4,7 +4,14 @@ return {
     event = "BufReadPost",
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
-        "JoosepAlviste/nvim-ts-context-commentstring",
+        {
+            "folke/ts-comments.nvim",
+            opts = {
+                lang = {
+                    nix = "# %s",
+                },
+            },
+        },
     },
     opts = {
         ensure_installed = {
