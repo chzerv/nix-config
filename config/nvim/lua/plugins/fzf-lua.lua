@@ -12,6 +12,7 @@ return {
         { "<leader>fw", "<cmd>FzfLua grep_cword<cr>", desc = "Grep word under cursor" },
         { "<leader>fd", "<cmd>FzfLua lsp_document_diagnostics<cr>", desc = "Document diagnostics" },
         { "<leader>fD", "<cmd>FzfLua lsp_workspace_diagnostics<cr>", desc = "Workspace diagnostics" },
+        { "<leader>,", "<cmd>FzfLua buffers<cr>", desc = "Buffers" },
 
         {
             "<leader>fF",
