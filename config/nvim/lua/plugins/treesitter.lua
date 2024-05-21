@@ -52,7 +52,7 @@ return {
             end,
         },
 
-        indent = { enable = true },
+        -- indent = { enable = true },
 
         textobjects = {
             select = {

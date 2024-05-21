@@ -9,6 +9,7 @@ opt.ttimeoutlen = 20 -- Time to wait for a key-code sequence to complete (defaul
 opt.shiftwidth = 4
 opt.softtabstop = 4
 opt.expandtab = true
+opt.smartindent = true
 
 -- Better search
 opt.ignorecase = true -- Ignore case when searching...
