@@ -44,6 +44,11 @@ return {
                 },
             },
 
+            -- Options to be passed to FZF
+            fzf_opts = {
+                ["--cycle"] = true, -- Let selection start over once it reaches the end
+            },
+
             -- Use telescope-like mappings
             -- https://github.com/ibhagwan/fzf-lua/blob/main/lua/fzf-lua/profiles/telescope.lua#L56
             keymap = {
@@ -74,6 +79,7 @@ return {
 
             -- https://github.com/ibhagwan/fzf-lua/wiki/Options#provider-options
             files = {
+                formatter = "path.filename_first", -- Show results as 'filename path', where path is non highlighted
                 winopts = {
                     preview = { hidden = "hidden" },
                 },
