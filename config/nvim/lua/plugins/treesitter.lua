@@ -6,11 +6,7 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
         {
             "folke/ts-comments.nvim",
-            opts = {
-                lang = {
-                    nix = "# %s",
-                },
-            },
+            opts = {},
         },
     },
     opts = {
@@ -52,10 +48,9 @@ return {
 
         highlight = {
             enable = true,
-            -- Disable highlighting on files with more than 3000 lines or on files that contain very long lines
+            -- Disable highlighting on files with more than 3000 lines
             disable = function(_, bufnr)
                 return vim.api.nvim_buf_line_count(bufnr) > 3000
-                    or vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1]:len() > 500
             end,
         },
 
