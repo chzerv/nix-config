@@ -70,7 +70,7 @@ map("", "<F7>", "<Cmd>setlocal spell! spelllang=el<CR>")
 map("", "<F8>", "<Cmd>setlocal spell! spelllang=en_us,el<CR>")
 
 -- Autocorrect the last spelling error
-map("i", "<C-s>", "<c-g>u<Esc>[s1z=`]a<c-g>u")
+map("i", "<C-f>", "<c-g>u<Esc>[s1z=`]a<c-g>u")
 
 -- Use ESC to turn off search highlighting
 map("n", "<Esc>", "<CMD>:noh<CR>")
