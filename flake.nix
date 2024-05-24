@@ -30,7 +30,7 @@
     };
 
     # Neovim nightly
-    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     # Contains every possible VSCode extension there is
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";

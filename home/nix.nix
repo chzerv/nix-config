@@ -23,7 +23,7 @@
   nixpkgs = {
     overlays =
       [
-        inputs.neovim-nightly.overlay
+        inputs.neovim-nightly-overlay.overlays.default
       ]
       ++ (import ../overlays args);
     config = {

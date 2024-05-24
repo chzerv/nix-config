@@ -12,7 +12,7 @@ in {
       enable = true;
       viAlias = true;
       vimAlias = true;
-      package = pkgs.neovim-nightly;
+      package = pkgs.neovim;
       vimdiffAlias = true;
       extraPackages = with pkgs; [
         # Dependencies for packages to properly work
