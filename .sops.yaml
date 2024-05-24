@@ -1,11 +1,12 @@
+---
 keys:
   - &host_jupiter age1glelmjynysv38av0vrm9de2shzd909utxqpzkqg8v22lp4jxvamqgksykp
   - &host_luna age150rcj355hegl9n2l9t3v2ukdtvnzt3uc09c8kngzzq2y2r3p2vkqwdy9v0
-  - &host_attic age1amh9puvyet3994t4003ll5s6sqcgm3pmn5l3j02ucgmprf0juf4sl9ry3k
+  - &host_rpi4 age197zuvurk9jxcyakv733uqx04pk34hs36yd0awdcyv6d7dmrg397qefjmq7
 creation_rules:
   - path_regex: secrets.yaml$
     key_groups:
       - age:
           - *host_jupiter
           - *host_luna
-          - *host_attic
+          - *host_rpi4

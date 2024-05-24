@@ -1,6 +1,8 @@
 {
   inputs,
   username,
+  pkgs,
+  config,
   ...
 }: {
   imports = [
@@ -65,5 +67,30 @@
       defaultGateway = "192.168.1.1";
       nameservers = ["1.1.1.1"];
     };
+
+    # Secrets
+    sops = {
+      age.keyFile = null;
+      secrets = {
+        "server_mac" = {};
+      };
+    };
+
+    systemd.services.wakeonlan = {
+      description = "Trigger WoL for the server, after the network is online";
+
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStartPre = "${pkgs.coreutils}/bin/sleep 120";
+        ExecStart = "${pkgs.bash}/bin/sh -c '${pkgs.wakeonlan}/bin/wakeonlan $$(${pkgs.coreutils}/bin/cat ${config.sops.secrets.server_mac.path})'";
+        Restart = "on-failure";
+      };
+
+      wantedBy = ["multi-user.target"];
+      wants = ["network-online.target"];
+      after = ["network-online.target"];
+    };
+
+    systemd.services.wakeonlan.enable = true;
   };
 }
