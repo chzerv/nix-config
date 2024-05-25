@@ -40,6 +40,7 @@ return {
                         cmp.complete()
                     end
                 end,
+                ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
                 ["<C-y>"] = cmp.mapping(
                     cmp.mapping.confirm({
                         behavior = cmp.ConfirmBehavior.Insert,
