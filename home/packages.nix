@@ -49,6 +49,7 @@
       vlc
       nurl
       gh
+      kubectl
       note # Built in pkgs/note
     ];
 
