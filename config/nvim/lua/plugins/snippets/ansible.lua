@@ -19,8 +19,35 @@ ls.add_snippets("yaml", {
             group: {}
             mode: {}
             backup: {}
+
+        {}
         ]],
-            { i(1), i(2), i(3), i(4), i(5), i(6), i(7) }
+            { i(1), i(2), i(3), i(4), i(5), i(6), i(7), i(8) }
+        )
+    ),
+    s(
+        "file",
+        fmt(
+            [[
+        - name: {}
+          ansible.builtin.file:
+            path: {}
+            state: {}
+            mode: "{}"
+            owner: {}
+            group: {}
+
+        {}
+        ]],
+            {
+                i(1),
+                i(2),
+                c(3, { t("present"), t("absent"), t("directory") }),
+                i(4),
+                i(5),
+                i(6),
+                i(7),
+            }
         )
     ),
     s(
@@ -35,7 +62,7 @@ ls.add_snippets("yaml", {
             daemon_reload: {}
             scope: {}
 
-            {}
+        {}
         ]],
             {
                 i(1),
@@ -57,23 +84,9 @@ ls.add_snippets("yaml", {
             name: {}
             state: {}
 
-            {}
+        {}
         ]],
             { i(1), i(2), c(3, { t("present"), t("absent"), t("latest") }), i(4) }
-        )
-    ),
-    s(
-        "apt_cache",
-        fmt(
-            [[
-        - name: {}
-          ansible.builtin.apt:
-            update_cache: true
-            cache_valid_time: 3600
-
-            {}
-        ]],
-            { i(1), i(2) }
         )
     ),
     s(
@@ -81,12 +94,12 @@ ls.add_snippets("yaml", {
         fmt(
             [[
         - name: {}
-          debug:
-            msg: {}
+          ansible.builtin.debug:
+            {}: {}
 
-            {}
+        {}
         ]],
-            { i(1), i(2), i(3) }
+            { i(1), c(2, { t("msg"), t("var") }), i(3), i(4) }
         )
     ),
 })
