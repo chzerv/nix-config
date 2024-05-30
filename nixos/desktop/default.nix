@@ -10,10 +10,12 @@
   ];
 
   # Setup a graphical environment
-  services.xserver = {
-    enable = true;
+  services = {
+    xserver = {
+      enable = true;
+      xkb.layout = "us";
+    };
     libinput.enable = true;
-    xkb.layout = "us";
   };
 
   # Enable Pipewire
