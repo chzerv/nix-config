@@ -74,8 +74,7 @@ in {
 
         ## Other
         dockerfile-language-server-nodejs
-        jsonnet
-        jsonnet-language-server
+        vscode-langservers-extracted # https://github.com/hrsh7th/vscode-langservers-extracted
         texlab # LaTeX LSP
         taplo # TOML LSP/formatter/linter
         hadolint
