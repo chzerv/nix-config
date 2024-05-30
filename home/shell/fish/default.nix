@@ -43,6 +43,7 @@
       gd = "git diff";
 
       k = "kubectl";
+      tfw = "terraform workspace select (terraform workspace list | tr -d ' ' | fzf --height 20% --reverse)";
 
       tree = "eza --tree";
     };
