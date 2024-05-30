@@ -46,5 +46,8 @@ jobs:
       - name: Setup Magic Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@main
 
+      - name: Ensure /etc/sops/age/keys.txt exists, even if it is empty
+        run: touch /etc/sops/age/keys.txt
+
       - name: Build and push system configurations and ISO
         run: nix build --impure ${{ matrix.toBuild.package }} | cachix push chzerv
