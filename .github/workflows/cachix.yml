@@ -47,4 +47,4 @@ jobs:
         uses: DeterminateSystems/magic-nix-cache-action@main
 
       - name: Build and push system configurations and ISO
-        run: nix build ${{ matrix.toBuild.package }} | cachix push chzerv
+        run: nix build --impure ${{ matrix.toBuild.package }} | cachix push chzerv
