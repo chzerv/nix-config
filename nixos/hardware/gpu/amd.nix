@@ -23,6 +23,6 @@
 
   environment.systemPackages = with pkgs; [
     clinfo
-    nvtop-amd
+    nvtopPackages.amd
   ];
 }
