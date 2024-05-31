@@ -16,6 +16,8 @@ function push_to_backup_target() {
     --exclude ".vagrant.d" \
     --exclude ".terraform" \
     --exclude ".direnv" \
+    --exclude ".elixir_ls" \
+    --exclude "nix/nixpkgs" \
     --exclude "pg-data"
 }
 
