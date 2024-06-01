@@ -59,8 +59,8 @@ in {
 
   xdg.configFile."foot/catppuccin-macchiato.ini" = {
     source = builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/catppuccin/foot/main/catppuccin-macchiato.ini";
-      sha256 = "0p0zcbd7422956618kwznx91bnz1bagprc0045a5gd6y30w7z38d";
+      url = "https://raw.githubusercontent.com/catppuccin/foot/main/themes/catppuccin-macchiato.ini";
+      sha256 = "sha256:1hgi3a4452vgrhxz2hxdh880pi2qqfpdvfk2750lhbmrd1qfzxdh";
     };
   };
 
