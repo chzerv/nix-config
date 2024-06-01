@@ -16,11 +16,11 @@ jobs:
       fail-fast: false
       matrix:
         toBuild:
-          - system: .#nixosConfigurations.jupiter.config.system.build.toplevel
-          - system: .#nixosConfigurations.luna.config.system.build.toplevel
-          - system: .#iso
-          - home: chzerv@luna
-          - home: chzerv@jupiter
+          - package: .#nixosConfigurations.jupiter.config.system.build.toplevel
+          - package: .#nixosConfigurations.luna.config.system.build.toplevel
+          # - package: .#pve-lxc-docker
+          # - package: .#pve-vm-template
+          - package: .#iso
 
     steps:
       - name: Free up some space on the runner to avoid out-of-space errors
@@ -52,7 +52,4 @@ jobs:
           sudo touch /etc/sops/age/keys.txt
 
       - name: Build and push system configurations and ISO
-        run: nix build --impure ${{ matrix.toBuild.system }} | cachix push chzerv
-
-      - name: Build and push home-manager configurations
-        run: nix-shell -p home-manager --run 'home-manager build --flake .#${{ matrix.toBuild.home }}' | cachix push chzerv
+        run: nix build --impure ${{ matrix.toBuild.package }} | cachix push chzerv
