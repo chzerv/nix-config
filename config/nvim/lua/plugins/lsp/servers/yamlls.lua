@@ -15,7 +15,7 @@ return {
                 ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = ".gitlab-ci.yml",
 
                 -- Kubernetes
-                kubernetes = { "k8s/*.yaml", "manifests/*.yaml" },
+                kubernetes = { "k8s/*.yaml", "manifests/*.yaml", "*k3s/**/*.{yml,yaml}" },
                 ["https://json.schemastore.org/kustomization.json"] = "kustomization.{yaml, yml}",
                 ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
 
