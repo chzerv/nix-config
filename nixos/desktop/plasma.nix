@@ -6,7 +6,7 @@
 }: let
   opts = config.local.sys;
 in {
-  config = lib.mkIf opts.desktop.plasma6 {
+  config = lib.mkIf opts.desktop.plasma {
     services = {
       xserver = {
         enable = true;
@@ -24,11 +24,16 @@ in {
       desktopManager.plasma6.enable = true;
     };
 
-    # Programs to uninstall
+    # KDE packages to uninstall
     environment.plasma6.excludePackages = with pkgs.kdePackages; [
       plasma-browser-integration
-      konsole
       oxygen
+    ];
+
+    # KDE packages to install
+    environment.systemPackages = with pkgs.kdePackages; [
+      merkuro
+      kcalc
     ];
 
     # Better integration with GTK apps
