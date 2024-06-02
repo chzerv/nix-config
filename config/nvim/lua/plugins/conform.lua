@@ -32,7 +32,16 @@ return {
         },
 
         -- Enable format on save
-        format_on_save = { lsp_fallback = true },
+        format_on_save = function(bufnr)
+            -- Disable autoformat for specific filetypes
+            local ignore_filetypes = { "yaml" }
+
+            if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
+                return
+            end
+
+            return { lsp_fallback = true }
+        end,
 
         formatters = {
             -- https://github.com/stevearc/conform.nvim/blob/master/doc/advanced_topics.md#injected-language-formatting-code-blocks
