@@ -13,42 +13,12 @@ in {
       libappindicator-gtk3
       gnomeExtensions.appindicator
       gnomeExtensions.user-themes
-      gnomeExtensions.dash-to-dock
-      gnomeExtensions.pano
       adw-gtk3
       dconf2nix
     ];
 
     dconf.settings =
       {
-        # Extensions to use
-        # Use `gnome-extensions list` for the names
-        # "org/gnome/shell" = {
-        #   enabled-extensions = [
-        #     "appindicatorsupport@rgcjonas.gmail.com"
-        #     "dash-to-dock@micxgx.gmail.com"
-        #     "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
-        #   ];
-        # };
-
-        # Customize dash-to-dock
-        "org/gnome/shell/extensions/dash-to-dock" = {
-          always-center-icons = false;
-          apply-custom-theme = false;
-          background-opacity = 0.8;
-          custom-background-color = false;
-          custom-theme-shrink = true;
-          dash-max-icon-size = 32;
-          disable-overview-on-startup = false;
-          dock-position = "LEFT";
-          extend-height = true;
-          height-fraction = 0.9;
-          hot-keys = false;
-          icon-size-fixed = false;
-          running-indicator-style = "DEFAULT";
-          transparency-mode = "DEFAULT";
-        };
-
         # Disable mouse acceleration
         "org/gnome/desktop/peripherals/mouse" = {
           accel-profile = "flat";
@@ -80,7 +50,7 @@ in {
         };
 
         "org/gnome/desktop/wm/preferences" = {
-          button-layout = "appmenu:minimize,maximize,close";
+          # button-layout = "appmenu:minimize,maximize,close";
           resize-with-right-button = true;
         };
       }

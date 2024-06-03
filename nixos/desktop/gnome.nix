@@ -21,6 +21,7 @@ in {
         gnome-photos
         gnome-tour
         gedit
+        epiphany
       ])
       ++ (with pkgs.gnome; [
         geary # email reader
@@ -33,6 +34,8 @@ in {
         gnome-weather
         simple-scan
         gnome-music
+        gnome-software
+        totem # video player
       ]);
 
     environment.systemPackages = with pkgs; [
