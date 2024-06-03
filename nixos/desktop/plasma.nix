@@ -38,17 +38,5 @@ in {
 
     # Better integration with GTK apps
     programs.dconf.enable = true;
-
-    xdg.portal = {
-      enable = true;
-      extraPortals = [
-        pkgs.xdg-desktop-portal-kde
-      ];
-      config = {
-        common = {
-          default = ["kde"];
-        };
-      };
-    };
   };
 }
