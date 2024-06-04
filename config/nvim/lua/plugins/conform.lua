@@ -50,7 +50,8 @@ return {
                     ignore_errors = true,
                     -- Map of treesitter language to formatters
                     lang_to_formatters = {
-                        yaml = {}, -- Don't formatter YAML (mainly used for frontmatter)
+                        yaml = {}, -- Don't format YAML (mainly used for frontmatter)
+                        html = {}, -- Don't format HTML
                     },
                 },
             },
