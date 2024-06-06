@@ -8,6 +8,7 @@ return {
         { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "Find old files" },
         { "<leader>fh", "<cmd>FzfLua helptags<cr>", desc = "Find helptags" },
         { "<leader>fg", "<cmd>FzfLua live_grep_glob<cr>", desc = "Grep" },
+        { "<leader>fb", "<cmd>FzfLua lgrep_curbuf<cr>", desc = "Grep current buffer" },
         { mode = "x", "<leader>fg", "<cmd>FzfLua grep_visual<cr>", desc = "Grep" },
         { "<leader>fw", "<cmd>FzfLua grep_cword<cr>", desc = "Grep word under cursor" },
         { "<leader>fd", "<cmd>FzfLua lsp_document_diagnostics<cr>", desc = "Document diagnostics" },
