@@ -84,6 +84,12 @@
             --preview-window 60%
       '';
 
+      bd = ''
+        set root (git rev-parse --show-toplevel)
+
+        cd $root
+      '';
+
       bind_bang = ''
         switch (commandline -t)
         case "!"
