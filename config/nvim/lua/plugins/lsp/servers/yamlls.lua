@@ -7,17 +7,22 @@ return {
                 enable = true,
             },
             schemas = {
+                -- Kubernetes
+
+                -- Use the Kubernetes schema for EVERY .yaml (not .yml) file, unless explicitly stated otherwise
+                kubernetes = "*.yaml",
+                ["https://json.schemastore.org/kustomization.json"] = "kustomization.{yaml, yml}",
+                ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+
+                -- Argo Workflows
+                ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
+
                 -- Github workflows and actions
                 ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
                 ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
 
                 -- Gitlab CI
                 ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = ".gitlab-ci.yml",
-
-                -- Kubernetes
-                kubernetes = { "k8s/*.yaml", "manifests/*.yaml", "*k3s/**/*.{yml,yaml}" },
-                ["https://json.schemastore.org/kustomization.json"] = "kustomization.{yaml, yml}",
-                ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
 
                 -- docker-compose
                 ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "docker-compose*.{yml, yaml}",
@@ -29,7 +34,7 @@ return {
             },
         },
         format = { enabled = false },
-        validate = false,
+        validate = true,
         completion = true,
         hover = true,
     },
