@@ -65,14 +65,6 @@
         mkd /tmp/(date "+%d-%m")
       '';
 
-      kubectx = {
-        wraps = "kubectl";
-        description = "Show Kubernetes contexts, highlighting the current one";
-        body = ''
-          kubectl config get-contexts | awk '{ if ($1 == "*") { print "\033[32m→ " $2 } else { print $2 } }' | tail -n +2
-        '';
-      };
-
       cheat = ''
         curl --silent "cheat.sh/:list" \
             | fzf-tmux \

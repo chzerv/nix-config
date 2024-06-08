@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+ACTIVE_NS=$(kubectl config get-contexts | tail -n +2 | awk '{ print $5 }')
+
+NAMESPACES=$(kubectl get ns | tail -n +2 | awk -v active_ns="$ACTIVE_NS" '{ if ($1 == active_ns) { print "\033[32m→ " $1 "\033[0m"} else { print $1 } }')
+
+SELECTED_NS="$(echo "$NAMESPACES" | fzf)"
+
+if [ -z "$SELECTED_NS" ]; then
+  echo -e "No new namespace selected."
+  echo -e "The namespace currently active is \033[32m$ACTIVE_NS\033[0m"
+  exit 0
+else
+  kubectl config set-context --current --namespace="$SELECTED_NS" &>/dev/null
+  echo -e "Switched namespace to \033[32m$SELECTED_NS\033[0m"
+fi
