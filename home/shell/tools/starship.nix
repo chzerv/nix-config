@@ -42,7 +42,7 @@
       kubernetes = {
         symbol = "☸ ";
         style = "blue";
-        format = "[$symbol$context( \\($namespace\\))]($style) in ";
+        format = "[$symbol$namespace \\($context\\)]($style) in ";
         disabled = false;
       };
 
