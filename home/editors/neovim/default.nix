@@ -56,7 +56,7 @@ in {
 
         ## Python
         black
-        nodePackages_latest.pyright
+        pyright
 
         ## Rust
         rust-analyzer # LSP
