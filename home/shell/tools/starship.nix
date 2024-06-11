@@ -28,7 +28,7 @@
         "$cmd_duration"
       ];
 
-      add_newline = false;
+      add_newline = true;
 
       scan_timeout = 3;
 
