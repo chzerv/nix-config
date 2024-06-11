@@ -25,6 +25,7 @@
       wireguard-tools
       pv
       cachix
+      nfs-utils
     ]
     ++ lib.optionals (type == "server") [
       util-linux # device info: lscpu, lsblk and more
