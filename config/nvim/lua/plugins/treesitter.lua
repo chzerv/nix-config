@@ -3,7 +3,10 @@ return {
     build = ":TSUpdate",
     event = "BufReadPost",
     dependencies = {
-        "nvim-treesitter/nvim-treesitter-textobjects",
+        {
+            "echasnovski/mini.ai",
+            opts = {},
+        },
         {
             "folke/ts-comments.nvim",
             opts = {},
@@ -55,49 +58,6 @@ return {
         },
 
         -- indent = { enable = true },
-
-        textobjects = {
-            select = {
-                enable = true,
-                lookahead = true,
-                keymaps = {
-                    ["af"] = "@function.outer",
-                    ["if"] = "@function.inner",
-                    ["ac"] = "@class.outer",
-                    ["ic"] = "@class.inner",
-                    ["al"] = "@loop.outer",
-                    ["il"] = "@loop.inner",
-                    ["aa"] = "@parameter.outer",
-                    ["ia"] = "@parameter.inner",
-                    ["uc"] = "@comment.outer",
-                },
-            },
-            move = {
-                enable = true,
-                set_jumps = true, -- Set jumps in the jumplist
-                goto_next_start = {
-                    ["]m"] = "@function.outer",
-                    ["]]"] = "@class.outer",
-                },
-                goto_next_end = {
-                    ["]M"] = "@function.outer",
-                    ["]["] = "@class.outer",
-                },
-                goto_previous_start = {
-                    ["[m"] = "@function.outer",
-                    ["[["] = "@class.outer",
-                },
-                goto_previous_end = {
-                    ["[M"] = "@function.outer",
-                    ["[]"] = "@class.outer",
-                },
-            },
-            swap = {
-                enable = true,
-                swap_next = { ["<Leader>rx"] = "@parameter.inner" },
-                swap_previous = { ["<Leader>rX"] = "@parameter.inner" },
-            },
-        },
 
         incremental_selection = {
             enable = true,
