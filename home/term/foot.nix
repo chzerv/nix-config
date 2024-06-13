@@ -14,10 +14,10 @@ in {
         include = "~/.config/foot/catppuccin-macchiato.ini";
         term = "xterm-256color";
 
-        font = "Hasklug Nerd Font Mono:size=11";
-        font-bold = "Hasklug Nerd Font Mono:size=11:style=Bold";
-        font-italic = "Hasklug Nerd Font Mono:size=11:style=Italic";
-        font-bold-italic = "Hasklug Nerd Font Mono:size=11:style=Bold Italic";
+        font = "JetBrainsMono Nerd Font Mono:size=11";
+        font-bold = "JetBrainsMono Nerd Font Mono:size=11:style=Bold";
+        font-italic = "JetBrainsMono Nerd Font Mono:size=11:style=Italic";
+        font-bold-italic = "JetBrainsMono Nerd Font Mono:size=11:style=Bold Italic";
       };
 
       key-bindings = {
