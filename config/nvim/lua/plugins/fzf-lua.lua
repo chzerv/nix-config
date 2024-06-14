@@ -97,6 +97,8 @@ return {
                 cwd_only = true,
                 sort_lastused = true,
             },
+
+            require("fzf-lua").register_ui_select(),
         }
     end,
 }
