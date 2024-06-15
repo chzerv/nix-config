@@ -46,7 +46,7 @@ in {
         nodePackages_latest.prettier
 
         ## Bash
-        nodePackages_latest.bash-language-server ## LSP
+        bash-language-server ## LSP
         shellcheck ## Static analysis
         shfmt
 
