@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+#
+# Credits: https://junegunn.github.io/fzf/tips/browsing-log-streams/
+#
+
+# For any 'execute' action, FZF spawns a subshell of the current $SHELL.
+# For example, if the user's shell is set to Fish, FZF will spawn a Fish subshell, even through
+# it is called from a Bash script. The syntax for process substitution is different between
+# Bash/ZSH and Fish, so we need to handle it.
+
+args=()
+if [[ "$SHELL" =~ "fish" ]]; then
+  args+=(--bind "enter:execute:nvim -n (kubectl logs {1} | psub)")
+else
+  args+=(--bind 'enter:execute:nvim -n <(kubectl logs {1})')
+fi
+
+stern . --color always 2>&1 |
+  fzf --ansi --tail 100000 --tac --no-sort --exact \
+    --header 'Enter = Open log in Neovim | CTRL-O = Spawn a shell inside the pod ' \
+    --bind 'ctrl-o:execute:kubectl exec -it {1} -- bash' \
+    "${args[@]}"
