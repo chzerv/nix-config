@@ -110,11 +110,4 @@
       '';
     };
   };
-
-  xdg.configFile."fish/themes/Catppuccin Mocha.theme" = {
-    source = pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/catppuccin/fish/main/themes/Catppuccin%20Mocha.theme";
-      sha256 = "MlI9Bg4z6uGWnuKQcZoSxPEsat9vfi5O1NkeYFaEb2I=";
-    };
-  };
 }
