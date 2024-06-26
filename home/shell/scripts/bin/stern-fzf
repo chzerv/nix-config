@@ -9,6 +9,15 @@
 # it is called from a Bash script. The syntax for process substitution is different between
 # Bash/ZSH and Fish, so we need to handle it.
 
+function help() {
+  echo -e ""
+  echo -e "stern-fzf, a stern + fzf wrapper"
+  echo -e ""
+  echo -e "Usage:"
+  echo -e "  -n, namespace to use"
+  echo -e ""
+}
+
 args=()
 if [[ "$SHELL" =~ "fish" ]]; then
   args+=(--bind "enter:execute:nvim -n (kubectl logs {1} | psub)")
@@ -16,8 +25,17 @@ else
   args+=(--bind 'enter:execute:nvim -n <(kubectl logs {1})')
 fi
 
-stern . --color always 2>&1 |
+NAMESPACE=$(kubectl config get-contexts | awk '{ print $5 }' | tail -n+2)
+
+while getopts n: flag; do
+  case "${flag}" in
+  n) NAMESPACE=${OPTARG} ;;
+  *) help ;;
+  esac
+done
+
+stern . --color always --namespace "${NAMESPACE}" 2>&1 |
   fzf --ansi --tail 100000 --tac --no-sort --exact \
     --header 'Enter = Open log in Neovim | CTRL-O = Spawn a shell inside the pod ' \
-    --bind 'ctrl-o:execute:kubectl exec -it {1} -- bash' \
+    --bind 'ctrl-o:execute:kubectl exec -it {1} -- /bin/sh' \
     "${args[@]}"
