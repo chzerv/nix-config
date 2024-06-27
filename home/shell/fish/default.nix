@@ -35,7 +35,6 @@
       glo = "git log --oneline";
       gs = "git status";
       gst = "git stash";
-      gco = "git checkout (git branch | tr -d ' ' | fzf --height 20% --reverse)";
       gc = "git commit -v";
       gcm = "git commit -m";
       gca = "git commit -v --amend";
@@ -43,7 +42,6 @@
       gd = "git diff";
 
       k = "kubectl";
-      tfw = "terraform workspace select (terraform workspace list | tr -d ' ' | fzf --height 20% --reverse)";
 
       tree = "eza --tree";
     };
@@ -54,6 +52,8 @@
       l = "eza";
       ll = "eza -l";
       la = "eza -la";
+      tfw = "terraform workspace select (terraform workspace list | tr -d ' ' | fzf --height 20% --reverse)";
+      gco = "git checkout (git branch | tr -d ' ' | fzf --height 20% --reverse)";
     };
 
     functions = {
