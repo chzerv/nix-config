@@ -23,7 +23,6 @@ ls.add_snippets("yaml", {
               ref:
                 {}: {}
               url: {}
-
             {}
         ]],
             { i(1), i(2, "flux-system"), i(3, "24h"), c(4, { t("branch"), t("tag") }), i(5), i(6), i(7) }
@@ -44,7 +43,6 @@ ls.add_snippets("yaml", {
             spec:
               interval: {}
               url: {}
-
             {}
         ]],
             { i(1), i(2, "flux-system"), i(3, "24h"), i(4), i(5) }
@@ -82,7 +80,6 @@ ls.add_snippets("yaml", {
                   retries: 5
               values:
                 {}
-
             {}
         ]],
             { i(1), i(2, "flux-system"), i(3, "24h"), i(4), i(5), i(6), rep(2), rep(3), i(9), i(10) }
@@ -108,7 +105,6 @@ ls.add_snippets("yaml", {
           interval: {}
           prune: {}
           wait: {}
-
         {}
         ]],
             {
@@ -135,8 +131,7 @@ ls.add_snippets("yaml", {
         metadata:
           namespace: {}
         resources:
-            - {}
-
+          - {}
         {}
         ]],
             {
