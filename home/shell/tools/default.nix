@@ -15,6 +15,6 @@
     ./pfetch.nix
     ./nix-index.nix
     ./atuin.nix
-    ./k9s.nix
+    ./kubernetes.nix
   ];
 }

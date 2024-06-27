@@ -49,8 +49,6 @@
       vlc
       nurl
       gh
-      kubectl
-      stern
       note # Built in pkgs/note
     ];
 
