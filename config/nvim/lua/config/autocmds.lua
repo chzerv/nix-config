@@ -78,3 +78,15 @@ aucmd("BufEnter", {
     group = augroup("CustomFormatOptions", {}),
     command = "set formatoptions-=cro",
 })
+
+-- mkview when closing a buffer
+aucmd("BufWinLeave", {
+    group = augroup("SaveView", { clear = true }),
+    command = "mkview",
+})
+
+-- loadview when opening a buffer
+aucmd("BufWinEnter", {
+    group = augroup("LoadView", { clear = true }),
+    command = "silent! loadview",
+})
