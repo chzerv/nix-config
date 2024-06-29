@@ -4,16 +4,9 @@ vim.opt_local.foldlevel = 1
 vim.opt_local.conceallevel = 2
 vim.opt_local.formatoptions:append("t")
 
-vim.g.vim_markdown_folding_disabled = false
-vim.g.vim_markdown_folding_style_pythonic = 1
-vim.g.vim_markdown_conceal = false
-vim.g.vim_markdown_conceal_code_blocks = false
-vim.g.vim_markdown_frontmatter = true
-vim.g.vim_markdown_toml_frontmatter = false
-vim.g.vim_markdown_json_frontmatter = false
-vim.g.vim_markdown_no_extensions_in_markdown = false
-vim.g.vim_markdown_follow_anchor = true
-vim.g.vim_markdown_new_list_item_indent = 2
+vim.opt_local.foldmethod = "expr"
+vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt_local.foldenable = false
 
 vim.b.minisurround_config = {
     custom_surroundings = {
