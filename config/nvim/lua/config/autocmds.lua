@@ -82,11 +82,13 @@ aucmd("BufEnter", {
 -- mkview when closing a buffer
 aucmd("BufWinLeave", {
     group = augroup("SaveView", { clear = true }),
+    pattern = "*.*",
     command = "mkview",
 })
 
 -- loadview when opening a buffer
 aucmd("BufWinEnter", {
     group = augroup("LoadView", { clear = true }),
+    pattern = "*.*",
     command = "silent! loadview",
 })
