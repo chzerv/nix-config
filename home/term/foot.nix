@@ -11,7 +11,7 @@ in {
     server.enable = true;
     settings = {
       main = {
-        include = "~/.config/foot/gruvbox-dark.ini";
+        include = "~/.config/foot/catppuccin-macchiato.ini";
         term = "xterm-256color";
 
         font = "JetBrainsMono Nerd Font Mono:size=11";
@@ -47,7 +47,7 @@ in {
 
       colors = {
         # Opacity
-        alpha = 0.98;
+        alpha = 0.95;
       };
 
       text-bindings = {
@@ -57,10 +57,10 @@ in {
     };
   };
 
-  xdg.configFile."foot/gruvbox-dark.ini" = {
+  xdg.configFile."foot/catppuccin-macchiato.ini" = {
     source = builtins.fetchurl {
-      url = "https://codeberg.org/dnkl/foot/raw/branch/master/themes/gruvbox-dark";
-      sha256 = "sha256:1qmxb6z4vd2ji6sw7abr47cn1yxrc09na784mz6nng6400pfgfxr";
+      url = "https://raw.githubusercontent.com/catppuccin/foot/main/themes/catppuccin-macchiato.ini";
+      sha256 = "sha256:1hgi3a4452vgrhxz2hxdh880pi2qqfpdvfk2750lhbmrd1qfzxdh";
     };
   };
 
