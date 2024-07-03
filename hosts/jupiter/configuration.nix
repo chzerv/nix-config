@@ -27,11 +27,11 @@
       };
       services = {
         bluetooth = true;
-        psd = true;
+        psd = false;
         opensnitch = false;
         openssh = true;
         snapper = true;
-        ppd = false;
+        ppd = true;
         tlp = false;
         tailscale = {
           enable = false;
@@ -43,7 +43,7 @@
         flatpak = true;
         plymouth = true;
         mount_smb_share = true;
-        gnome = true;
+        plasma = true;
       };
       virt = {
         podman = false;
@@ -53,7 +53,7 @@
       };
     };
 
-    system.stateVersion = "23.11";
+    system.stateVersion = "24.05";
 
     boot = {
       kernelPackages = pkgs.linuxPackages_latest;
@@ -104,12 +104,12 @@
     ##############################################
 
     systemd.tmpfiles.rules = [
-      "d /storage 0755 ${username} users"
-      "d /storage/Bravo 0755 ${username} users"
-      "d /storage/Omega 0755 ${username} users"
+      "d /media 0755 ${username} users"
+      "d /media/Bravo 0755 ${username} users"
+      "d /media/Omega 0755 ${username} users"
     ];
 
-    fileSystems."/storage/Bravo" = {
+    fileSystems."/media/Bravo" = {
       device = "/dev/disk/by-label/Bravo";
       fsType = "ext4";
       options = [
@@ -117,7 +117,7 @@
       ];
     };
 
-    fileSystems."/storage/Omega" = {
+    fileSystems."/media/Omega" = {
       device = "/dev/disk/by-label/Omega";
       fsType = "ntfs";
       options = [
