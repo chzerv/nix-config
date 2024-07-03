@@ -16,7 +16,7 @@
     ./hardware-configuration.nix
     ../../nixos
     ../../nixos/hardware/systemd-boot
-    ../../nixos/hardware/gpu/amd.nix
+    ../../nixos/hardware/graphics/amd.nix
     ../../nixos/hardware/btrfs
   ];
 
