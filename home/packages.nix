@@ -45,7 +45,6 @@
       stylua
       desktop-file-utils
       translate-shell
-      ffmpeg
       vlc
       nurl
       gh

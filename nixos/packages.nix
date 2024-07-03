@@ -26,6 +26,7 @@
       pv
       cachix
       nfs-utils
+      ffmpeg-full
     ]
     ++ lib.optionals (type == "server") [
       util-linux # device info: lscpu, lsblk and more
