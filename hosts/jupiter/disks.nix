@@ -28,7 +28,7 @@
                 type = "btrfs";
                 extraArgs = ["-f"];
                 subvolumes = {
-                  "/rootfs" = {
+                  "/root" = {
                     mountpoint = "/";
                     mountOptions = ["compress=zstd" "noatime"];
                   };
@@ -42,8 +42,8 @@
                   };
                   # This is where storage drives will be mounted and we don't want snapshots
                   # for these drives
-                  "/storage" = {
-                    mountpoint = "/storage";
+                  "/media" = {
+                    mountpoint = "/media";
                     mountOptions = ["compress=zstd" "noatime"];
                   };
                   "/swap" = {
@@ -59,7 +59,7 @@
                     mountOptions = ["compress=zstd" "noatime"];
                   };
                   "/root/.snapshots" = {
-                    mountpoint = "/root/.snapshots";
+                    mountpoint = "/.snapshots";
                     mountOptions = ["compress=zstd" "noatime"];
                   };
                   "/home/.snapshots" = {
