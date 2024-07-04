@@ -1,16 +1,23 @@
-{ lib, config, pkgs, type, username, ... }: {
-   config = lib.mkIf (type == "wsl") {
-	   wsl = {
-	    enable = true;
-	    wslConf.automount.root = "/mnt";
-	    wslConf.interop.appendWindowsPath = false;
-	    wslConf.network.generateHosts = false;
-	    defaultUser = username;
-	    startMenuLaunchers = true;
+{
+  lib,
+  config,
+  pkgs,
+  type,
+  username,
+  ...
+}: {
+  config = lib.mkIf (type == "wsl") {
+    wsl = {
+      enable = true;
+      wslConf.automount.root = "/mnt";
+      wslConf.interop.appendWindowsPath = false;
+      wslConf.network.generateHosts = false;
+      defaultUser = username;
+      startMenuLaunchers = true;
 
-	    # Enable integration with Docker Desktop (needs to be installed)
-	    docker-desktop.enable = false;
-	  }; 
+      # Enable integration with Docker Desktop (needs to be installed)
+      docker-desktop.enable = true;
+    };
 
     systemd.user = {
       paths.vscode-remote-workaround = {
