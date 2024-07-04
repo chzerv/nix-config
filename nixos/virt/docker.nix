@@ -13,6 +13,7 @@ in {
     # Docker can also be run rootless
     virtualisation.docker = {
       enable = true;
+      autoPrune.enable = true;
     };
 
     # Add user to the "docker" group
