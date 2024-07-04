@@ -44,12 +44,6 @@
           extraGroups = [
             "wheel"
             "users"
-            "networkmanager"
-            "power"
-            "audio"
-            "video"
-            "input"
-            "render"
           ];
           shell = pkgs.fish;
           openssh.authorizedKeys.keys = [
