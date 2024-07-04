@@ -11,10 +11,6 @@
 
   # Setup a graphical environment
   services = {
-    xserver = {
-      enable = true;
-      xkb.layout = "us";
-    };
     libinput.enable = true;
   };
 
@@ -33,7 +29,7 @@
   };
 
   # Provide location
-  services.geoclue2.enable = true;
+  services.geoclue2.enable = lib.mkDefault true;
   location.provider = "geoclue2";
 
   # Make electron apps use Wayland when possible

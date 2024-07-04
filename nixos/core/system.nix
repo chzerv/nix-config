@@ -22,7 +22,7 @@
   # systemd-oomd tweaks
   # Mostly follows Fedora's defaults
   systemd.oomd = {
-    enable = true;
+    enable = lib.mkDefault true;
 
     # Fedora defaults
     enableRootSlice = true;
