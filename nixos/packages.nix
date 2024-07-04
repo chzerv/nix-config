@@ -40,7 +40,7 @@
       python312Packages.cachetools
     ];
 
-  programs = lib.mkIf (type != "server") {
+  programs = lib.mkIf (type == "server" || type == "laptop") {
     wireshark = {
       enable = true;
       package = pkgs.wireshark;
@@ -49,7 +49,7 @@
     adb.enable = true;
   };
 
-  users.users.${username} = lib.mkIf (type != "server") {
+  users.users.${username} = lib.mkIf (type == "server" || type == "laptop") {
     extraGroups = ["wireshark"];
   };
 }

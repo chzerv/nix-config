@@ -40,6 +40,11 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # NixOS on WSL
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+    };
   };
 
   outputs = {
@@ -48,6 +53,7 @@
     home-manager,
     disko,
     nixos-generators,
+    nixos-wsl,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -75,6 +81,15 @@
         ];
       };
 
+      wsl = myLib.mkNixosConfig {
+        hostname = "wsl";
+        username = "chzerv";
+        type = "wsl";
+        extraModules = [
+	  nixos-wsl.nixosModules.default
+        ];
+      };
+
       rpi4 = myLib.mkNixosConfig {
         hostname = "rpi4";
         username = "xci";
@@ -94,6 +109,12 @@
         hostname = "luna";
         username = "chzerv";
         type = "laptop";
+      };
+
+      "chzerv@wsl" = myLib.mkHomeConfig {
+        hostname = "wsl";
+        username = "chzerv";
+        type = "wsl";
       };
     };
 

@@ -28,16 +28,7 @@
       nh
     ]
     ++ lib.optionals (type != "server") [
-      firefox
-      obsidian
-      chromium
-      bitwarden
       bitwarden-cli
-      keepassxc
-      wl-clipboard
-      webcord
-      libreoffice-fresh
-      thunderbird
       treefmt
       alejandra
       shfmt
@@ -45,10 +36,21 @@
       stylua
       desktop-file-utils
       translate-shell
-      vlc
       nurl
       gh
       note # Built in pkgs/note
+    ]
+    ++ lib.optionals (type != "server" && type != "wsl") [
+      firefox
+      obsidian
+      chromium
+      bitwarden
+      keepassxc
+      wl-clipboard
+      webcord
+      libreoffice-fresh
+      thunderbird
+      vlc
     ];
 
   programs.yt-dlp = {
