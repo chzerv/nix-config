@@ -86,7 +86,7 @@
         username = "chzerv";
         type = "wsl";
         extraModules = [
-	  nixos-wsl.nixosModules.default
+          nixos-wsl.nixosModules.default
         ];
       };
 
