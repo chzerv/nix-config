@@ -15,6 +15,7 @@
       cifs-utils
       file
       killall
+      wget
       usbutils
       lm_sensors
       htop
