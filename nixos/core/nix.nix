@@ -1,4 +1,4 @@
-{...} @ args: {
+{pkgs, ...} @ args: {
   nix = {
     # Automatic garbage collection
     gc = {
@@ -44,5 +44,10 @@
     man.enable = true;
     info.enable = false;
     doc.enable = false;
+  };
+
+  programs.nix-ld = {
+    enable = true;
+    package = pkgs.nix-ld-rs;
   };
 }
