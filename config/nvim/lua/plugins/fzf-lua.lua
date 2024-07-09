@@ -45,6 +45,8 @@ return {
                 },
             },
 
+            fzf_colors = true,
+
             -- Options to be passed to FZF
             fzf_opts = {
                 ["--cycle"] = true, -- Let selection start over once it reaches the end
