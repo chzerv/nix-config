@@ -23,9 +23,8 @@ ls.add_snippets("yaml", {
               ref:
                 {}: {}
               url: {}
-            {}
         ]],
-            { i(1), i(2, "flux-system"), i(3, "24h"), c(4, { t("branch"), t("tag") }), i(5), i(6), i(7) }
+            { i(1), i(2, "flux-system"), i(3, "24h"), c(4, { t("branch"), t("tag") }), i(5), i(6) }
         )
     ),
 
@@ -43,9 +42,8 @@ ls.add_snippets("yaml", {
             spec:
               interval: {}
               url: {}
-            {}
         ]],
-            { i(1), i(2, "flux-system"), i(3, "24h"), i(4), i(5) }
+            { i(1), i(2, "flux-system"), i(3, "24h"), i(4) }
         )
     ),
 
@@ -71,18 +69,24 @@ ls.add_snippets("yaml", {
                     name: {}
                     namespace: {}
                   interval: {}
+              targetNamespace: {}
+              driftDetection:
+                mode: enabled
               install:
                 createNamespace: true
                 remediation:
                   retries: 5
               upgrade:
+                crds: CreateReplace
                 remediation:
                   retries: 5
+              rollback:
+                cleanupOnFail: true
+                recreate: true
               values:
                 {}
-            {}
         ]],
-            { i(1), i(2, "flux-system"), i(3, "24h"), i(4), i(5), i(6), rep(2), rep(3), i(9), i(10) }
+            { i(1), i(2, "flux-system"), i(3, "30m"), i(4), i(5), i(6), rep(2), rep(3), rep(2), i(10) }
         )
     ),
 
@@ -103,19 +107,21 @@ ls.add_snippets("yaml", {
             kind: GitRepository
             name: {}
           interval: {}
+          retryInterval: {}
+          timeout: {}
           prune: {}
           wait: {}
-        {}
         ]],
             {
                 i(1),
                 i(2, "flux-system"),
                 i(3),
-                i(4),
-                i(5, "24h"),
-                c(6, { t("true"), t("false") }),
-                c(7, { t("true"), t("false") }),
-                i(8),
+                i(4, "flux-system"),
+                i(5, "30m"),
+                i(6, "5m"),
+                i(7, "15m"),
+                c(8, { t("true"), t("false") }),
+                c(9, { t("true"), t("false") }),
             }
         )
     ),
@@ -128,16 +134,11 @@ ls.add_snippets("yaml", {
         # yaml-language-server: \\$schema=https://json.schemastore.org/kustomization.json
         apiVersion: kustomize.config.k8s.io/v1beta1
         kind: Kustomization
-        metadata:
-          namespace: {}
         resources:
           - {}
-        {}
         ]],
             {
-                i(1, "flux-system"),
-                i(2),
-                i(3),
+                i(1),
             }
         )
     ),
