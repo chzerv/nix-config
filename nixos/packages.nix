@@ -39,6 +39,10 @@
       # required for using DNS options in `tcpconnect`
       python312Packages.dnslib
       python312Packages.cachetools
+    ]
+    ++ lib.optionals (type == "wsl") [
+      wsl-open # open files with xdg-open from WSL in Windows apps
+      wslu # utilities for WSL
     ];
 
   programs = lib.mkIf (type == "server" || type == "laptop") {
