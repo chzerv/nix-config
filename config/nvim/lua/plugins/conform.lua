@@ -65,7 +65,10 @@ return {
             },
 
             yamlfmt = {
-                prepend_args = { "-formatter", "indent=2,include_document_start=true,retain_line_breaks_single=true" },
+                prepend_args = {
+                    "-formatter",
+                    "indent=2,include_document_start=true,retain_line_breaks=true,scan_folded_as_literal=true",
+                },
             },
         },
     },
