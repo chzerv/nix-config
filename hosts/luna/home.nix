@@ -12,8 +12,8 @@
     };
 
     term = {
-      foot = true;
-      default = "foot";
+      alacritty = true;
+      default = "alacritty";
     };
 
     services = {

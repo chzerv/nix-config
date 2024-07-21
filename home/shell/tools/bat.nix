@@ -2,18 +2,18 @@
   programs.bat = {
     enable = true;
     themes = {
-      catppuccin = {
+      bamboo = {
         src = pkgs.fetchFromGitHub {
-          owner = "catppuccin";
-          repo = "bat";
-          rev = "main";
-          sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
+          owner = "ribru17";
+          repo = "bamboo.nvim";
+          rev = "master";
+          sha256 = "sha256-VlKpWt8ZpSj8KLTbk87XGieRObxwnSCoeq2NHv/Hwlk=";
         };
-        file = "Catppuccin-mocha.tmTheme";
+        file = "extras/bat/bamboo.tmTheme";
       };
     };
     config = {
-      theme = "catppuccin";
+      theme = "bamboo";
       italic-text = "always";
       color = "always";
       style = "numbers,changes,header,grid";

@@ -1,5 +1,5 @@
 import = [
-    "~/.config/alacritty/catppuccin-macchiato.toml"
+    "~/.config/alacritty/bamboo.toml"
 ]
 
 [env]
@@ -21,13 +21,13 @@ unfocused_hollow = true
 [font]
 size = 11.0
 builtin_box_drawing = true
-normal = { family = "Monaspace Argon", style = "Regular" }
-bold = { family = "Monaspace Argon", style = "Bold" }
-italic = { family = "Monaspace Argon", style = "Italic" }
-bold_italic = { family = "Monaspace Argon", style = "Bold Italic" }
+normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font Mono", style = "Bold Italic" }
 
 [selection]
-save_to_clipboard = false
+save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 
 [mouse]
