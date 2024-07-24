@@ -6,7 +6,6 @@
 }: {
   imports = [
     ../../nixos
-    ../../nixos/core/wsl.nix
   ];
 
   config = {

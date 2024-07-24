@@ -15,5 +15,8 @@
     ]
     # If the host is not a server, setup a graphical environment and other programs
     ++ lib.optionals (type != "server")
-    [./desktop];
+    [./desktop]
+    # If the host is a WSL instance, setup WSL specifics
+    ++ lib.optionals (type == "wsl")
+    [./wsl];
 }
