@@ -1,6 +1,11 @@
 return {
     "ibhagwan/fzf-lua",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = {
+        {
+            "echasnovski/mini.icons",
+            opts = {},
+        },
+    },
     cmd = "FzfLua",
     keys = {
         { "<localleader>f", "<cmd>FzfLua<cr>", desc = "Fzf" },
@@ -82,7 +87,6 @@ return {
 
             -- https://github.com/ibhagwan/fzf-lua/wiki/Options#provider-options
             files = {
-                formatter = "path.filename_first", -- Show results as 'filename path', where path is non highlighted
                 winopts = {
                     preview = { hidden = "hidden" },
                 },
