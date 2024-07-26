@@ -8,16 +8,14 @@
         "$hostname"
         "$directory"
         "$git_branch"
+        "$git_state"
         "$git_status"
-        "$kubernetes"
         "$rust"
-        "$nodejs"
-        "$lua"
         "$golang"
         "$python"
-        "$c"
         "$terraform"
         "$nix_shell"
+        "$kubernetes"
         "$line_break"
         "$character"
         "$jobs"
@@ -29,28 +27,35 @@
       ];
 
       add_newline = true;
-
       scan_timeout = 3;
 
       character = {
-        error_symbol = "[󰊠](bold red)";
-        success_symbol = "[󰊠](bold green)";
-        vicmd_symbol = "[󰊠](bold yellow)";
-        format = "$symbol [|](bold bright-black) ";
+        success_symbol = "[➜ ](green)";
+        error_symbol = "[✗](red) ";
+        vicmd_symbol = "[➜ ](yellow)";
       };
 
-      kubernetes = {
-        symbol = "☸ ";
-        style = "blue";
-        format = "[$symbol$namespace \\($context\\)]($style) in ";
+      directory.style = "blue";
+
+      hostname = {
+        ssh_only = true;
+        format = "[$hostname](blue) ";
         disabled = false;
       };
 
+      cmd_duration.min_time = 5000; # Show cmd_duration if cmd took >= 5s
+
       git_commit = {commit_hash_length = 7;};
 
-      lua.format = "via [ $version](bold blue) ";
+      git_state = {
+        format = "\([$state( $progress_current/$progress_total)]($style)\) ";
+        style = "bright-black";
+      };
 
-      python.symbol = "[](blue) ";
+      git_branch = {
+        format = "[$branch]($style) ";
+        style = "bright-black";
+      };
 
       jobs = {
         style = "red";
@@ -58,19 +63,26 @@
         format = "[$symbol $number]($style)";
       };
 
-      hostname = {
-        ssh_only = true;
-        format = "[$hostname](bold blue) ";
+      kubernetes = {
+        symbol = "󱃾";
+        style = "bright-blue";
+        format = "on [$symbol $namespace@$context]($style) ";
         disabled = false;
       };
 
       nix_shell = {
-        symbol = "❄️ ";
+        symbol = "󱄅 ";
+        style = "bright-blue";
+        format = "via [$symbol(\($name\))]($style) ";
       };
 
+      # Disabled modules
       memory_usage.disabled = true;
-
       package.disabled = true;
+      docker_context.disabled = true;
+      aws.disabled = true;
+      gcloud.disabled = true;
+      nodejs.disabled = true;
     };
   };
 }
