@@ -6,6 +6,8 @@
   home.packages = with pkgs; [
     kubectl
     kubectl-view-secret
+    kustomize
+    krew
     stern
     dyff
   ];
