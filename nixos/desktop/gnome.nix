@@ -22,27 +22,27 @@ in {
         gnome-tour
         gedit
         epiphany
+        totem # video player
+        simple-scan
+        geary # email reader
+        yelp # help
       ])
       ++ (with pkgs.gnome; [
-        geary # email reader
         tali # poker game
         iagno # go game
         hitori # sudoku game
         atomix # puzzle game
-        yelp # help
         gnome-maps
         gnome-weather
-        simple-scan
         gnome-music
         gnome-software
-        totem # video player
       ]);
 
     environment.systemPackages = with pkgs; [
-      gnome.gnome-tweaks
-      gnome.adwaita-icon-theme
+      gnome-tweaks
+      adwaita-icon-theme
       ffmpegthumbnailer
-      gnome.dconf-editor
+      dconf-editor
       gsettings-desktop-schemas # collection of GSettings schemas for various GNOME components
       pinentry
     ];

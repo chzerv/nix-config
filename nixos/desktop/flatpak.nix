@@ -28,7 +28,7 @@ in {
 
       aggregatedIcons = pkgs.buildEnv {
         name = "system-icons";
-        paths = with pkgs; [gnome.gnome-themes-extra bibata-cursors];
+        paths = with pkgs; [gnome-themes-extra bibata-cursors];
         pathsToLink = ["/share/icons"];
       };
 
