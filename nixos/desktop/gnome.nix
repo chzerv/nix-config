@@ -16,27 +16,24 @@ in {
       desktopManager.gnome.enable = true;
     };
 
-    environment.gnome.excludePackages =
-      (with pkgs; [
-        gnome-photos
-        gnome-tour
-        gedit
-        epiphany
-        totem # video player
-        simple-scan
-        geary # email reader
-        yelp # help
-      ])
-      ++ (with pkgs.gnome; [
-        tali # poker game
-        iagno # go game
-        hitori # sudoku game
-        atomix # puzzle game
-        gnome-maps
-        gnome-weather
-        gnome-music
-        gnome-software
-      ]);
+    environment.gnome.excludePackages = with pkgs; [
+      gnome-photos
+      gnome-tour
+      gedit
+      epiphany
+      totem # video player
+      simple-scan
+      geary # email reader
+      yelp # help
+      tali # poker game
+      iagno # go game
+      hitori # sudoku game
+      atomix # puzzle game
+      gnome-maps
+      gnome-weather
+      gnome-music
+      gnome-software
+    ];
 
     environment.systemPackages = with pkgs; [
       gnome-tweaks
