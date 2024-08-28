@@ -142,4 +142,34 @@ ls.add_snippets("yaml", {
             }
         )
     ),
+
+    s(
+        "eso_template",
+        fmt(
+            [[
+        ---
+        # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/external-secrets.io/externalsecret_v1beta1.json
+        kind: ExternalSecret
+        metadata:
+          name: {}
+        spec:
+          secretStoreRef:
+            kind: {}
+            name: {}
+        target:
+          name: {}
+          template:
+            engineVersion: v2
+            data:
+              {}
+        ]],
+            {
+                i(1),
+                c(2, { t("ClusterSecretStore"), t("SecretStore") }),
+                i(3),
+                i(4),
+                i(5),
+            }
+        )
+    ),
 })
