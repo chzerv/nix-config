@@ -4,6 +4,7 @@ local t = ls.text_node
 local i = ls.insert_node
 local c = ls.choice_node
 local fmt = require("luasnip.extras.fmt").fmt
+local fmta = require("luasnip.extras.fmt").fmta
 local rep = require("luasnip.extras").rep
 
 ls.add_snippets("yaml", {
@@ -144,32 +145,75 @@ ls.add_snippets("yaml", {
     ),
 
     s(
-        "eso_template",
-        fmt(
+        "eso_secret",
+        fmta(
             [[
         ---
         # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/external-secrets.io/externalsecret_v1beta1.json
         apiVersion: external-secrets.io/v1beta1
         kind: ExternalSecret
         metadata:
-          name: {}
+          name: <name>
+          namespace: <namespace>
         spec:
+          refreshInterval: <interval>
           secretStoreRef:
-            kind: {}
-            name: {}
-        target:
-          name: {}
-          template:
-            engineVersion: v2
-            data:
-              {}
+            kind: <store_kind>
+            name: <store_name>
+          target:
+            name: <target>
+            <maybe_template>
+          <data>
         ]],
             {
-                i(1),
-                c(2, { t("ClusterSecretStore"), t("SecretStore") }),
-                i(3),
-                i(4),
-                i(5),
+                name = i(1, "name"),
+                namespace = i(2, "namespace"),
+                interval = i(3, "1h"),
+                store_kind = c(4, { t("ClusterSecretStore"), t("SecretStore") }),
+                store_name = i(5, "store name"),
+                target = i(6, "target secret"),
+                maybe_template = c(7, {
+                    t({ "" }),
+                    fmt(
+                        [[
+                        template:
+                              engineVersion: v2
+                              data:
+                                {}
+                    ]],
+                        {
+                            i(1),
+                        }
+                    ),
+                }),
+                data = c(8, {
+                    fmt(
+                        [[
+                        data:
+                            - secretKey: {}
+                              remoteRef:
+                                key: {}
+                                property: {}
+                    ]],
+                        {
+                            i(1),
+                            i(2),
+                            i(3),
+                        }
+                    ),
+                    fmt(
+                        [[
+                        dataFrom:
+                            - extract:
+                                key: {}
+                                property: {}
+                    ]],
+                        {
+                            i(1),
+                            i(2),
+                        }
+                    ),
+                }),
             }
         )
     ),
