@@ -44,7 +44,7 @@ in {
       pinentry
     ];
 
-    services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
+    services.udev.packages = with pkgs; [gnome-settings-daemon];
 
     # Necessary for opening links under certain conditions
     services.gvfs.enable = true;
