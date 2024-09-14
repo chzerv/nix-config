@@ -11,6 +11,7 @@ return {
                     wincmd o
                     ]])
                 end,
+                desc = "Git status",
             },
             {
                 "<leader>gl",
@@ -19,6 +20,7 @@ return {
                     :tabnew | Gclog
                     ]])
                 end,
+                desc = "Git log",
             },
             {
                 "<leader>gh",
@@ -27,6 +29,7 @@ return {
                     :0Gclog
                     ]])
                 end,
+                desc = "Git log for the current buffer",
             },
         },
     },

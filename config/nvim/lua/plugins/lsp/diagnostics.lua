@@ -1,18 +1,33 @@
 vim.diagnostic.config({
+    virtual_text = {
+        prefix = "",
+        spacing = 2,
+        severity = { min = vim.diagnostic.severity.W },
+    },
+
+    float = {
+        source = "if_many",
+        border = "rounded",
+    },
+
     underline = true,
     severity_sort = true,
     update_in_insert = false,
-
-    float = {
-        source = true,
-        border = "rounded",
-    },
-    virtual_text = {
-        severity = { min = vim.diagnostic.severity.W },
-        source = "if_many",
-    },
 })
 
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
-vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "Open diagnostics in quickfix" })
+vim.keymap.set("n", "]d", function()
+    vim.diagnostic.jump({ count = 1 })
+end, { desc = "Next diagnostic" })
+
+vim.keymap.set("n", "[d", function()
+    vim.diagnostic.jump({ count = -1 })
+end, { desc = "Previous diagnostic" })
+
+vim.keymap.set("n", "<leader>cdq", vim.diagnostic.setqflist, { desc = "Open diagnostics in quickfix" })
+
+-- local fzf_installed, _ = pcall(require, "fzf-lua")
+
+if pcall(require, "fzf-lua") then
+    vim.keymap.set("n", "<leader>cdd", "<cmd>FzfLua lsp_document_diagnostics<cr>", { desc = "Document diagnostics" })
+    vim.keymap.set("n", "<leader>cdw", "<cmd>FzfLua lsp_workspace_diagnostics<cr>", { desc = "Workspace diagnostics" })
+end

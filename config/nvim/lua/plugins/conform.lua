@@ -34,7 +34,7 @@ return {
         -- Enable format on save
         format_on_save = function(bufnr)
             -- Disable autoformat for specific filetypes
-            local ignore_filetypes = { "yaml" }
+            local ignore_filetypes = { "yaml", "templ" }
 
             if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
                 return

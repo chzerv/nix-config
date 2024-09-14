@@ -3,9 +3,9 @@
 return {
     settings = {
         gopls = {
-            gofumpt = true, -- Format using gofumpt
+            gofumpt = true,
             hints = {
-                assignVariableTypes = true, --
+                assignVariableTypes = true,
                 compositeLiteralFields = true,
                 compositeLiteralTypes = true,
                 constantValues = true,
@@ -22,9 +22,20 @@ return {
                 useany = true, -- Check for constraints that could be simplified to `any`
                 shadow = true, -- Check for possible unintended variable shadowing
             },
+            codelenses = {
+                test = true,
+                tidy = true,
+                run_govulncheck = true,
+                generate = true,
+                upgrade_dependency = true,
+                gc_details = false,
+                regenerate_cgo = true,
+                vendor = true,
+            },
             semanticTokens = true, -- Enable semantic tokens
             usePlaceholders = true, -- Placeholders for func params
             staticcheck = true, -- Additional analyses from staticcheck.io
+            completeUnimported = true,
         },
     },
 }

@@ -2,15 +2,22 @@
 
 local M = {}
 
-local words = vim.tbl_add_reverse_lookup({
+local words = {
     ["true"] = "false",
     ["yes"] = "no",
     ["on"] = "off",
     ["present"] = "absent",
-})
+}
 
 function M.invert()
-    local cword = vim.tbl_get(words, vim.fn.expand("<cword>"))
+    local tbl = {}
+
+    for k, v in pairs(words) do
+        tbl[k] = v
+        tbl[v] = k
+    end
+
+    local cword = vim.tbl_get(tbl, vim.fn.expand("<cword>"))
 
     pcall(function()
         vim.cmd("norm! ciw" .. cword)

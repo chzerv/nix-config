@@ -1,38 +1,51 @@
 return {
     "ibhagwan/fzf-lua",
+    cmd = "FzfLua",
     dependencies = {
         {
             "echasnovski/mini.icons",
             opts = {},
         },
     },
-    cmd = "FzfLua",
     keys = {
-        { "<localleader>f", "<cmd>FzfLua<cr>", desc = "Fzf" },
         { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "Find files" },
-        { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "Find old files" },
-        { "<leader>fh", "<cmd>FzfLua helptags<cr>", desc = "Find helptags" },
-        { "<leader>fg", "<cmd>FzfLua live_grep_glob<cr>", desc = "Grep" },
-        { "<leader>fb", "<cmd>FzfLua lgrep_curbuf<cr>", desc = "Grep current buffer" },
-        { mode = "x", "<leader>fg", "<cmd>FzfLua grep_visual<cr>", desc = "Grep" },
-        { "<leader>fw", "<cmd>FzfLua grep_cword<cr>", desc = "Grep word under cursor" },
-        { "<leader>fd", "<cmd>FzfLua lsp_document_diagnostics<cr>", desc = "Document diagnostics" },
-        { "<leader>fD", "<cmd>FzfLua lsp_workspace_diagnostics<cr>", desc = "Workspace diagnostics" },
-        { "<leader>,", "<cmd>FzfLua buffers<cr>", desc = "Buffers" },
 
         {
             "<leader>fF",
             function()
                 local dir_to_search
-                local _ = vim.ui.input({ prompt = "Search in > ", completion = "dir" }, function(input)
+                local _ = vim.ui.input({ prompt = "Find files in > ", completion = "dir" }, function(input)
                     dir_to_search = input
                 end)
 
                 require("fzf-lua").files({ cwd = dir_to_search })
             end,
+            desc = "Find files in dir",
         },
-    },
 
+        { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "Find oldfiles" },
+        { "<leader>fh", "<cmd>FzfLua help_tags<cr>", desc = "Helptags" },
+
+        { "<leader>fg", "<cmd>FzfLua live_grep_glob<cr>", desc = "Grep" },
+        { "<leader>fg", "<cmd>FzfLua grep_visual<cr>", desc = "Grep", mode = "x" },
+
+        {
+            "<leader>fb",
+            function()
+                require("fzf-lua").lgrep_curbuf({
+                    winopts = {
+                        height = 0.6,
+                        width = 0.8,
+                        preview = { vertical = "down:65%" },
+                    },
+                })
+            end,
+            desc = "Grep current buffer",
+        },
+        { "<leader>fw", "<cmd>FzfLua grep_cword<cr>", desc = "Grep word under cursor" },
+
+        { "<leader>,", "<cmd>FzfLua buffers<cr>", desc = "Buffers" },
+    },
     opts = function()
         local actions = require("fzf-lua.actions")
 
