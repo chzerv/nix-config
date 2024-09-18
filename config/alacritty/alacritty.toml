@@ -1,12 +1,12 @@
 import = [
-    "~/.config/alacritty/bamboo.toml"
+    "~/.config/alacritty/gruvbox_dark.toml"
 ]
 
 [env]
 term = "xterm-256color"
 
 [window]
-opacity = 0.95
+opacity = 1
 blur = false
 decorations = "none"
 padding = { x = 0, y = 0 }
@@ -19,12 +19,12 @@ style = "Block"
 unfocused_hollow = true
 
 [font]
-size = 11.0
+size = 12.0
 builtin_box_drawing = true
-normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
-bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
-italic = { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
-bold_italic = { family = "JetBrainsMono Nerd Font Mono", style = "Bold Italic" }
+normal = { family = "Hack Nerd Font Mono", style = "Regular" }
+bold = { family = "Hack Nerd Font Mono", style = "Bold" }
+italic = { family = "Hack Nerd Font Mono", style = "Italic" }
+bold_italic = { family = "Hack Nerd Font Mono", style = "Bold Italic" }
 
 [selection]
 save_to_clipboard = true
