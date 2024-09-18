@@ -10,5 +10,6 @@
     ./shell
 
     ./desktop/gnome.nix
+    ./desktop/sway
   ];
 }

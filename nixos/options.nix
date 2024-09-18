@@ -38,6 +38,7 @@ in {
       plymouth = mkEnableOption "Setup silent boot and enable Plymouth";
       mount_smb_share = mkEnableOption "Mount SMB share from TrueNAS";
       gnome = mkEnableOption "Use GNOME as the Desktop Environment";
+      sway = mkEnableOption "Use Sway as the Window Manager";
       plasma = mkEnableOption "Use KDE Plasma 6 as the Desktop Environment";
     };
 
