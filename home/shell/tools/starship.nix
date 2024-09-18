@@ -30,9 +30,9 @@
       scan_timeout = 3;
 
       character = {
-        success_symbol = "[➜ ](green)";
+        success_symbol = "[➜](bold green)";
         error_symbol = "[✗](red) ";
-        vicmd_symbol = "[➜ ](yellow)";
+        vicmd_symbol = "[➜](bold yellow)";
       };
 
       directory.style = "blue";
