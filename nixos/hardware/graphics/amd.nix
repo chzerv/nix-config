@@ -4,7 +4,7 @@
   type,
   ...
 }: {
-  hardware.grapics = {
+  hardware.graphics = {
     enable = true;
     enable32Bit = type == "desktop"; # 32bit is only useful for gaming
     extraPackages = with pkgs; [
