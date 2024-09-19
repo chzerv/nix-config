@@ -1,28 +1,20 @@
 {
   pkgs,
   lib,
+  type,
   ...
 }: {
-  services.xserver.videoDrivers = lib.mkDefault ["modesetting"];
-
-  hardware.graphics = {
+  hardware.grapics = {
     enable = true;
-    enable32Bit = true;
+    enable32Bit = type == "desktop"; # 32bit is only useful for gaming
     extraPackages = with pkgs; [
       vaapiVdpau
       libvdpau-va-gl
-
-      # OpenCL
-      rocmPackages.clr.icd
     ];
   };
 
-  hardware.amdgpu = {
-    initrd.enable = true;
-    opencl.enable = true;
-  };
-
-  # Work arround for hard-coded HIP libraries
+  # Work around for hardcoded HIP libraries
+  # https://wiki.nixos.org/wiki/AMD_GPU#HIP
   systemd.tmpfiles.rules = let
     rocmEnv = pkgs.symlinkJoin {
       name = "rocm-combined";
@@ -36,9 +28,15 @@
     "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
   ];
 
-  environment.systemPackages = with pkgs; [
-    lact # Linux AMDGPU controller
+  hardware.amdgpu = {
+    # Load the `amdgpu` kernel mode as early as possible
+    initrd.enable = true;
 
+    # OpenCL support
+    opencl.enable = true;
+  };
+
+  environment.systemPackages = with pkgs; [
     libva-utils
     vdpauinfo
     clinfo
