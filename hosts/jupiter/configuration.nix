@@ -32,7 +32,6 @@
         openssh = true;
         snapper = true;
         ppd = true;
-        tlp = false;
         tailscale = {
           enable = false;
           routingFeatures = "client";

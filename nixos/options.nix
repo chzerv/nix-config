@@ -19,7 +19,6 @@ in {
       opensnitch = mkEnableOption "Enable the Opensnitch application firewall";
       openssh = mkEnableOption "Enable OpenSSH";
       snapper = mkEnableOption "Enable Snapper for BTRFS snapshots";
-      tlp = mkEnableOption "Use TLP for power-saving";
       ppd = mkEnableOption "Use power-profiles-daemon for power-saving";
       adguard = mkEnableOption "Setup AdGuard Home";
       node_exporter = mkEnableOption "Setup node_exporter";
@@ -59,10 +58,6 @@ in {
       {
         assertion = with config.local.sys; !(virt.docker && virt.podman);
         message = "Can't install both Podman and Docker";
-      }
-      {
-        assertion = with config.local.sys; !(services.tlp && services.ppd);
-        message = "Can't use both TLP and power-profiles-daemon!";
       }
     ];
   };
