@@ -10,7 +10,16 @@
 # as root, I haven't figured a way to run `gsettings`.
 
 if [[ $1 == true ]]; then
-  gsettings set org.gnome.desktop.input-sources xkb-options "['terminate:ctrl_alt_bksp', 'caps:swapescape']"
+  if [[ "$XDG_CURRENT_DESKTOP" == "sway" ]]; then
+    swaymsg input type:keyboard xkb_options grp:win_space_toggle
+    swaymsg input type:keyboard xkb_options caps:swapescape
+  else
+    gsettings set org.gnome.desktop.input-sources xkb-options "['terminate:ctrl_alt_bksp', 'caps:swapescape']"
+  fi
 else
-  gsettings set org.gnome.desktop.input-sources xkb-options "['terminate:ctrl_alt_bksp']"
+  if [[ "$XDG_CURRENT_DESKTOP" == "sway" ]]; then
+    swaymsg input type:keyboard xkb_options grp:win_space_toggle
+  else
+    gsettings set org.gnome.desktop.input-sources xkb-options "['terminate:ctrl_alt_bksp']"
+  fi
 fi
