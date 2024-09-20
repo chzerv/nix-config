@@ -252,16 +252,51 @@ in {
         modifier = "${modifier}";
 
         criteria = [
-          {window_role = "float";}
           {title = "float";}
-          {app_id = "float";}
-          {class = "float";}
+          {title = "^Open File$";}
+          {title = "Save File";}
+          {title = "About Mozilla Firefox";}
+          {
+            app_id = "(?i)Thunderbird";
+            title = ".*Reminder";
+          }
           {app_id = "udiskie";}
           {app_id = "qalculate-gtk";}
+          {app_id = "org.gnome.Calculator";}
           {app_id = "mpv";}
           {app_id = "org.gnome.Loupe";}
+          {app_id = "task_dialog";}
+          {app_id = "blueman-manager";}
+          {app_id = "blueman-applet";}
+          {window_role = "Preferences";}
+          {window_role = "task_dialog";}
         ];
       };
+
+      window.commands = [
+        {
+          criteria = {title = "^Picture-in-Picture$";};
+          command = "floating enable ,resize set height 280, resize set width 500, border none, sticky toggle, move position 1420 800, opacity 0.7";
+        }
+
+        {
+          criteria = {title = "File Operation Progress";};
+          command = "floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt";
+        }
+        {
+          criteria = {window_role = "GtkFileChooserDialog";};
+          command = "resize set 590 340";
+        }
+        {
+          criteria = {window_role = "GtkFiileChooserDialog";};
+          command = "move position center";
+        }
+
+        {
+          criteria = {app_id = "mpv";};
+          command = "floating enable, resize set 1250 750, position center";
+        }
+      ];
 
       # Assign applications to workspaces
       assigns = {
