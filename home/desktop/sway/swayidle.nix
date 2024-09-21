@@ -11,18 +11,13 @@ in {
     events = [
       {
         event = "before-sleep";
-        command = "${pkgs.playerctl}/bin/playerctl pause";
-      }
-
-      {
-        event = "before-sleep";
         command = swaylock;
       }
     ];
     timeouts = [
       {
         timeout = 5 * 60;
-        command = swaylock;
+        command = "${pkgs.playerctl}/bin/playerctl pause && ${swaylock}";
       }
 
       {
