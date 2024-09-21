@@ -17,14 +17,14 @@ I have only recently dove into Nix, so the code might not be of the best quality
 - **Secrets Management** via [sops-nix](https://github.com/Mic92/sops-nix) for connecting to SMB shares and more
 - [home-manager](https://github.com/nix-community/home-manager) is installed using the "standalone" method. This way, system and home configurations are separated
 - Per-host customization via [options](https://nixos.wiki/wiki/Extend_NixOS)
-- **GNOME** as the Desktop Environment
+- Declarative desktop-environment/window-manager configuration
 - `neovim`, `tmux` and `alacritty` configurations managed via their own config files, but still "deployed" via `home-manager`
 - Automatically loaded **overlays** thanks to the [NixOS & Flakes](https://nixos-and-flakes.thiscute.world/nixpkgs/overlays) book
   - Super useful for updating or downgrading packages, adding patches and more
 - Usage of [nixos-generators](https://github.com/nix-community/nixos-generators) for:
   - Proxmox LXC and VM templates
   - Minimal NixOS ISO
-- Runnable Neovim wrapped with my custom config via `nix run`
+  - Raspberry Pi image
 
 # Structure
 
