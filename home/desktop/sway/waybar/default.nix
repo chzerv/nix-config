@@ -8,7 +8,6 @@
 in {
   programs.waybar = {
     enable = opts.desktop.sway;
-    # package = inputs.nixpkgs-wayland.outputs.packages.${pkgs.stdenv.hostPlatform.system}.waybar;
     style = pkgs.lib.readFile ./waybar.css;
     systemd.enable = true;
     settings = [
@@ -31,7 +30,7 @@ in {
         ];
 
         "sway/workspaces" = {
-          all-outputs = true;
+          all-outputs = false;
           disable-scroll-wraparound = true;
         };
 
