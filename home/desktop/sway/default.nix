@@ -18,7 +18,6 @@ in {
     home.packages = with pkgs; [
       libnotify
       sway-contrib.grimshot
-      swayidle
       swappy
       qalculate-gtk
       mpv

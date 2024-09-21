@@ -163,7 +163,8 @@ in {
 
         "${modifier}+q" = "kill";
 
-        "${modifier}+Delete" = "exec ${pkgs.swaylock}/bin/swaylock";
+        "${modifier}+Delete" = "exec ${config.programs.swaylock.package}/bin/swaylock -fk";
+
         "Ctrl+Alt+Delete" = "exec swaymsg exit";
         "${modifier}+F12" = "swaymsg reload";
 

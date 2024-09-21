@@ -4,24 +4,31 @@
   ...
 }: let
   opts = config.local.hm;
+  swaylock = "${config.programs.swaylock.package}/bin/swaylock -fk";
 in {
   services.swayidle = {
     enable = opts.desktop.sway;
     events = [
       {
         event = "before-sleep";
-        command = "${pkgs.swaylock}/bin/swaylock -f";
+        command = "${pkgs.playerctl}/bin/playerctl pause";
       }
+
       {
-        event = "lock";
-        command = "${pkgs.swaylock}/bin/swaylock -f";
+        event = "before-sleep";
+        command = swaylock;
       }
     ];
     timeouts = [
       {
-        timeout = 300;
-        command = "swaymsg 'output * dpms off'";
-        resumeCommand = "swaymsg 'output * dpms on'";
+        timeout = 5 * 60;
+        command = swaylock;
+      }
+
+      {
+        timeout = 6 * 60;
+        command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
+        resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
       }
     ];
   };
