@@ -29,7 +29,7 @@ in {
     };
 
     # TODO: Proper testing for 'active' VS 'guided' for both performance, battery life and temperatures
-    boot.kernelParams = ["amd_pstate=guided"];
+    boot.kernelParams = ["amd_pstate=active"];
 
     powerManagement = {
       enable = true;
