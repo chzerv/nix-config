@@ -13,6 +13,7 @@ in {
     ./settings.nix
     ./mako.nix
     ./waybar
+    ./gtk.nix
   ];
 
   config = lib.mkIf opts.desktop.sway {
