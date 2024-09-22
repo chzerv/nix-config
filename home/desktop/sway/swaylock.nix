@@ -15,7 +15,7 @@ in {
       indicator-thickness = "7";
       clock = true;
       timestr = "%H:%M";
-      effect-blur = "30x2";
+      effect-blur = "7x5";
       effect-vignette = "0.5:0.5";
       fade-in = "0.2";
       grace = "1";
