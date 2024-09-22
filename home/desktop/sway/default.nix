@@ -11,6 +11,7 @@ in {
     ./swaylock.nix
     ./swayidle.nix
     ./settings.nix
+    ./mako.nix
     ./waybar
   ];
 
