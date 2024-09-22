@@ -109,6 +109,8 @@ in {
         }
 
         {command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";}
+
+        {command = "${pkgs.shikane}/bin/shikane";}
       ];
 
       # Configure input devices (keyboard, mouse, touchpad)
@@ -140,18 +142,6 @@ in {
         "*" = {
           background = "~/Pictures/Wallpapers/drone.png fill";
         };
-
-        # Laptop screen
-        "Samsung Display Corp. 0x4152 Unknown" = {
-          scale = "1.75";
-          mode = "2880x1800@90.001Hz";
-        };
-
-        # External 4K monitor
-        "LG Electronics LG HDR 4K 401NTHM7E985" = {
-          scale = "1.25";
-          mode = "3840x21860@60.000Hz";
-        };
       };
 
       # Don't use the default bar
@@ -166,7 +156,7 @@ in {
         "${modifier}+Delete" = "exec ${config.programs.swaylock.package}/bin/swaylock -fk";
 
         "Ctrl+Alt+Delete" = "exec swaymsg exit";
-        "${modifier}+F12" = "swaymsg reload";
+        "${modifier}+F12" = "exec swaymsg reload";
 
         "${modifier}+d" = "exec --no-startup-id ${menu} -show drun";
 
@@ -316,6 +306,7 @@ in {
     };
 
     extraConfig = ''
+      # Touchpad gestures
       bindgesture swipe:right workspace prev
       bindgesture swipe:left workspace next
 
