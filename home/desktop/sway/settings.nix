@@ -324,6 +324,10 @@ in {
       bindgesture pinch:inward+left move left
       bindgesture pinch:inward+right move right
 
+      # Turn off the laptop screen when the lid is closed
+      bindswitch lid:on  exec swaymsg output eDP-1 disable
+      bindswitch lid:off exec swaymsg output eDP-1 enable
+
       set $mode_resize "Resize container"
       mode $mode_resize {
         bindsym --to-code {
