@@ -12,7 +12,7 @@ in {
       name = "Monaspace Argon";
       size = 11;
     };
-    theme = "Catppuccin-Macchiato";
+    themeFile = "Catppuccin-Macchiato";
     settings = {
       # Performance tuning
       sync_to_monitor = "no";
