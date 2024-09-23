@@ -72,6 +72,9 @@ in {
         nil # LSP
         alejandra # Formatter
 
+        # TOML
+        taplo
+
         ## Other
         dockerfile-language-server-nodejs
         vscode-langservers-extracted # https://github.com/hrsh7th/vscode-langservers-extracted
