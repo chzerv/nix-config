@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -eu
+
+PROFILES=$(sed -n '/\[\[profile\]\]/,/\[\[/{/name =/p}' $HOME/.config/shikane/config.toml)
+
+SELECTED_PROFILE=$(echo "$PROFILES" | awk '{ print $3 }' | sed 's/"//g' | rofi -dmenu -i -p "Select profile")
+
+if [[ "${SELECTED_PROFILE}" != "" ]]; then
+  shikanectl switch "${SELECTED_PROFILE}"
+fi

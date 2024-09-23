@@ -8,10 +8,10 @@
   configDir = "${config.home.homeDirectory}/nix-config/config";
 in {
   imports = [
-    ./rofi.nix
     ./swaylock.nix
     ./swayidle.nix
     ./settings.nix
+    ./rofi
     ./mako.nix
     ./waybar
     ./gtk.nix

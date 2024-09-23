@@ -159,6 +159,7 @@ in {
         "${modifier}+F12" = "exec swaymsg reload";
 
         "${modifier}+d" = "exec --no-startup-id ${menu} -show drun";
+        "${modifier}+Shift+d" = "exec --no-startup-id rofi-bangs";
 
         "${modifier}+h" = "focus left";
         "${modifier}+j" = "focus down";
