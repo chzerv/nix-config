@@ -5,7 +5,7 @@
   lib,
   ...
 }: let
-  opts = config.local.hm;
+  opts = config.custom.hm;
   extensions = inputs.nix-vscode-extensions.extensions.${system};
 in {
   config = lib.mkIf opts.editor.vscode {

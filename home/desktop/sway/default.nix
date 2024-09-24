@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  opts = config.local.hm;
+  opts = config.custom.hm;
   configDir = "${config.home.homeDirectory}/nix-config/config";
 in {
   imports = [

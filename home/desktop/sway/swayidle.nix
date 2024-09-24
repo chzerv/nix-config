@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  opts = config.local.hm;
+  opts = config.custom.hm;
   swaylockCmd = "${config.programs.swaylock.package}/bin/swaylock -fk";
   swaymsgCmd = "${pkgs.sway}/bin/swaymsg";
 in {

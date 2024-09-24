@@ -1,5 +1,5 @@
 {config, ...}: let
-  opts = config.local.hm;
+  opts = config.custom.hm;
 in {
   services.syncthing = {
     enable = opts.services.syncthing;

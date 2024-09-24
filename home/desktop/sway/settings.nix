@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  opts = config.local.hm;
+  opts = config.custom.hm;
 in {
   wayland.windowManager.sway = {
     enable = opts.desktop.sway;

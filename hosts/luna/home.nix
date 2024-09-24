@@ -6,7 +6,7 @@
   # DO NOT CHANGE!!
   config.home.stateVersion = "23.11";
 
-  config.local.hm = {
+  config.custom.hm = {
     editor = {
       neovim = true;
     };
@@ -21,7 +21,8 @@
     };
 
     desktop = {
-      gnome = true;
+      gnome = false;
+      sway = true;
       hidpi = true;
     };
   };

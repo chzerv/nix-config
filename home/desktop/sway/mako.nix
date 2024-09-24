@@ -1,5 +1,5 @@
 {config, ...}: let
-  opts = config.local.hm;
+  opts = config.custom.hm;
 in {
   services.mako = {
     enable = opts.desktop.sway;

@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  opts = config.local.hm;
+  opts = config.custom.hm;
 in {
   programs.waybar = {
     enable = opts.desktop.sway;

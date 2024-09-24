@@ -4,6 +4,12 @@
   type,
   ...
 }: {
+  imports = [
+    ./neovim.nix
+    ./vscode.nix
+    ./alacritty.nix
+  ];
+
   home.packages = with pkgs;
     [
       unzip
@@ -14,18 +20,10 @@
       jqp
       yq-go
       just
-      dogdns
-      httpie
-      duf
-      dua
       ncdu
-      gping
-      glow
       rsync
       git
-      chafa
       python3
-      nh
     ]
     ++ lib.optionals (type != "server") [
       bitwarden-cli
@@ -39,11 +37,19 @@
       nurl
       gh
       note # Built in pkgs/note
+      dogdns
+      httpie
+      duf
+      dua
+      gping
+      glow
+      chafa
+      nh
     ]
     ++ lib.optionals (type != "server" && type != "wsl") [
       firefox
-      obsidian
       chromium
+      obsidian
       bitwarden
       keepassxc
       wl-clipboard
@@ -57,6 +63,13 @@
     enable = type != "server";
     settings = {
       embed-thumbnail = true;
+    };
+  };
+
+  xdg.desktopEntries = lib.optionals (type != "server" && type != "wsl") {
+    obsidian = {
+      name = "obsidian";
+      exec = "obsidian --ozone-platform=wayland --ozone-platform-hint=auto --enable-features=UseOzonePlatform,WaylandWindowDecorations %U";
     };
   };
 }

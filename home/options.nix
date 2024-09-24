@@ -1,23 +1,16 @@
-# Home related options that can be enabled/disabled in the top-level configuration and imported modules can react to them. For example, if options.editor.vscode is enabled, enable and configure VSCode.
-{
-  config,
-  lib,
-  ...
-}: let
+{lib, ...}: let
   inherit (lib) mkEnableOption types mkOption;
 in {
-  options.local.hm = {
+  options.custom.hm = {
     editor = {
       neovim = mkEnableOption "Setup Neovim";
       vscode = mkEnableOption "Setup VSCode";
     };
 
     term = {
-      kitty = mkEnableOption "Setup kitty";
-      foot = mkEnableOption "Setup foot";
       alacritty = mkEnableOption "Setup alacritty";
       default = mkOption {
-        type = types.nullOr (types.enum ["kitty" "alacritty" "foot"]);
+        type = types.nullOr (types.enum ["alacritty"]);
         description = "Default terminal to use";
         default = "alacritty";
       };

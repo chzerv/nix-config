@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  opts = config.local.hm;
+  opts = config.custom.hm;
 in {
   programs.swaylock = {
     enable = opts.desktop.sway;

@@ -5,7 +5,7 @@
 
   config.home.stateVersion = "24.05";
 
-  config.local.hm = {
+  config.custom.hm = {
     editor = {
       neovim = true;
     };

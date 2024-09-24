@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  opts = config.local.hm;
+  opts = config.custom.hm;
 in {
   config = lib.mkIf opts.desktop.sway {
     programs.rofi = {
