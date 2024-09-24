@@ -1,5 +1,5 @@
 {config, ...}: let
-  opts = config.local.sys;
+  opts = config.custom.nix;
 in {
   services.prometheus.exporters.node = {
     enable = opts.services.node_exporter;

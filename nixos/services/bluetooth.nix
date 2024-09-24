@@ -1,5 +1,5 @@
 {config, ...}: let
-  opts = config.local.sys;
+  opts = config.custom.nix;
 in {
   hardware.bluetooth = {
     enable = opts.services.bluetooth;

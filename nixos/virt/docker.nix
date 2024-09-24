@@ -5,7 +5,7 @@
   username,
   ...
 }: let
-  opts = config.local.sys;
+  opts = config.custom.nix;
 in {
   config = lib.mkIf opts.virt.docker {
     environment.systemPackages = with pkgs; [docker-compose];

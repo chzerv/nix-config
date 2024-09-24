@@ -1,10 +1,9 @@
-# profile-sync-daemon
 {
   config,
   type,
   ...
 }: let
-  opts = config.local.sys;
+  opts = config.custom.nix;
 in {
   services.psd = {
     enable = opts.services.psd && type != "server";

@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./plymouth.nix
     ./flatpak.nix
@@ -7,10 +11,12 @@
     ./sway.nix
     ./plasma.nix
     ./fonts.nix
-    ./smb_mount.nix
   ];
 
-  # Setup a graphical environment
+  boot = {
+    tmp.useTmpfs = true;
+  };
+
   services = {
     libinput.enable = true;
   };
@@ -41,4 +47,7 @@
 
   # https://archlinux.org/news/making-dbus-broker-our-default-d-bus-daemon/
   services.dbus.implementation = "broker";
+
+  # QMK udev rules
+  hardware.keyboard.qmk.enable = true;
 }

@@ -5,7 +5,7 @@
   type,
   ...
 }: let
-  opts = config.local.sys;
+  opts = config.custom.nix;
 
   # This script uses power-profiles-daemon and amd_pstate_epp (energy performance preference) to change power modes depending
   # on whether the system is powered on or not.

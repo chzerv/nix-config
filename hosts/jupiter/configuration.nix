@@ -14,34 +14,36 @@
     ./disks.nix
     ./hardware-configuration.nix
     ../../nixos
-    ../../nixos/hardware/systemd-boot
-    ../../nixos/hardware/graphics/amd.nix
-    ../../nixos/hardware/btrfs
   ];
 
   config = {
-    local.sys = {
-      security = {
+    custom.nix = {
+      system = {
         firewall = true;
         sysctl_hardening = true;
+        efi = true;
+        amd_gpu = true;
+        btrfs = true;
+        mount_smb_share = true;
       };
       services = {
         bluetooth = true;
         psd = false;
-        opensnitch = false;
         openssh = true;
-        snapper = true;
         ppd = true;
         tailscale = {
           enable = false;
           routingFeatures = "client";
         };
       };
+      software = {
+        wireshark = false;
+        adb = true;
+      };
       desktop = {
         gaming = true;
         flatpak = true;
         plymouth = true;
-        mount_smb_share = true;
         plasma = true;
       };
       virt = {
@@ -56,12 +58,6 @@
 
     boot = {
       kernelPackages = pkgs.linuxPackages_latest;
-      kernel.sysctl = {
-        # Disable core dumps
-        "kernel.core_pattern" = "/dev/null";
-        # Enable sysrq
-        "kernel.sysrq" = 1;
-      };
       binfmt.emulatedSystems = ["aarch64-linux"];
     };
 

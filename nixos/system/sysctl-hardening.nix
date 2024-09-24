@@ -1,20 +1,27 @@
 {
   config,
   lib,
+  type,
   ...
 }: let
-  opts = config.local.sys;
+  opts = config.custom.nix.system;
 in {
-  config = lib.mkIf opts.security.sysctl_hardening {
+  config = lib.mkIf opts.sysctl_hardening {
     boot.kernel.sysctl = {
       # SysRq is a key combo which the kernel which respond to regardless of
       # whatever else it is doing. It can do stuff like reboot, crash the system,
       # kill all processes, remount filesystems and more, which can be a security
       # risk. See https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html
-      "kernel.sysrq" = lib.mkDefault 0;
+      "kernel.sysrq" =
+        if type == "desktop"
+        then 1
+        else 0;
 
       # Disable kexec, which allows replacing the current running kernel
       "kernel.kexec_load_disabled" = lib.mkDefault 1;
+
+      # Disable core dumps
+      "kernel.core_pattern" = "/dev/null";
 
       # TCP/IP stack hardening
 

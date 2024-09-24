@@ -1,16 +1,18 @@
 {
-  lib,
   pkgs,
+  lib,
   config,
   ...
 }: let
-  opts = config.local.sys;
+  opts = config.custom.nix.system;
 in {
-  config = lib.mkIf opts.services.snapper {
-    environment.systemPackages = [pkgs.snapper];
+  config = lib.mkIf opts.btrfs {
+    services.btrfs.autoScrub.enable = true;
+    services.btrfs.autoScrub.interval = "weekly";
 
-    # They way our BTRFS subvolumes are setup (see hosts/jupiter/disks.nix)
-    # allow us to snapshot only selected subvolumes.
+    environment.systemPackages = [pkgs.btrfs-progs];
+    boot.initrd.supportedFilesystems = ["btrfs"];
+
     services.snapper = {
       # snapshotRootOnBoot = true;
       cleanupInterval = "7d";

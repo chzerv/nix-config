@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  opts = config.local.sys;
+  opts = config.custom.nix;
 in {
   services.openssh = {
     enable = opts.services.openssh;

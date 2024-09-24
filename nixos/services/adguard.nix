@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  opts = config.local.sys;
+  opts = config.custom.nix;
 in {
   config = lib.mkIf opts.services.adguard {
     services.adguardhome = {

@@ -4,6 +4,6 @@
     ./network.nix
     ./nix.nix
     ./system.nix
-    ./nfs.nix
+    ./boot.nix
   ];
 }

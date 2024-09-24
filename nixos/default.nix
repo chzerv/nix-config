@@ -10,8 +10,8 @@
       ./core
       ./virt
       ./services
-      ./security
-      ./packages.nix
+      ./system
+      ./software
     ]
     # If the host is not a server, setup a graphical environment and other programs
     ++ lib.optionals (type != "server")

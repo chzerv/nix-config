@@ -4,9 +4,9 @@
   lib,
   ...
 }: let
-  opts = config.local.sys;
+  opts = config.custom.nix.system;
 in {
-  config = lib.mkIf opts.desktop.mount_smb_share {
+  config = lib.mkIf opts.mount_smb_share {
     sops.secrets = {
       smb_user = {};
       smb_password = {};
