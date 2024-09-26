@@ -9,6 +9,7 @@
     ./gaming.nix
     ./gnome.nix
     ./sway.nix
+    ./greetd.nix
     ./plasma.nix
     ./fonts.nix
   ];

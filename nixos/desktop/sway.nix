@@ -9,19 +9,6 @@ in {
   config = lib.mkIf opts.desktop.sway {
     services = {
       dbus.enable = true;
-
-      # Start Sway via GDM
-      displayManager.sessionPackages = [pkgs.sway];
-
-      xserver = {
-        enable = true;
-        excludePackages = [
-          pkgs.xterm
-        ];
-        displayManager = {
-          gdm.enable = true;
-        };
-      };
     };
 
     security = {
@@ -31,7 +18,7 @@ in {
 
     environment = {
       pathsToLink = ["/share/xdg-desktop-portal" "/share/applications"];
-      systemPackages = with pkgs; [bibata-cursors];
+      systemPackages = with pkgs; [bibata-cursors greetd.gtkgreet];
     };
 
     programs.sway = {
