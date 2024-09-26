@@ -31,7 +31,7 @@ in {
     events = [
       {
         event = "before-sleep";
-        command = swaymsgCmd;
+        command = swaylockCmd;
       }
     ];
   };
