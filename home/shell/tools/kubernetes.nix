@@ -10,6 +10,8 @@
     krew
     stern
     dyff
+    kind
+    kubectx
   ];
 
   home.sessionVariables = {
