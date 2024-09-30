@@ -8,15 +8,6 @@
   opts = config.custom.hm;
 in {
   config = lib.mkIf opts.desktop.gnome {
-    home.packages = with pkgs; [
-      libappindicator
-      libappindicator-gtk3
-      gnomeExtensions.appindicator
-      gnomeExtensions.user-themes
-      adw-gtk3
-      dconf2nix
-    ];
-
     dconf.settings =
       {
         # Disable mouse acceleration
@@ -50,7 +41,7 @@ in {
         };
 
         "org/gnome/desktop/wm/preferences" = {
-          # button-layout = "appmenu:minimize,maximize,close";
+          button-layout = "appmenu:minimize,maximize,close";
           resize-with-right-button = true;
         };
       }

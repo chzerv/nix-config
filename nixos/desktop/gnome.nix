@@ -42,6 +42,12 @@ in {
       dconf-editor
       gsettings-desktop-schemas # collection of GSettings schemas for various GNOME components
       pinentry
+      libappindicator
+      libappindicator-gtk3
+      gnomeExtensions.appindicator
+      gnomeExtensions.user-themes
+      adw-gtk3
+      dconf2nix
     ];
 
     services.udev.packages = with pkgs; [gnome-settings-daemon];
