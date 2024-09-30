@@ -16,5 +16,6 @@
     ./nix-index.nix
     ./atuin.nix
     ./kubernetes.nix
+    ./zellij.nix
   ];
 }
