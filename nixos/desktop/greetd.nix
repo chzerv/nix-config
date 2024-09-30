@@ -7,7 +7,16 @@
   opts = config.custom.nix;
 
   gtkgreet = pkgs.writeText "gtkgreet" ''
+    output '*' background #fafafa solid_color
+    seat seat0 xcursor_theme Bibata-Modern-Classic 24
+
     exec ${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; ${pkgs.sway}/bin/swaymsg exit
+
+    bindsym Ctrl+Alt+Delete exec swaynag \
+      -t warning \
+      -m 'What do you want to do?' \
+      -b 'Poweroff' 'systemctl poweroff' \
+      -b 'Reboot' 'systemctl reboot'
   '';
 
   launch-gtkgreet = pkgs.writeShellApplication {
