@@ -18,7 +18,7 @@ in {
 
         modules-left = ["custom/launcher" "sway/workspaces" "sway/mode" "custom/media"];
         modules-center = ["sway/window"];
-        modules-right = ["idle_inhibitor" "pulseaudio" "battery" "power-profiles-daemon" "sway/language" "keyboard-state" "network" "tray" "clock" "custom/power-menu"];
+        modules-right = ["idle_inhibitor" "pulseaudio" "battery" "power-profiles-daemon" "sway/language" "network" "tray" "clock" "custom/power-menu"];
 
         "sway/workspaces" = {
           disable-scroll = false;
@@ -60,7 +60,7 @@ in {
 
         "pulseaudio" = {
           scroll-step = 5;
-          format = "{icon}  {volume}%";
+          format = "{icon} {volume}%";
           format-bluetooth = "{icon}  {volume}%";
           format-muted = "muted ";
           format-icons = {
@@ -101,15 +101,6 @@ in {
         "sway/language" = {
           format = "  {}";
           on-click = "swaymsg input type:keyboard xkb_switch_layout next";
-        };
-
-        "keyboard-state" = {
-          capslock = true;
-          format = "{name} {icon} ";
-          format-icons = {
-            locked = "";
-            unlocked = "";
-          };
         };
 
         "network" = {
