@@ -36,7 +36,7 @@ in {
       window = {
         titlebar = false;
         hideEdgeBorders = "none";
-        border = 1;
+        border = 2;
       };
 
       gaps = {
@@ -88,6 +88,10 @@ in {
 
       # Autostart
       startup = [
+        {
+          command = "waybar";
+        }
+
         {
           command = "nm-applet --indicator";
           always = false;
@@ -317,8 +321,8 @@ in {
       bindgesture pinch:inward+right move right
 
       # Turn off the laptop screen when the lid is closed
-      bindswitch lid:on  exec swaymsg output eDP-1 disable
-      bindswitch lid:off exec swaymsg output eDP-1 enable
+      # bindswitch lid:on  exec swaymsg output eDP-1 disable
+      # bindswitch lid:off exec swaymsg output * enable
 
       set $mode_resize "Resize container"
       mode $mode_resize {

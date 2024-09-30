@@ -33,6 +33,7 @@ in {
       libappindicator-gtk3 # indicators for waybar's tray module
       loupe # image viewer
       nautilus # file manager
+      playerctl
     ];
 
     home.sessionVariables = {

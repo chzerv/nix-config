@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  lib,
   ...
 }: let
   opts = config.custom.hm;
@@ -9,33 +8,40 @@ in {
   programs.waybar = {
     enable = opts.desktop.sway;
     style = pkgs.lib.readFile ./waybar.css;
-    systemd.enable = true;
     settings = [
       {
         layer = "top";
         position = "top";
-        height = 29;
-        modules-left = [
-          "sway/workspaces"
-          "sway/mode"
-        ];
+        mode = "dock";
+        margin = "7 9 0 9";
+        height = 30;
+
+        modules-left = ["custom/launcher" "sway/workspaces" "sway/mode" "custom/media"];
         modules-center = ["sway/window"];
-        modules-right = [
-          "pulseaudio"
-          "battery"
-          "network"
-          "sway/language"
-          "tray"
-          "clock"
-        ];
+        modules-right = ["idle_inhibitor" "pulseaudio" "battery" "power-profiles-daemon" "sway/language" "keyboard-state" "network" "tray" "clock" "custom/power-menu"];
 
         "sway/workspaces" = {
+          disable-scroll = false;
           all-outputs = false;
-          disable-scroll-wraparound = true;
+          format = "{name}";
         };
 
         "sway/mode" = {
-          tooltip = false;
+          format = "<span style=\"italic\">{}</span>";
+        };
+
+        "custom/media" = {
+          format = "{icon}{}";
+          return-type = "json";
+          format-icons = {
+            Playing = " ";
+            Paused = " ";
+          };
+          max-length = 50;
+          exec = "playerctl -i firefox -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
+          on-click = "playerctl -i firefox play-pause";
+          on-scroll-up = "playerctl -i firefox previous";
+          on-scroll-down = "playerctl -i firefox next";
         };
 
         "sway/window" = {
@@ -44,17 +50,16 @@ in {
           align = true;
         };
 
-        "tray" = {
-          icon-size = 14;
-          spacing = 5;
-        };
-
-        "clock" = {
-          format = "{:%b-%d %H:%M}";
+        "idle_inhibitor" = {
+          format = "{icon} ";
+          format-icons = {
+            activated = "";
+            deactivated = "";
+          };
         };
 
         "pulseaudio" = {
-          scroll-step = 1;
+          scroll-step = 5;
           format = "{icon}  {volume}%";
           format-bluetooth = "{icon}  {volume}%";
           format-muted = "muted ";
@@ -82,6 +87,31 @@ in {
           format-icons = ["" "" "" "" ""];
         };
 
+        "power-profiles-daemon" = {
+          format = "{icon}";
+          tooltip-format = "Active profile: {profile}";
+          tooltip = true;
+          format-icons = {
+            performance = "";
+            balanced = "";
+            power-saver = "";
+          };
+        };
+
+        "sway/language" = {
+          format = "  {}";
+          on-click = "swaymsg input type:keyboard xkb_switch_layout next";
+        };
+
+        "keyboard-state" = {
+          capslock = true;
+          format = "{name} {icon} ";
+          format-icons = {
+            locked = "";
+            unlocked = "";
+          };
+        };
+
         "network" = {
           format-wifi = " ";
           format-ethernet = " {ifname}";
@@ -90,9 +120,25 @@ in {
           tooltip = false;
         };
 
-        "sway/language" = {
-          "format" = "  {}";
-          on-click = "swaymsg input type:keyboard xkb_switch_layout next";
+        "clock" = {
+          format = "{:%b-%d %H:%M}";
+        };
+
+        "tray" = {
+          icon-size = 16;
+          spacing = 0;
+        };
+
+        "custom/launcher" = {
+          format = "  ";
+          tooltip = false;
+          on-click = "${config.programs.rofi.package}/bin/rofi -show drun";
+        };
+
+        "custom/power-menu" = {
+          format = " ⏻ ";
+          tooltip = false;
+          on-click = "rofi-power-menu";
         };
       }
     ];
