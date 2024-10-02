@@ -116,18 +116,10 @@ vim.keymap.set("n", "<left>", ":tabprevious<CR>", { desc = "Previous tab" })
 vim.keymap.set("n", "<right>", ":tabnext<CR>", { desc = "Next tab" })
 
 -- Buffer navigation
-vim.keymap.set("n", "[b", ":bprevious<CR>", { desc = "Previous buffer" })
-vim.keymap.set("n", "]b", ":bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader><leader>", "<c-^>", { desc = "Last buffer" })
 
--- Quickfix navigation
-vim.keymap.set("n", "[q", ":cprevious<CR>", { desc = "Previous quickfix item" })
-vim.keymap.set("n", "]q", ":cnext<CR>", { desc = "Next quickfix item" })
+-- Easily close the quickfix/loclist
 vim.keymap.set("n", "<Bslash>q", ":cclose<CR>", { desc = "Close quickfix" })
-
--- Location list navigation
-vim.keymap.set("n", "[l", ":lprevious<CR>", { desc = "Previous loclist item" })
-vim.keymap.set("n", "]l", ":lnext<CR>", { desc = "Next loclist item" })
 vim.keymap.set("n", "<Bslash>l", ":lclose<CR>", { desc = "Close loclist" })
 
 -- Neovim Terminal
