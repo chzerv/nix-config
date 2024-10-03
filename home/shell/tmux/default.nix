@@ -5,8 +5,9 @@
 }: let
   configDir = "${config.home.homeDirectory}/nix-config/config";
 in {
-  home.packages = [
-    pkgs.tmux
+  home.packages = with pkgs; [
+    tmux
+    sesh
   ];
 
   xdg.configFile.tmux = {

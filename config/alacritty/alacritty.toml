@@ -1,6 +1,4 @@
-import = [
-    "~/.config/alacritty/gruvbox_dark.toml"
-]
+import = ["~/.config/alacritty/gruvbox_dark.toml"]
 
 [env]
 term = "xterm-256color"
@@ -31,10 +29,7 @@ save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 
 [mouse]
-bindings = [ { mouse = "Right", mods = "Control", action = "Paste" }, ]
+bindings = [{ mouse = "Right", mods = "Control", action = "Paste" }]
 
 [keyboard]
-bindings = [
-    { key = "A", mods = "Control|Shift", chars = "tmux-sm\n" },
-    { key = "F", mods = "Control|Shift", chars = "tmux-sessionizer\n" },
-]
+bindings = [{ key = "F", mods = "Control|Shift", chars = "tmux-sesh\n" }]
