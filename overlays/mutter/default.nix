@@ -1,9 +1,9 @@
-{pkgs, ...}:
+{inputs, ...}:
 # GNOME 46: triple-buffering-v4-46
 (final: prev: {
   gnome = prev.gnome.overrideScope (gnomeFinal: gnomePrev: {
     mutter = gnomePrev.mutter.overrideAttrs (old: {
-      src = pkgs.fetchFromGitLab {
+      src = prev.fetchFromGitLab {
         domain = "gitlab.gnome.org";
         owner = "vanvugt";
         repo = "mutter";
