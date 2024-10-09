@@ -34,6 +34,8 @@
       nfs-utils
       ffmpeg-full
       qmk
+      solaar
+      logitech-udev-rules
       util-linux # device info: lscpu, lsblk and more
       sysstat # iostat, sar and more
       tcpdump # network sniffer
