@@ -40,6 +40,7 @@
       gca = "git commit -v --amend";
       gcan = "git commit --amend --no-edit";
       gd = "git diff";
+      gw = "git worktree";
 
       k = "kubectl";
 
