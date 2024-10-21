@@ -6,6 +6,6 @@
       "--group-directories-first"
     ];
     git = true;
-    icons = false;
+    icons = null;
   };
 }
