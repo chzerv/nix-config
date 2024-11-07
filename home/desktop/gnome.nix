@@ -56,7 +56,7 @@ in {
       // lib.attrsets.optionalAttrs (opts.desktop.hidpi) {
         "org/gnome/mutter" = {
           # Fractional scaling and logical monitor layour for HiDPI screens
-          experimental-features = ["scale-monitor-framebuffer"];
+          experimental-features = ["scale-monitor-framebuffer" "xwayland-native-scaling"];
         };
       };
 
