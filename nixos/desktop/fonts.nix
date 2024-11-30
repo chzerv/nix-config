@@ -22,7 +22,9 @@
       ubuntu_font_family
 
       (google-fonts.override {fonts = ["Inter"];})
-      (nerdfonts.override {fonts = ["JetBrainsMono" "NerdFontsSymbolsOnly" "Monaspace" "Hasklig" "Hack"];})
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.symbols-only
+      nerd-fonts.hack
     ];
 
     fontconfig = {
