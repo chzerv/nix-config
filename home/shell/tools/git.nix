@@ -13,6 +13,7 @@
         can = "commit --amend --no-edit";
         graph = "log --oneline --graph --all --decorate";
         lg = "log --oneline";
+        lgu = "log --color --graph --abbrev-commit HEAD --not @{u}^@"; # git log "until upstream", including the latest upstream commit
         find = "!f() { cd `git rev-parse --show-toplevel` && git ls-files | rg \"$@\"; }; f";
         # Show the most recent commit matching a query
         query = "!f() { git show :/\"$@\"; }; f";
