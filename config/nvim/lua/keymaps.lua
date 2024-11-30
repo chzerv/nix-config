@@ -112,8 +112,6 @@ vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increa
 -- Tab navigation
 vim.keymap.set("n", "[t", ":tabprevious<CR>", { desc = "Previous tab" })
 vim.keymap.set("n", "]t", ":tabnext<CR>", { desc = "Next tab" })
-vim.keymap.set("n", "<left>", ":tabprevious<CR>", { desc = "Previous tab" })
-vim.keymap.set("n", "<right>", ":tabnext<CR>", { desc = "Next tab" })
 
 -- Buffer navigation
 vim.keymap.set("n", "<leader><leader>", "<c-^>", { desc = "Last buffer" })
