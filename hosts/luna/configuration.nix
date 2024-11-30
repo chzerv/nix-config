@@ -42,13 +42,13 @@
         gaming = false;
         flatpak = true;
         plymouth = true;
-        sway = true;
+        gnome = true;
       };
       virt = {
         podman = false;
         docker = true;
         libvirt = true;
-        vagrant = true;
+        # vagrant = true;
       };
     };
 

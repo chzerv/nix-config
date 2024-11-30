@@ -21,8 +21,7 @@
     };
 
     desktop = {
-      gnome = false;
-      sway = true;
+      gnome = true;
       hidpi = true;
     };
   };
