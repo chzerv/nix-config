@@ -8,6 +8,7 @@
         "$hostname"
         "$directory"
         "$git_branch"
+        "$git_commit"
         "$git_state"
         "$git_status"
         "$rust"
@@ -26,16 +27,20 @@
         "$cmd_duration"
       ];
 
-      add_newline = true;
-      scan_timeout = 3;
+      add_newline = false;
+      scan_timeout = 10;
 
       character = {
         success_symbol = "[➜](bold green)";
-        error_symbol = "[✗](red) ";
+        error_symbol = "[✗](bold red) ";
         vicmd_symbol = "[➜](bold yellow)";
       };
 
-      directory.style = "blue";
+      directory = {
+        truncation_length = 5;
+        truncate_to_repo = true;
+        style = "bold cyan";
+      };
 
       hostname = {
         ssh_only = true;
