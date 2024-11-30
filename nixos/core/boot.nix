@@ -10,7 +10,7 @@ in {
       boot = {
         blacklistedKernelModules = ["pcspkr"]; # PC speaker module
 
-        tmp.cleanOnBoot = true;
+        tmp.useTmpfs = true;
 
         initrd = {
           supportedFilesystems = ["nfs"];

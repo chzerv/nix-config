@@ -50,4 +50,9 @@
     enable = true;
     package = pkgs.nix-ld-rs;
   };
+
+  # https://github.com/NixOS/nixpkgs/pull/338181
+  systemd.services.nix-daemon = {
+    environment.TMPDIR = "/var/tmp";
+  };
 }

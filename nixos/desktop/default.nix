@@ -14,10 +14,6 @@
     ./fonts.nix
   ];
 
-  boot = {
-    tmp.useTmpfs = true;
-  };
-
   services = {
     libinput.enable = true;
   };
