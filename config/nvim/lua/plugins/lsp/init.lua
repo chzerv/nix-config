@@ -71,7 +71,10 @@ return {
                 require("plugins.lsp.handlers").inlay_hints(client, bufnr)
 
                 -- Highlight word under the cursor
-                require("plugins.lsp.handlers").highlight_word(client, bufnr)
+                require("plugins.lsp.handlers").document_highlight(client, bufnr)
+
+                -- LSP Folding
+                require("plugins.lsp.handlers").folding(client, bufnr)
             end,
         })
 
