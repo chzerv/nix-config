@@ -75,6 +75,9 @@ in {
         # TOML
         taplo
 
+        # Emmet for HTML, HEEX, CSS etc
+        emmet-language-server
+
         ## Other
         dockerfile-language-server-nodejs
         vscode-langservers-extracted # https://github.com/hrsh7th/vscode-langservers-extracted

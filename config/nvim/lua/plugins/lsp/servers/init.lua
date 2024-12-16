@@ -16,6 +16,7 @@ local servers = {
     "elixirls",
     "rust_analyzer",
     "taplo",
+    "emmet_language_server",
 }
 
 local capabilities = vim.tbl_deep_extend(
