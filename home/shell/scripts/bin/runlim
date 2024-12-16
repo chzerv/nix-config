@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Credits:
+#  https://utcc.utoronto.ca/~cks/space/blog/linux/CgroupV2CpuIdleForResponsiveness
+#  https://utcc.utoronto.ca/~cks/space/blog/linux/SystemdForMemoryLimitingII
+
+# References:
+#   https://docs.kernel.org/admin-guide/cgroup-v2.html#cpu-interface-files
+
+if [[ $# == 0 ]]; then
+  echo -e "==============================================================================="
+  echo -e "Run a process in its own systemd user scope while enforcing CPU and RAM limits."
+  echo -e "This should help keep the desktop responsive during CPU intensive tasks."
+  echo -e ""
+  echo -e "Example Usage: "
+  echo -e ""
+  echo -e "    runlim ./build-script"
+  echo -e "==============================================================================="
+else
+  systemd-run --user --scope -p CPUWeight=idle -p MemoryHigh=10G -p MemoryMax=12G -p MemoryZSwapMax=5G "$1"
+fi
