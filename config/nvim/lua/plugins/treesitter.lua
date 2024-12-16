@@ -4,10 +4,6 @@ return {
     event = "BufReadPost",
     dependencies = {
         {
-            "echasnovski/mini.ai",
-            opts = {},
-        },
-        {
             "folke/ts-comments.nvim",
             opts = {},
         },
