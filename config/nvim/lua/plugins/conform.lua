@@ -29,6 +29,7 @@ return {
             sh = { "shfmt" },
             terraform = { "terraform_fmt" },
             yaml = { "yamlfmt" },
+            elixir = { "mix" },
         },
 
         -- Enable format on save
