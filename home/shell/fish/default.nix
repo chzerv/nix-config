@@ -111,4 +111,11 @@
       '';
     };
   };
+
+  xdg.configFile."fish/conf.d/tokyonight_moon.fish" = {
+    source = builtins.fetchurl {
+      url = "https://raw.githubusercontent.com/folke/tokyonight.nvim/refs/heads/main/extras/fish/tokyonight_moon.fish";
+      sha256 = "sha256:1xfwv6lx1w5265slkqs1f5kl1ampjd1mmml9f2d9k0zf8nfxa94a";
+    };
+  };
 }
