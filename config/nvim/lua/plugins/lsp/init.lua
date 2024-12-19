@@ -49,7 +49,6 @@ return {
                 vim.keymap.set({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, { buffer = 0 })
 
                 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { buffer = 0, desc = "Rename symbol" })
-                vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = 0, desc = "Code actions" })
 
                 if pcall(require, "fzf-lua") then
                     vim.keymap.set(
@@ -65,6 +64,15 @@ return {
                         "<cmd>FzfLua lsp_workspace_symbols<cr>",
                         { buffer = 0, desc = "Workspace symbols" }
                     )
+
+                    vim.keymap.set(
+                        "n",
+                        "<leader>ca",
+                        "<cmd>FzfLua lsp_code_actions<CR>",
+                        { buffer = 0, desc = "Code actions" }
+                    )
+                else
+                    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = 0, desc = "Code actions" })
                 end
 
                 -- Enable inlay hints

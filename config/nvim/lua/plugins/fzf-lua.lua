@@ -118,6 +118,12 @@ return {
                 sort_lastused = true,
             },
 
+            lsp = {
+                code_actions = {
+                    previewer = vim.fn.executable("delta") == 1 and "codeaction_native" or nil,
+                },
+            },
+
             require("fzf-lua").register_ui_select(),
         }
     end,
