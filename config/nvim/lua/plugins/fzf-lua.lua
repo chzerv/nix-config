@@ -103,6 +103,7 @@ return {
                 winopts = {
                     preview = { hidden = "hidden" },
                 },
+                formatter = "path.filename_first",
             },
 
             oldfiles = {
