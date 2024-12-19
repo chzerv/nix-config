@@ -27,7 +27,6 @@ else # inside tmux
       sesh list -t -i | fzf-tmux -p 55%,60% \
         --no-sort --border-label ' sesh ' --prompt '⚡  ' \
         --header '  ^a all / ^t tmux / ^z zoxide / ^d tmux kill / ^f find' \
-        --bind 'enter:replace-query+print-query' \
         --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
         --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
         --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c --icons)' \
