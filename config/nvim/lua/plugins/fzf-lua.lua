@@ -107,6 +107,8 @@ return {
             },
 
             oldfiles = {
+                cwd_only = true,
+                stat_file = true, -- verify that the file exists
                 winopts = {
                     preview = { hidden = "hidden" },
                 },
