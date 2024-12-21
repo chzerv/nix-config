@@ -26,6 +26,17 @@ return {
                     "${3rd}/luv/library",
                 },
             },
+
+            -- Inlay hints (https://luals.github.io/wiki/settings/#hint)
+            hint = {
+                enable = true,
+                arrayIndex = "Disable",
+                setType = true,
+                paramType = true,
+                paramName = "Disable",
+                semicolon = "All",
+            },
+
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {
                 enable = false,
