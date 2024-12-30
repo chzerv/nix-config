@@ -1,7 +1,7 @@
 return {
     "echasnovski/mini.indentscope",
     version = false,
-    ft = { "yaml", "python", "json", "yaml.ansible", "nix", "html", "templ" },
+    ft = { "yaml", "python", "json", "yaml.ansible", "nix", "html", "templ", "heex" },
     opts = {
         -- symbol = "│",
         symbol = "▏",
