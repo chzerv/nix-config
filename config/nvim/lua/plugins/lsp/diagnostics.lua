@@ -25,8 +25,6 @@ end, { desc = "Previous diagnostic" })
 
 vim.keymap.set("n", "<leader>cdq", vim.diagnostic.setqflist, { desc = "Open diagnostics in quickfix" })
 
--- local fzf_installed, _ = pcall(require, "fzf-lua")
-
 if pcall(require, "fzf-lua") then
     vim.keymap.set("n", "<leader>cdd", "<cmd>FzfLua lsp_document_diagnostics<cr>", { desc = "Document diagnostics" })
     vim.keymap.set("n", "<leader>cdw", "<cmd>FzfLua lsp_workspace_diagnostics<cr>", { desc = "Workspace diagnostics" })
