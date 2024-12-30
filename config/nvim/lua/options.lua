@@ -19,6 +19,11 @@ vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
+-- Completion
+vim.opt.completeopt = { "menu", "menuone", "preview" }
+vim.opt.pumheight = 10 -- Only show 10 completion candidates
+vim.opt.pumblend = 10 -- Add transparency to the pummenu
+
 -- Ignore case when searching, unless there is an uppercase letter in the query
 vim.opt.ignorecase = true
 vim.opt.smartcase = true

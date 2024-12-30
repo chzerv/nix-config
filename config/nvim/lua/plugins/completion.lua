@@ -17,11 +17,6 @@ return {
         local lspkind = require("lspkind")
         lspkind.init({})
 
-        vim.opt.completeopt = { "menu", "menuone", "noselect" }
-        vim.opt.shortmess:append("c")
-        vim.opt.pumheight = 10 -- Only show 10 completion candidates
-        vim.opt.pumblend = 10 -- Add transparency to the pummenu
-
         return {
             sources = {
                 { name = "nvim_lsp" },
