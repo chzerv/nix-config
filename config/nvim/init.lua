@@ -32,6 +32,9 @@ require("lazy").setup({ import = "plugins" }, {
         enabled = false,
     },
     ui = { border = "rounded" },
+    git = {
+        timeout = 1000,
+    },
     performance = {
         cache = { enabled = true },
         rtp = {
