@@ -31,11 +31,6 @@ in {
     # TODO: Proper testing for 'active' VS 'guided' for both performance, battery life and temperatures
     boot.kernelParams = ["amd_pstate=active"];
 
-    powerManagement = {
-      enable = true;
-      cpuFreqGovernor = "schedutil";
-    };
-
     services.udev.extraRules = lib.optionals (type == "laptop") ''
       SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="${use-power-saver-on-battery} true"
       SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="${use-power-saver-on-battery} false"
