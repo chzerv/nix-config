@@ -50,7 +50,9 @@ return {
         local actions = require("fzf-lua.actions")
 
         return {
-            global_git_icons = false,
+            defaults = {
+                git_icons = false,
+            },
 
             winopts = {
                 height = 0.6,
