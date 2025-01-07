@@ -1,11 +1,11 @@
 [general]
-import = ["~/.config/alacritty/sonokai_maia.toml"]
+import = ["~/.config/alacritty/tokyonight_moon.toml"]
 
 [env]
 term = "xterm-256color"
 
 [window]
-opacity = 1.0
+opacity = 0.9
 blur = false
 decorations = "none"
 padding = { x = 0, y = 0 }
@@ -19,11 +19,11 @@ unfocused_hollow = true
 
 [font]
 size = 12.0
-builtin_box_drawing = false
-normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
-bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
-italic = { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
-bold_italic = { family = "JetBrainsMono Nerd Font Mono", style = "Bold Italic" }
+builtin_box_drawing = true
+normal = { family = "Hack Nerd Font Mono", style = "Regular" }
+bold = { family = "Hack Nerd Font Mono", style = "Bold" }
+italic = { family = "Hack Nerd Font Mono", style = "Italic" }
+bold_italic = { family = "Hack Nerd Font Mono", style = "Bold Italic" }
 
 [selection]
 save_to_clipboard = true

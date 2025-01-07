@@ -17,22 +17,29 @@ return {
             vim.cmd.colorscheme("gruvbox-material")
         end,
     },
-
     {
-        "sainnhe/sonokai",
+        "folke/tokyonight.nvim",
         lazy = false,
         enabled = true,
         priority = 1000,
         config = function()
-            vim.g.sonokai_style = "maia"
-            vim.g.sonokai_better_performance = 1
-            vim.g.sonokai_disable_italic_comment = 0
-            vim.g.sonokai_enable_bold = 0
-            vim.g.sonokai_enable_italic = 1
-            vim.g.sonokai_transparent_background = 0
-            vim.g.sonokai_diagnostic_virtual_text = "colored"
+            require("tokyonight").setup({
+                -- use the night style
+                style = "moon",
+                transparent = true,
+                dim_inactive = true,
+                -- disable italic for functions
+                styles = {
+                    functions = {},
+                },
+                -- Change the "hint" color to the "orange" color, and make the "error" color bright red
+                on_colors = function(colors)
+                    colors.hint = colors.orange
+                    colors.error = "#ff0000"
+                end,
+            })
 
-            vim.cmd.colorscheme("sonokai")
+            vim.cmd.colorscheme("tokyonight")
         end,
     },
 }
