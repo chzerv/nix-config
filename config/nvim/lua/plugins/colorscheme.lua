@@ -17,29 +17,49 @@ return {
             vim.cmd.colorscheme("gruvbox-material")
         end,
     },
+
     {
-        "folke/tokyonight.nvim",
+        "rebelot/kanagawa.nvim",
         lazy = false,
         enabled = true,
         priority = 1000,
         config = function()
-            require("tokyonight").setup({
-                -- use the night style
-                style = "moon",
-                transparent = true,
-                dim_inactive = true,
-                -- disable italic for functions
-                styles = {
-                    functions = {},
+            require("kanagawa").setup({
+                compile = true,
+                undercurl = true,
+                commentStyle = { italic = true },
+                functionStyle = {},
+                keywordStyle = { italic = true },
+                statementStyle = { bold = true },
+                typeStyle = {},
+                transparent = false,
+                dimInactive = false,
+                terminalColors = false,
+                colors = {
+                    theme = {
+                        all = { ui = { bg_gutter = "none" } },
+                    },
                 },
-                -- Change the "hint" color to the "orange" color, and make the "error" color bright red
-                on_colors = function(colors)
-                    colors.hint = colors.orange
-                    colors.error = "#ff0000"
+                overrides = function(colors)
+                    local theme = colors.theme
+                    return {
+
+                        -- More uniform colors for pmenu
+                        Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1, blend = vim.o.pumblend },
+                        PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+                        PmenuSbar = { bg = theme.ui.bg_m1 },
+                        PmenuThumb = { bg = theme.ui.bg_p2 },
+                        BlinkCmpMenuBorder = { bg = theme.ui.bg_p1 },
+                    }
                 end,
+                theme = "dragon", -- wave, dragon, lotus
+                background = {
+                    dark = "dragon",
+                    light = "lotus",
+                },
             })
 
-            vim.cmd.colorscheme("tokyonight")
+            vim.cmd.colorscheme("kanagawa")
         end,
     },
 }

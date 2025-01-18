@@ -13,6 +13,7 @@
       fish_add_path "$HOME/.cargo/bin"
       fish_add_path "$HOME/.node_modules/bin"
       fish_add_path "$HOME/go/bin"
+      fish_add_path "$HOME/.krew/bin"
 
       set -x EDITOR nvim
       set -x MANPAGER 'nvim --clean +Man!'
@@ -112,10 +113,10 @@
     };
   };
 
-  xdg.configFile."fish/conf.d/tokyonight_moon.fish" = {
+  xdg.configFile."fish/conf.d/kanagawa.fish" = {
     source = builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/folke/tokyonight.nvim/refs/heads/main/extras/fish/tokyonight_moon.fish";
-      sha256 = "sha256:1xfwv6lx1w5265slkqs1f5kl1ampjd1mmml9f2d9k0zf8nfxa94a";
+      url = "https://raw.githubusercontent.com/rebelot/kanagawa.nvim/588227581b0412a239ec67da1ab3a7c8562ed44e/extras/fish/kanagawa.fish";
+      sha256 = "sha256:0smmy783j41294gda1mpq8bqdy7h7j69zhh2i0dgxdg4gxqm7i6s";
     };
   };
 }
