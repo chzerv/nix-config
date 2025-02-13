@@ -1,6 +1,8 @@
 {
   hostname,
+  username,
   lib,
+  config,
   ...
 }: {
   # Network configuration
@@ -9,17 +11,14 @@
 
     networkmanager.enable = lib.mkDefault true;
 
-    # Set up hostnames for devices in the LAN
-    extraHosts = ''
-      192.168.1.1     router
-      192.168.1.10    pve
-      192.168.1.11    truenas
-    '';
-
     useDHCP = lib.mkDefault true;
   };
 
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+
+  users.users.${username}.extraGroups = lib.optionals config.networking.networkmanager.enable [
+    "networkmanager"
+  ];
 
   ## TCP/IP stack optimizations
   boot = {

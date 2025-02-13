@@ -6,22 +6,12 @@
   # DO NOT CHANGE!!
   config.home.stateVersion = "23.11";
 
-  config.custom.hm = {
-    editor = {
-      neovim = true;
-    };
-
-    term = {
-      alacritty = true;
-      default = "alacritty";
-    };
-
+  config.features.hm = {
     services = {
       syncthing = true;
     };
 
     desktop = {
-      gnome = true;
       hidpi = true;
     };
   };

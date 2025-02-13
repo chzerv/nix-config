@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  opts = config.custom.nix.system;
+  opts = config.features.nix;
 in {
   config = lib.mkMerge [
     {

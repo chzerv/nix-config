@@ -1,17 +1,8 @@
 {
-  lib,
-  pkgs,
-  ...
-}: {
   imports = [
-    ./plymouth.nix
-    ./flatpak.nix
-    ./gaming.nix
     ./gnome.nix
-    ./sway.nix
-    ./greetd.nix
-    ./plasma.nix
     ./fonts.nix
+    ./peripherals.nix
   ];
 
   services = {
@@ -20,7 +11,10 @@
 
   # Enable Pipewire
   security.rtkit.enable = true;
+
   services = {
+    pulseaudio.enable = false;
+
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -29,10 +23,6 @@
       wireplumber.enable = true;
     };
   };
-
-  # Provide location
-  services.geoclue2.enable = lib.mkDefault true;
-  location.provider = "geoclue2";
 
   # Make electron apps use Wayland when possible
   environment.variables = {
@@ -43,6 +33,8 @@
   # https://archlinux.org/news/making-dbus-broker-our-default-d-bus-daemon/
   services.dbus.implementation = "broker";
 
-  # QMK udev rules
-  hardware.keyboard.qmk.enable = true;
+  # Allow non-root users to mount FUSE filesystems with `allow_other`
+  programs = {
+    fuse.userAllowOther = true;
+  };
 }

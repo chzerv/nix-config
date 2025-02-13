@@ -9,13 +9,9 @@
   ];
 
   config = {
-    local.sys = {
-      services = {
-        openssh = true;
-      };
-      virt = {
-        docker = true;
-      };
+    features.nix = {
+      openssh = true;
+      docker = true;
     };
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

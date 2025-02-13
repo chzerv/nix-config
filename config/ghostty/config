@@ -1,0 +1,16 @@
+#font-family = "FiraCode Nerd Font Mono Med"
+font-family = "Monaspace Argon"
+adjust-cell-width = -5%
+adjust-cell-height = 20%
+adjust-underline-position = 5
+adjust-underline-thickness = 40%
+
+theme = Kanagawa Dragon
+gtk-titlebar-hide-when-maximized = true
+
+cursor-style-blink = false
+mouse-hide-while-typing = true
+copy-on-select = true
+confirm-close-surface = false
+clipboard-read = allow
+clipboard-write = allow

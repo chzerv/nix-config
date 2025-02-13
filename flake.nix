@@ -64,6 +64,11 @@
 
     myLib = import ./lib {inherit self inputs outputs;};
   in {
+    formatter = myLib.forAllSystems (pkgs: pkgs.treefmt);
+    overlays = import ./overlays {inherit inputs outputs;};
+    packages = myLib.forAllSystems (pkgs: import ./pkgs {inherit inputs pkgs;});
+    devShells = myLib.forAllSystems (pkgs: import ./shell.nix {inherit pkgs;});
+
     # NixOS Configurations
     nixosConfigurations = {
       # Main Desktop PC
@@ -122,53 +127,5 @@
         type = "wsl";
       };
     };
-
-    # Custom packages
-    packages = myLib.forAllSystems (pkgs: {
-      pve-lxc-docker = nixos-generators.nixosGenerate {
-        system = "x86_64-linux";
-        format = "proxmox-lxc";
-        modules = [
-          ./generators/pve-lxc-docker
-        ];
-        specialArgs = {inherit inputs;};
-      };
-
-      pve-vm-template = nixos-generators.nixosGenerate {
-        system = "x86_64-linux";
-        format = "proxmox";
-        modules = [
-          ./generators/pve-vm-template
-        ];
-        specialArgs = {inherit inputs;};
-      };
-
-      iso = nixos-generators.nixosGenerate {
-        system = "x86_64-linux";
-        format = "iso";
-        modules = [
-          ./generators/iso
-        ];
-        specialArgs = {inherit inputs;};
-      };
-
-      rpi4-sd-image = nixos-generators.nixosGenerate {
-        system = "aarch64-linux";
-        format = "sd-aarch64-installer";
-        modules = [
-          ./generators/rpi4-sd-image
-        ];
-        specialArgs = {inherit inputs;};
-      };
-    });
-
-    devShells = myLib.forAllSystems (
-      pkgs: import ./shell.nix {inherit pkgs;}
-    );
-
-    # For `nix fmt`
-    # I know https://github.com/numtide/treefmt-nix is a thing, but I kinda prefer configuring
-    # `treefmt` in TOML.
-    formatter = myLib.forAllSystems (pkgs: pkgs.treefmt);
   };
 }

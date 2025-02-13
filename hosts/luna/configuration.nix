@@ -8,6 +8,7 @@
     inputs.nixos-hardware.nixosModules.common-pc
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     inputs.nixos-hardware.nixosModules.common-cpu-amd
+    inputs.nixos-hardware.nixosModules.common-gpu-amd
     inputs.nixos-hardware.nixosModules.common-hidpi
     ./disks.nix
     ./hardware-configuration.nix
@@ -15,40 +16,26 @@
   ];
 
   config = {
-    custom.nix = {
-      system = {
-        firewall = true;
-        sysctl_hardening = true;
-        efi = true;
-        amd_gpu = true;
-        btrfs = true;
-        mount_smb_share = true;
-      };
-      services = {
-        bluetooth = true;
-        psd = true;
-        openssh = true;
-        ppd = true;
-        tailscale = {
-          enable = true;
-          routingFeatures = "client";
-        };
-      };
-      software = {
-        wireshark = true;
-        adb = true;
-      };
-      desktop = {
-        gaming = false;
-        flatpak = true;
-        plymouth = true;
-        gnome = true;
-      };
-      virt = {
-        podman = false;
-        docker = true;
-        libvirt = true;
-        # vagrant = true;
+    features.nix = {
+      firewall = true;
+      sysctl_hardening = true;
+      efi = true;
+      amd_gpu = true;
+      btrfs = true;
+      mount_smb_share = true;
+      bluetooth = true;
+      zram = true;
+      gaming = false;
+      flatpak = true;
+      quiet_boot = true;
+      podman = false;
+      docker = true;
+      libvirt = true;
+      openssh = true;
+      ppd = true;
+      tailscale = {
+        enable = true;
+        routingFeatures = "client";
       };
     };
 
@@ -56,11 +43,6 @@
 
     boot = {
       kernelPackages = pkgs.linuxPackages_latest;
-    };
-
-    zramSwap = {
-      enable = true;
-      algorithm = "zstd";
     };
 
     environment = {
@@ -76,12 +58,9 @@
           extraGroups = [
             "wheel"
             "users"
-            "networkmanager"
             "power"
             "audio"
-            "video"
             "input"
-            "render"
           ];
           shell = pkgs.fish;
           openssh.authorizedKeys.keys = [

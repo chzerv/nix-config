@@ -12,22 +12,17 @@
   ];
 
   config = {
-    local.sys = {
-      security = {
-        firewall = true;
-        sysctl_hardening = true;
-      };
-      services = {
-        openssh = true;
-        adguard = true;
-        node_exporter = true;
-        tailscale = {
-          enable = true;
-          routingFeatures = "server";
-        };
-      };
-      virt = {
-        docker = true;
+    features.nix = {
+      firewall = true;
+      sysctl_hardening = true;
+      openssh = true;
+      zram = true;
+      adguard = true;
+      node_exporter = true;
+      docker = true;
+      tailscale = {
+        enable = true;
+        routingFeatures = "server";
       };
     };
 
