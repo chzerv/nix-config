@@ -1,6 +1,10 @@
 {inputs, ...}: {
   # Bring in our custom packages from the 'pkgs' directory
-  additions = final: _prev: import ../pkgs {pkgs = final;};
+  additions = final: _prev:
+    import ../pkgs {
+      pkgs = final;
+      inputs = inputs;
+    };
 
   modifications = final: prev: {
     mutter = prev.mutter.overrideAttrs (oldAttrs: {

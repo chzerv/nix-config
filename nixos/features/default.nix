@@ -1,10 +1,23 @@
-# Import every file fould in the current directory.
-# Credits: https://github.com/wimpysworld/nix-config/blob/main/nixos/_mixins/features/default.nix
-{lib, ...}: let
-  currentDir = ./.;
-  isDirectory = name: type: type == "directory";
-  directories = lib.filterAttrs isDirectory (builtins.readDir currentDir);
-  importDirectory = name: import (currentDir + "/${name}");
-in {
-  imports = lib.mapAttrsToList (name: _: importDirectory name) directories;
+{
+  imports = [
+    ./adguard.nix
+    ./amd-gpu.nix
+    ./bluetooth.nix
+    ./btrfs.nix
+    ./docker.nix
+    ./firewall.nix
+    ./flatpak.nix
+    ./gaming.nix
+    ./libvirt.nix
+    ./node_exporter.nix
+    ./openssh.nix
+    ./podman.nix
+    ./power-profiles-daemon.nix
+    ./quiet_boot.nix
+    ./smb-mount.nix
+    ./sysctl-hardening.nix
+    ./tailscale.nix
+    ./vagrant.nix
+    ./zram.nix
+  ];
 }

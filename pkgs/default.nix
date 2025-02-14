@@ -1,8 +1,8 @@
 {
   inputs,
-  pkgs,
+  pkgs ? import <nixpkgs> {},
   ...
-}: {
+}: rec {
   # Use nixos-generators to generate ISOs, VM images and more.
   generators = {
     pve-lxc-docker = inputs.nixos-generators.nixosGenerate {

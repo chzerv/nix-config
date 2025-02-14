@@ -2,6 +2,7 @@
   lib,
   username,
   pkgs,
+  outputs,
   ...
 }: {
   imports = [
@@ -28,6 +29,8 @@
     config = {
       allowUnfree = true;
     };
+
+    overlays = builtins.attrValues outputs.overlays;
   };
 
   nix = {
