@@ -8,7 +8,7 @@
     ];
 
     extraLocaleSettings = {
-      LC_TIME = lib.mkDefault "el_GR.UTF-8";
+      LC_TIME = lib.mkDefault "en_US.UTF-8";
     };
   };
 
