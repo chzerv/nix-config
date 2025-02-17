@@ -41,6 +41,9 @@ return {
 
         snippets = { preset = "luasnip" },
 
+        -- Disable cmdline completion
+        cmdline = { enabled = false },
+
         sources = {
             -- When inside a comment, only enable the "buffer" source.
             default = function(ctx)
@@ -56,9 +59,6 @@ return {
                     return { "lsp", "snippets", "path", "buffer" }
                 end
             end,
-
-            -- Disable cmdline completion
-            cmdline = {},
 
             per_filetype = {
                 sql = { "dadbod" },
