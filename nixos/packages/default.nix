@@ -39,10 +39,21 @@
       # required for using DNS options in `tcpconnect`
       python312Packages.dnslib
       python312Packages.cachetools
+      # https://discourse.nixos.org/t/tips-tricks-for-nixos-desktop/28488/2
+      (let
+        base = pkgs.appimageTools.defaultFhsEnvArgs;
+      in
+        pkgs.buildFHSEnv (base
+          // {
+            name = "fhs";
+            targetPkgs = pkgs: (base.targetPkgs pkgs) ++ [pkgs.pkg-config];
+            profile = "export FHS=1";
+            runScript = "fish";
+            extraOutputsToInstall = ["dev"];
+          }))
     ]
     # Packages that should be installed only on desktop/laptop systems.
     ++ lib.optionals (type == "desktop" || type == "laptop") [
-      ntfs3g
       cifs-utils
       ffmpeg-full
     ];
