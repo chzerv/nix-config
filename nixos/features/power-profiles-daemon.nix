@@ -22,6 +22,10 @@
       echo "Unknown argument" >&2
     fi
   '';
+
+  run-fast = pkgs.writeShellScriptBin "run-fast" ''
+    ${pkgs.power-profiles-daemon}/bin/powerprofilesctl launch -p performance -- "$@"
+  '';
 in {
   config = lib.mkIf opts.ppd {
     services.power-profiles-daemon = {
@@ -35,5 +39,9 @@ in {
       SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="${use-power-saver-on-battery} true"
       SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="${use-power-saver-on-battery} false"
     '';
+
+    environment.systemPackages = [
+      run-fast
+    ];
   };
 }
