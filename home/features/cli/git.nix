@@ -21,8 +21,11 @@
         vi = "!nvim -c 'Git | wincmd o' ."; # Open git fugitive in Neovim
       };
       extraConfig = {
-        commit.verbose = true;
+        # Inspired by: https://blog.gitbutler.com/how-git-core-devs-configure-git/
         init.defaultBranch = "main";
+        commit.verbose = true;
+        branch.sort = "-committerdate";
+        tag.sort = "version:refname";
         rerere.enabled = true;
         core.editor = "nvim";
         delta = {
