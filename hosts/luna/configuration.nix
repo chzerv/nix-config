@@ -43,7 +43,11 @@
       # kernelPackages = pkgs.linuxPackages_latest;
       kernelPackages = pkgs.linuxPackages_cachyos;
     };
-    services.scx.enable = true; # by default uses scx_rustland scheduler
+    services.scx = {
+      enable = true; # by default uses scx_rustland scheduler
+      # https://wiki.cachyos.org/configuration/sched-ext/
+      scheduler = "scx_lavd";
+    };
 
     environment = {
       shells = [pkgs.fish pkgs.bashInteractive];
