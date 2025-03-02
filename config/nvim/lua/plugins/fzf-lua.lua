@@ -8,8 +8,8 @@ return {
         },
     },
     keys = {
+        { "<leader>fr", "<cmd>FzfLua resume<cr>", desc = "Resume last command" },
         { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "Find files" },
-
         {
             "<leader>fF",
             function()
@@ -22,7 +22,6 @@ return {
             end,
             desc = "Find files in dir",
         },
-
         { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "Find oldfiles" },
         { "<leader>fh", "<cmd>FzfLua help_tags<cr>", desc = "Helptags" },
 
@@ -46,12 +45,15 @@ return {
 
         { "<leader>,", "<cmd>FzfLua buffers<cr>", desc = "Buffers" },
     },
+
     opts = function()
         local actions = require("fzf-lua.actions")
 
         return {
-            defaults = {
-                git_icons = false,
+            defaults = { git_icons = false },
+
+            fzf_opts = {
+                ["--cycle"] = true,
             },
 
             winopts = {
@@ -65,21 +67,12 @@ return {
                 },
             },
 
-            fzf_colors = true,
-
-            -- Options to be passed to FZF
-            fzf_opts = {
-                ["--cycle"] = true, -- Let selection start over once it reaches the end
-            },
-
-            -- Use telescope-like mappings
-            -- https://github.com/ibhagwan/fzf-lua/blob/main/lua/fzf-lua/profiles/telescope.lua#L56
             keymap = {
                 builtin = {
                     -- Only valid with the builtin previewer
                     ["<A-p>"] = "toggle-preview",
 
-                    ["<F1>"] = "toggle-help",
+                    ["<C-/>"] = "toggle-help",
                     ["<C-d>"] = "preview-page-down",
                     ["<C-u>"] = "preview-page-up",
                 },
@@ -100,20 +93,15 @@ return {
                 },
             },
 
-            -- https://github.com/ibhagwan/fzf-lua/wiki/Options#provider-options
+            -- Picker configuration
             files = {
-                winopts = {
-                    preview = { hidden = "hidden" },
-                },
-                formatter = "path.filename_first",
+                winopts = { preview = { hidden = true } },
             },
 
             oldfiles = {
+                winopts = { preview = { hidden = "hidden" } },
                 cwd_only = true,
                 stat_file = true, -- verify that the file exists
-                winopts = {
-                    preview = { hidden = "hidden" },
-                },
             },
 
             buffers = {
