@@ -13,7 +13,7 @@ in {
       # kill all processes, remount filesystems and more, which can be a security
       # risk. See https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html
       "kernel.sysrq" =
-        if type == "desktop"
+        if type == "desktop" || type == "laptop"
         then 1
         else 0;
 

@@ -12,28 +12,5 @@ in {
 
     environment.systemPackages = [pkgs.btrfs-progs];
     boot.initrd.supportedFilesystems = ["btrfs"];
-
-    services.snapper = {
-      # snapshotRootOnBoot = true;
-      cleanupInterval = "7d";
-      snapshotInterval = "daily";
-      configs = {
-        # root = {
-        #   TIMELINE_CREATE = true;
-        #   TIMELINE_CLEANUP = true;
-        #   SUBVOLUME = "/";
-        # };
-        home = {
-          TIMELINE_CREATE = true;
-          TIMELINE_CLEANUP = true;
-          SUBVOLUME = "/home";
-        };
-        # nix = {
-        #   TIMELINE_CREATE = true;
-        #   TIMELINE_CLEANUP = true;
-        #   SUBVOLUME = "/nix";
-        # };
-      };
-    };
   };
 }

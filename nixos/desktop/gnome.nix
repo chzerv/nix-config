@@ -5,7 +5,14 @@
       pkgs.xterm
     ];
     displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    desktopManager.gnome = {
+      enable = true;
+      extraGSettingsOverridePackages = [pkgs.mutter];
+      extraGSettingsOverrides = ''
+        [org.gnome.mutter]
+        experimental-features=['scale-monitor-framebuffer', 'variable-refresh-rate', 'xwayland-native-scaling']
+      '';
+    };
   };
 
   environment.gnome.excludePackages = with pkgs; [
@@ -22,7 +29,6 @@
     hitori # sudoku game
     atomix # puzzle game
     gnome-maps
-    gnome-weather
     gnome-music
     gnome-software
   ];
@@ -42,26 +48,5 @@
     dconf2nix
   ];
 
-  services.udev.packages = with pkgs; [gnome-settings-daemon];
-
-  # Necessary for opening links under certain conditions
-  services.gvfs.enable = true;
-
-  programs.dconf.enable = true;
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      # pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-gnome
-    ];
-    config = {
-      common = {
-        default = ["gtk"];
-      };
-      gnome = {
-        default = ["gtk" "gnome"];
-      };
-    };
-  };
+  services.udev.packages = with pkgs; [gnome-settings-daemon mutter];
 }

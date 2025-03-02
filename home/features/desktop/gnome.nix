@@ -40,8 +40,29 @@ in {
       };
 
       "org/gnome/desktop/wm/preferences" = {
-        button-layout = "appmenu:minimize,maximize,close";
+        #button-layout = "appmenu:minimize,maximize,close";
         resize-with-right-button = true;
+      };
+
+      "org/gnome/desktop/interface" = {
+        gtk-theme = "adw-gtk3";
+      };
+
+      "org/gnome/desktop/search-providers" = {
+        disabled = ["org.gnome.Contacts.desktop" "org.gnome.Calendar.desktop" "org.gnome.Characters.desktop" "org.gnome.seahorse.Application.desktop" "org.gnome.clocks.desktop"];
+        sort-order = ["org.gnome.Nautilus.desktop" "org.gnome.Settings.desktop" "org.gnome.Calculator.desktop" "org.gnome.Contacts.desktop"];
+      };
+
+      "org/gtk/settings/file-chooser" = {
+        sort-directories-first = true;
+      };
+
+      "org/gnome/mutter" = {
+        edge-tiling = true;
+      };
+
+      "org/gnome/nautilus" = {
+        show-delete-permanently = true;
       };
     }
     # Laptop specific settings
@@ -50,20 +71,13 @@ in {
         tap-to-click = true;
         two-finger-scrolling-enabled = true;
       };
-    }
-    # HiDPI tweaks
-    // lib.attrsets.optionalAttrs (opts.desktop.hidpi) {
-      "org/gnome/mutter" = {
-        # Fractional scaling and logical monitor layour for HiDPI screens
-        experimental-features = ["scale-monitor-framebuffer" "xwayland-native-scaling"];
-      };
     };
 
-  home.pointerCursor = {
-    gtk.enable = true;
-    x11.enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
-    size = 24;
-  };
+  # home.pointerCursor = {
+  # gtk.enable = true;
+  # x11.enable = true;
+  # package = pkgs.bibata-cursors;
+  # name = "Bibata-Modern-Classic";
+  # size = 24;
+  # };
 }

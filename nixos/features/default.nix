@@ -13,7 +13,6 @@
     ./openssh.nix
     ./podman.nix
     ./power-profiles-daemon.nix
-    ./quiet_boot.nix
     ./smb-mount.nix
     ./sysctl-hardening.nix
     ./tailscale.nix

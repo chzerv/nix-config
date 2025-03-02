@@ -16,10 +16,6 @@
     homeDirectory = "/home/${username}";
     # Add ~/.local/bin to the $PATH
     sessionPath = ["$HOME/.local/bin"];
-    sessionVariables = {
-      NIXOS_OZONE_WL = 1;
-      QT_QPA_PLATFORM = "wayland";
-    };
   };
 
   # Disable home-manager news

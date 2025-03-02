@@ -20,16 +20,15 @@
       firewall = true;
       sysctl_hardening = true;
       efi = true;
-      amd_gpu = true;
+      quiet_boot = true;
       btrfs = true;
       mount_smb_share = true;
       bluetooth = true;
-      zram = true;
+      memory-management = true;
       gaming = false;
       flatpak = true;
-      quiet_boot = true;
-      podman = false;
-      docker = true;
+      podman = true;
+      docker = false;
       libvirt = true;
       openssh = true;
       ppd = true;
@@ -39,11 +38,13 @@
       };
     };
 
-    system.stateVersion = "23.11";
+    system.stateVersion = "24.11";
 
     boot = {
-      kernelPackages = pkgs.linuxPackages_latest;
+      # kernelPackages = pkgs.linuxPackages_latest;
+      kernelPackages = pkgs.linuxPackages_cachyos;
     };
+    services.scx.enable = true; # by default uses scx_rustland scheduler
 
     environment = {
       shells = [pkgs.fish pkgs.bashInteractive];

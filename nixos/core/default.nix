@@ -7,6 +7,6 @@
     ./nix-ld.nix
     ./nix.nix
     ./sops.nix
-    ./system.nix
+    ./memory-management.nix
   ];
 }
