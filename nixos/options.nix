@@ -28,7 +28,6 @@ in {
     amd_gpu = mkEnableOption "Enable this if the system has an AMD GPU";
     btrfs = mkEnableOption "Enable this if the system uses BTRFS as the filesystem";
     efi = mkEnableOption "Enable this if the system uses EFI";
-    memory-management = mkEnableOption "Enable and configure systemd-oomd and ZRam";
 
     mount_smb_share = mkEnableOption "Mount SMB share from my TrueNAS";
 

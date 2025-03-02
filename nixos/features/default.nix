@@ -1,7 +1,6 @@
 {
   imports = [
     ./adguard.nix
-    ./amd-gpu.nix
     ./bluetooth.nix
     ./btrfs.nix
     ./docker.nix
@@ -17,6 +16,5 @@
     ./sysctl-hardening.nix
     ./tailscale.nix
     ./vagrant.nix
-    ./zram.nix
   ];
 }

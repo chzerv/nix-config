@@ -24,7 +24,6 @@
       btrfs = true;
       mount_smb_share = true;
       bluetooth = true;
-      memory-management = true;
       gaming = false;
       flatpak = true;
       podman = true;
