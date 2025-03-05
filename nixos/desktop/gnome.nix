@@ -31,6 +31,7 @@
     gnome-maps
     gnome-music
     gnome-software
+    gnome-weather
   ];
 
   environment.systemPackages = with pkgs; [
