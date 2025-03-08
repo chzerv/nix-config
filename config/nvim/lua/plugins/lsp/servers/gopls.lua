@@ -18,7 +18,6 @@ return {
                 unreachable = true, -- Check for unreachable code
                 unusedwrite = true, -- Report writes to struct fields or arrays that are never read
                 nilness = true, -- Check for impossible nil comparisons
-                fieldalignment = true, -- Reorganize struct fields so they use less memory
                 useany = true, -- Check for constraints that could be simplified to `any`
                 shadow = true, -- Check for possible unintended variable shadowing
             },
