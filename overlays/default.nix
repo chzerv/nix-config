@@ -15,7 +15,7 @@
         owner = "vanvugt";
         repo = "mutter";
         rev = "triple-buffering-v4-47";
-        hash = "sha256-Jlhzt2Cc44epkBcz3PA6I5aTnVEqMsHBOE8aEmvANWw=";
+        hash = "sha256-6n5HSbocU8QDwuhBvhRuvkUE4NflUiUKE0QQ5DJEzwI=";
       };
 
       preConfigure = let
