@@ -17,6 +17,7 @@ local servers = {
     "rust_analyzer",
     "taplo",
     "emmet_language_server",
+    "harper_ls",
 }
 
 local capabilities = require("blink.cmp").get_lsp_capabilities()

@@ -88,6 +88,9 @@ in {
       # Better debugging for Rust. Eventhough the extension is for VSCode, it still provides
       # the required binary
       vscode-extensions.vadimcn.vscode-lldb
+
+      # Grammar Checker
+      harper
     ];
   };
 
