@@ -40,13 +40,12 @@
     system.stateVersion = "24.11";
 
     boot = {
-      # kernelPackages = pkgs.linuxPackages_latest;
-      kernelPackages = pkgs.linuxPackages_cachyos;
+      kernelPackages = pkgs.linuxPackages_latest;
     };
     services.scx = {
-      enable = true; # by default uses scx_rustland scheduler
+      enable = true;
       # https://wiki.cachyos.org/configuration/sched-ext/
-      scheduler = "scx_lavd";
+      scheduler = "scx_bpfland";
     };
 
     environment = {
