@@ -2,6 +2,7 @@
   config,
   username,
   lib,
+  pkgs,
   ...
 }: let
   opts = config.features.nix;
@@ -22,6 +23,15 @@ in {
         password=${config.sops.placeholder.smb_password}
       '';
       path = "/etc/nixos/smb-secrets";
+    };
+
+    # https://discourse.nixos.org/t/cant-mount-samba-share-as-a-user/49171/3
+    security.wrappers."mount.cifs" = {
+      program = "mount.cifs";
+      source = "${lib.getBin pkgs.cifs-utils}/bin/mount.cifs";
+      owner = "root";
+      group = "root";
+      setuid = true;
     };
 
     systemd.tmpfiles.rules = [
