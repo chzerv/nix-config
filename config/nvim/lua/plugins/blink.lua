@@ -22,21 +22,17 @@ return {
                 selection = { preselect = true, auto_insert = true },
             },
 
-            menu = { border = "rounded" },
-
             documentation = {
                 auto_show = true,
                 auto_show_delay_ms = 100,
                 window = {
                     max_height = 15,
-                    border = "rounded",
                 },
             },
         },
 
         signature = {
             enabled = true,
-            window = { border = "rounded" },
         },
 
         snippets = { preset = "luasnip" },

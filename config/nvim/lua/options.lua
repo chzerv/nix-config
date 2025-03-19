@@ -53,6 +53,7 @@ vim.opt.showcmd = false
 vim.opt.laststatus = 3
 vim.opt.cmdheight = 1
 vim.opt.signcolumn = "yes"
+vim.opt.winborder = "rounded"
 
 -- Visualize tabs, spaces and non-breaking spaces
 vim.opt.list = true
