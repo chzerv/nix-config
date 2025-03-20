@@ -25,7 +25,7 @@ require("autocmds")
 -- Configure plugins.
 require("lazy").setup({ import = "plugins" }, {
     defaults = { lazy = true },
-    change_detection = { enable = false },
+    change_detection = { enabled = false },
     checker = { enabled = false },
     rocks = {
         -- I don't have any plugins that use luarocks, so just disable it
