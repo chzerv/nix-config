@@ -35,7 +35,7 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    gnome-tweaks
+    refine
     adwaita-icon-theme
     ffmpegthumbnailer
     dconf-editor
