@@ -56,6 +56,7 @@ return {
                 { mode = "n", keys = "<Leader>g", desc = "+Git" },
                 { mode = "n", keys = "<Leader>r", desc = "+Replace" },
                 { mode = "n", keys = "<Leader>t", desc = "+Terminal" },
+                { mode = "n", keys = "<Leader>h", desc = "+Harpoon" },
             },
 
             window = {
