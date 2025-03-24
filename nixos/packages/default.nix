@@ -35,6 +35,7 @@
       tcpdump # network sniffer
       bcc # bcc eBPF tools for performance analysis, tracing and more
       python3 # useful for scripting. Also needed for Ansible to work
+      config.boot.kernelPackages.cpupower
 
       # required for using DNS options in `tcpconnect`
       python312Packages.dnslib
