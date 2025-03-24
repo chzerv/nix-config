@@ -41,6 +41,9 @@
 
     boot = {
       kernelPackages = pkgs.linuxPackages_latest;
+      binfmt.emulatedSystems = [
+        "aarch64-linux"
+      ];
     };
     services.scx = {
       enable = true;
