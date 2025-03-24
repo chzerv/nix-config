@@ -16,7 +16,6 @@
       firewall = true;
       sysctl_hardening = true;
       openssh = true;
-      zram = true;
       adguard = true;
       node_exporter = true;
       docker = true;
@@ -62,6 +61,8 @@
       defaultGateway = "192.168.1.1";
       nameservers = ["1.1.1.1"];
     };
+
+    nix.settings.trusted-users = [username];
 
     # Secrets
     sops = {
