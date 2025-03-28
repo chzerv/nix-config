@@ -1,10 +1,11 @@
 return {
     "mfussenegger/nvim-lint",
-    ft = { "yaml", "dockerfile" },
+    ft = { "yaml", "dockerfile", "elixir" },
     opts = {
         linters_by_ft = {
             yaml = { "yamllint" },
             dockerfile = { "hadolint" },
+            elixir = { "credo" },
         },
         linters = {},
     },
