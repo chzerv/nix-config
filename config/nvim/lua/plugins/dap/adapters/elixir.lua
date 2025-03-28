@@ -4,7 +4,7 @@ local dap = require("dap")
 -- elixir-debug-adapter comes with elixir-ls when using Nix
 local elixir_debug_adapter = vim.fn.exepath("elixir-debug-adapter")
 
-if elixir_debug_adapter then
+if elixir_debug_adapter ~= "" then
     dap.adapters.mix_task = {
         type = "executable",
         command = elixir_debug_adapter,
@@ -26,12 +26,13 @@ if elixir_debug_adapter then
         },
         {
             type = "mix_task",
-            name = "phoenix",
+            name = "phx.server",
             task = "phx.server",
             request = "launch",
             projectDir = "${workspaceFolder}",
             exitAfterTaskReturns = false,
             debugAutoInterpretAllModules = false,
+            debugInterpretModulesPatterns = { "MyApp*", "MyAppWeb*" },
         },
     }
 end
