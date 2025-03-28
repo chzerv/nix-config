@@ -18,7 +18,7 @@
           ../hosts/${hostname}/configuration.nix
 
           inputs.sops-nix.nixosModules.sops
-          inputs.chaotic.nixosModules.default
+          # inputs.chaotic.nixosModules.default
         ]
         ++ extraModules;
     };
@@ -40,7 +40,7 @@
       modules = [
         ../hosts/${hostname}/home.nix
         inputs.nix-index-database.hmModules.nix-index
-        inputs.chaotic.homeManagerModules.default
+        # inputs.chaotic.homeManagerModules.default
       ];
     };
 
