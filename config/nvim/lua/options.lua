@@ -13,14 +13,14 @@ vim.opt.timeoutlen = 500
 -- Decrease the time to wait for a key-code sequence to complete
 vim.opt.ttimeoutlen = 20
 
--- Indent with 4 spaces
+-- Indentation
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
 -- Completion
-vim.opt.completeopt = { "menu", "menuone", "preview" }
+vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.pumheight = 10 -- Only show 10 completion candidates
 vim.opt.pumblend = 10 -- Add transparency to the pummenu
 
@@ -43,6 +43,7 @@ vim.opt.splitright = true -- Create new splits right of the current window
 vim.opt.virtualedit = "block" -- Allow going past the end of the line in visual block mode
 vim.opt.linebreak = true -- Break lines on space or TAB
 vim.opt.showbreak = "↳ " -- String to put at the start of wrapped lines
+vim.opt.diffopt = "internal,filler,closeoff,linematch:60"
 
 -- UI tweaks
 vim.wo.number = true
@@ -54,6 +55,7 @@ vim.opt.laststatus = 3
 vim.opt.cmdheight = 1
 vim.opt.signcolumn = "yes"
 vim.opt.winborder = "rounded"
+vim.opt.termguicolors = true
 
 -- Visualize tabs, spaces and non-breaking spaces
 vim.opt.list = true
