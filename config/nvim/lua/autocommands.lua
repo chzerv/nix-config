@@ -18,7 +18,7 @@ aucmd("InsertLeave", {
         vim.opt_local.listchars:append({ trail = "•" })
         vim.opt_local.cursorline = true
     end,
-    desc = "Show trailing whitespaces and the cursorline in insert mode",
+    desc = "Show trailing whitespaces and the cursorline in normal mode",
 })
 
 -- Highlight yanked text
@@ -77,18 +77,4 @@ aucmd("BufWritePre", {
 aucmd("BufEnter", {
     group = augroup("CustomFormatOptions", {}),
     command = "set formatoptions-=cro",
-})
-
--- mkview when closing a buffer
-aucmd("BufWinLeave", {
-    group = augroup("SaveView", { clear = true }),
-    pattern = "*.*",
-    command = "mkview",
-})
-
--- loadview when opening a buffer
-aucmd("BufWinEnter", {
-    group = augroup("LoadView", { clear = true }),
-    pattern = "*.*",
-    command = "silent! loadview",
 })

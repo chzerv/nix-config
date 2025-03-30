@@ -20,7 +20,7 @@ return {
         })
 
         require("luasnip.loaders.from_lua").lazy_load({
-            paths = vim.api.nvim_get_runtime_file("lua/plugins/snippets", true),
+            paths = vim.api.nvim_get_runtime_file("lua/snippets", true),
         })
 
         -- If we are inside a snippet, use <C-k> for expanding and jumping

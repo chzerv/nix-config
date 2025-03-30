@@ -1,8 +1,6 @@
--- Center the cursor after scrolling down/up
-vim.keymap.set("n", "<C-d>", "<C-d>M")
-vim.keymap.set("n", "<C-u>", "<C-u>M")
-
--- Center the cursor and open folds when navigating through search matches
+-- Center the cursor after scrolling or searching
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
@@ -30,31 +28,6 @@ vim.keymap.set("x", ">", ">gv")
 vim.keymap.set("n", "j", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
 vim.keymap.set("n", "k", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true })
 
--- Put blank lines below/above current line
-vim.keymap.set(
-    "n",
-    "[<Space>",
-    "<CMD>put! =repeat(nr2char(10), v:count1) <Bar> ']+1<CR>",
-    { desc = "Put a blank line above the cursor" }
-)
-vim.keymap.set(
-    "n",
-    "]<Space>",
-    "<CMD>put =repeat(nr2char(10), v:count1) <Bar> '[-1<CR>",
-    { desc = "Put a blank line below the cursor" }
-)
-
--- Spellcheck
--- The blank string in the mode indicates that this is a 'map' mapping
-vim.keymap.set("", "<F6>", "<Cmd>setlocal spell! spelllang=en_us<CR>", { desc = "Toggle spell check for English" })
-vim.keymap.set("", "<F7>", "<Cmd>setlocal spell! spelllang=el<CR>", { desc = "Toggle spell check for Greek" })
-vim.keymap.set(
-    "",
-    "<F8>",
-    "<Cmd>setlocal spell! spelllang=en_us,el<CR>",
-    { desc = "Toggle spell check for English+Greek" }
-)
-
 -- Autocorrect the last spelling error
 vim.keymap.set("i", "<C-f>", "<c-g>u<Esc>[s1z=`]a<c-g>u")
 
@@ -66,18 +39,39 @@ vim.keymap.set(
     "n",
     "<leader>rl",
     ":s/<C-R><C-W>//g<left><left>",
-    { desc = "Rename the word under the cursor, line-wise" }
+    { desc = "Replace the word under the cursor, line-wise" }
 )
 vim.keymap.set(
     "n",
     "<leader>rb",
     ":%s/<C-R><C-W>//g<left><left>",
-    { desc = "Rename the word under the cursor, buffer-wide" }
+    { desc = "Replace the word under the cursor, buffer-wide" }
 )
-vim.keymap.set("x", "<leader>rv", [[:s/\%V]], { desc = "Rename the word under the cursor" })
+vim.keymap.set("x", "<leader>rv", [[:s/\%V]], { desc = "Replace the word under the cursor" })
 
 -- "Invert" the word under cursor, e.g., true -> false
-vim.keymap.set("n", "!", "<cmd>lua require'custom.invert-text'.invert()<cr>")
+-- All credits go to: https://github.com/nguyenvukhang/nvim-toggler
+vim.keymap.set("n", "!", function()
+    local words = {
+        ["true"] = "false",
+        ["yes"] = "no",
+        ["on"] = "off",
+        ["present"] = "absent",
+    }
+
+    local tbl = {}
+
+    for k, v in pairs(words) do
+        tbl[k] = v
+        tbl[v] = k
+    end
+
+    local cword = vim.tbl_get(tbl, vim.fn.expand("<cword>"))
+
+    pcall(function()
+        vim.cmd("norm! ciw" .. cword)
+    end)
+end)
 
 -- Go to help page of the word under the cursor
 vim.keymap.set("n", "gh", "yiw:help <C-R><C-W><CR>", { desc = "Help page" })
@@ -119,48 +113,6 @@ vim.keymap.set("n", "<leader><leader>", "<c-^>", { desc = "Last buffer" })
 -- Easily close the quickfix/loclist
 vim.keymap.set("n", "<Bslash>q", ":cclose<CR>", { desc = "Close quickfix" })
 vim.keymap.set("n", "<Bslash>l", ":lclose<CR>", { desc = "Close loclist" })
-
--- Neovim Terminal
-vim.keymap.set(
-    "n",
-    "<leader>tt",
-    [[<cmd>lua require'custom.term'.toggle_term("split", 15)<cr>]],
-    { desc = "Toggle terminal" }
-)
-vim.keymap.set(
-    "t",
-    "<leader>tt",
-    "<C-\\><C-n><cmd>lua require'custom.term'.toggle_term('split', 15)<cr>",
-    { desc = "Toggle terminal" }
-)
-vim.keymap.set(
-    "n",
-    "<leader>tT",
-    "<cmd>lua require'custom.term'.launch_term_in_tab()<cr>",
-    { desc = "Open terminal in new tab" }
-)
-
-vim.keymap.set(
-    "n",
-    "<leader>ts",
-    "<cmd>lua require'custom.term'.send_line_to_term()<cr>",
-    { desc = "Send current line to terminal" }
-)
-vim.keymap.set(
-    "v",
-    "<leader>ts",
-    "<cmd>lua require'custom.term'.send_visual_to_term()<cr>",
-    { desc = "Send visual selection to terminal" }
-)
-
-vim.keymap.set("t", "[t", "<C-\\><C-n><cmd>tabprevious<CR>", { desc = "Previous tab" })
-vim.keymap.set("t", "]t", "<C-\\><C-n><cmd>tabnext<CR>", { desc = "Next tab" })
-
-vim.keymap.set("t", "<A-[>", "<C-\\><C-n>")
-vim.keymap.set("t", "<A-k>", "<C-\\><C-n><C-w>k")
-vim.keymap.set("t", "<A-j>", "<C-\\><C-n><C-w>j")
-vim.keymap.set("t", "<A-h>", "<C-\\><C-n><C-w>h")
-vim.keymap.set("t", "<A-l>", "<C-\\><C-n><C-w>l")
 
 -- Command Line Bindings
 vim.keymap.set("c", "<C-a>", "<Home>", { noremap = true })

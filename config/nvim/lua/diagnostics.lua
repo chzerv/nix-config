@@ -5,22 +5,13 @@ vim.diagnostic.config({
         severity = { min = vim.diagnostic.severity.W },
     },
 
-    float = {
-        source = "if_many",
-    },
+    float = { source = "if_many" },
+    -- virtual_lines = { current_line = true },
 
     underline = true,
     severity_sort = true,
     update_in_insert = false,
 })
-
-vim.keymap.set("n", "]d", function()
-    vim.diagnostic.jump({ count = 1 })
-end, { desc = "Next diagnostic" })
-
-vim.keymap.set("n", "[d", function()
-    vim.diagnostic.jump({ count = -1 })
-end, { desc = "Previous diagnostic" })
 
 vim.keymap.set("n", "<leader>cdq", vim.diagnostic.setqflist, { desc = "Open diagnostics in quickfix" })
 

@@ -31,7 +31,7 @@ vim.b.minisurround_config = {
         -- Surround visual selection with a code block of a user specified language
         c = {
             output = function()
-                local lang = MiniSurround.user_input("Enter code block language: ") or ""
+                local lang = require("mini.surround").user_input("Enter code block language: ") or ""
                 return { left = "```" .. lang .. "\n", right = "\n```" }
             end,
         },

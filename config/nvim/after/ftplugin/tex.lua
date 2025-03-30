@@ -8,7 +8,7 @@ vim.b.minisurround_config = {
         -- Surround with LaTeX environment
         e = {
             output = function()
-                local env = MiniSurround.user_input("Environment > ")
+                local env = require("mini.surround").user_input("Environment > ")
                 if env then
                     return { left = "\\begin{" .. env .. "}\n", right = "\n\\end{" .. env .. "}" }
                 end
@@ -17,7 +17,7 @@ vim.b.minisurround_config = {
         -- Surround with LaTeX command
         c = {
             output = function()
-                local cmd = MiniSurround.user_input("Command > ")
+                local cmd = require("mini.surround").user_input("Command > ")
                 return { left = "\\" .. cmd .. "{", right = "}" }
             end,
         },

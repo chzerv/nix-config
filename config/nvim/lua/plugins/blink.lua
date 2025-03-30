@@ -3,6 +3,8 @@ return {
     lazy = false,
     build = "nix run .#build-plugin",
     opts = {
+        fuzzy = { implementation = "rust" },
+
         keymap = {
             preset = "none",
             ["<C-y>"] = { "select_and_accept" },
@@ -19,7 +21,7 @@ return {
 
         completion = {
             list = {
-                selection = { preselect = true, auto_insert = true },
+                selection = { preselect = false, auto_insert = true },
             },
 
             documentation = {

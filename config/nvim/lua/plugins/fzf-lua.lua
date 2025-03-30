@@ -54,6 +54,7 @@ return {
 
             fzf_opts = {
                 ["--cycle"] = true,
+                ["--layout"] = "reverse-list",
             },
 
             winopts = {
