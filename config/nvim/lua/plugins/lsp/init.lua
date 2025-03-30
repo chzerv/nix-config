@@ -2,7 +2,6 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-
         local lspconfig = require("lspconfig")
 
         local servers = {
@@ -23,6 +22,7 @@ return {
             "taplo",
             "emmet_language_server",
             "harper_ls",
+            "postgres_lsp",
         }
 
         local capabilities = require("blink.cmp").get_lsp_capabilities()
@@ -43,5 +43,5 @@ return {
 
             lspconfig[server].setup(opts)
         end
-    end
+    end,
 }

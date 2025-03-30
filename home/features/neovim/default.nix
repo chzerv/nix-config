@@ -91,6 +91,9 @@ in {
 
       # Grammar Checker
       harper
+
+      # Postgres LSP
+      postgres-lsp
     ];
   };
 
