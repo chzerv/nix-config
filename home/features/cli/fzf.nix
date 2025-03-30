@@ -15,6 +15,7 @@
       "--preview 'eza --tree {} | head -200'"
     ];
     defaultOptions = [
+      "--ansi"
       "--color=fg:-1,fg+:#d0d0d0,bg:-1,bg+:#262626,gutter:-1"
       "--color=hl:#5f87af,hl+:#5fd7ff,info:#afaf87,marker:#87ff00"
       "--color=prompt:#d7005f,spinner:#af5fff,pointer:#af5fff,header:#87afaf"
