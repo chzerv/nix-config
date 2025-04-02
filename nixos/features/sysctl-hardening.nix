@@ -47,7 +47,7 @@ in {
       "net.ipv4.icmp_ignore_bogus_error_responses" = lib.mkDefault 1;
 
       # Ignore ICMP echo requests. Helps against DDoS
-      "net.ipv4.icmp_echo_ignore_all" = lib.mkDefault 1;
+      "net.ipv4.icmp_echo_ignore_all" = lib.mkDefault 0;
     };
   };
 }
