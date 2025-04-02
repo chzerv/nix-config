@@ -15,6 +15,7 @@ in {
       slirp4netns
       aardvark-dns
       dive
+      distrobox
     ];
 
     virtualisation.podman = {
