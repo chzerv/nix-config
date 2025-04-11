@@ -36,6 +36,9 @@ require("lazy").setup(plugins, {
     rocks = {
         enabled = false,
     },
+    git = {
+        timeout = 1000,
+    },
     performance = {
         rtp = {
             -- Stuff I don't use.
