@@ -20,7 +20,7 @@ vim.o.expandtab = true
 -- vim.o.smartindent = true
 
 -- Completion
-vim.o.completeopt = "menuone", "noselect", "noinsert"
+vim.o.completeopt = "menuone,noselect,noinsert"
 vim.o.pumheight = 10 -- Only show 10 completion candidates
 vim.o.pumblend = 10 -- Add transparency to the pummenu
 vim.opt.wildignore:append({ "*.pyc", "node_modules", ".git", ".DS_Store", "**.terraform/**", ".lock" })
