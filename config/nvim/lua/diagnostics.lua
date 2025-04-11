@@ -6,6 +6,7 @@ vim.diagnostic.config({
     },
 
     float = { source = "if_many" },
+    jump = { float = true },
     -- virtual_lines = { current_line = true },
 
     underline = true,
