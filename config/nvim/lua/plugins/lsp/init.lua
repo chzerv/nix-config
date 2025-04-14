@@ -2,8 +2,6 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-        local lspconfig = require("lspconfig")
-
         local servers = {
             "gopls",
             "yamlls",
@@ -41,7 +39,8 @@ return {
                 opts = vim.tbl_deep_extend("force", custom_opts, opts)
             end
 
-            lspconfig[server].setup(opts)
+            vim.lsp.config(server, opts)
+            vim.lsp.enable(server)
         end
     end,
 }
