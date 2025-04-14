@@ -8,8 +8,8 @@
     historyWidgetOptions = [
       "--sort"
       "--exact"
-      "--bind 'ctrl-y:execute-silent(echo -n {2..} | wlcopy -n)+abort'"
-      "--header 'Press CTRL-Y to copy command into the clipboard'"
+      "--bind 'ctrl-y:execute-silent(echo {+} | wlcopy -n -p)+abort'"
+      "--header 'Ctrl-Y // Copy into clipboard'"
     ];
     changeDirWidgetOptions = [
       "--preview 'eza --tree {} | head -200'"
