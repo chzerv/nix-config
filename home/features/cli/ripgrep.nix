@@ -11,6 +11,11 @@
       # Ignore directories
       "--glob=!**/node_modules/**"
       "--glob=!.git/"
+
+      "--colors=match:fg:magenta"
+      "--colors=match:style:bold"
+      "--colors=path:fg:cyan"
+      "--colors=line:fg:green"
     ];
   };
 }
