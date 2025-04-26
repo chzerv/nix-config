@@ -47,14 +47,14 @@ return {
     },
 
     opts = function()
-        local actions = require("fzf-lua.actions")
-
         return {
+            { "border-fused", "hide" },
+
             defaults = { git_icons = false },
 
             fzf_opts = {
                 ["--cycle"] = true,
-                ["--layout"] = "reverse-list",
+                ["--layout"] = "default",
             },
 
             winopts = {
