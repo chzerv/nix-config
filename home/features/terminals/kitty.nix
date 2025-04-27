@@ -3,7 +3,7 @@
     enable = true;
 
     font = {
-      name = "JetBrains Mono";
+      name = "CommitMono";
       size = 12;
     };
 
