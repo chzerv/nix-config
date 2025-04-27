@@ -25,21 +25,18 @@ return {
 
         local capabilities = require("blink.cmp").get_lsp_capabilities()
 
+        vim.lsp.config("*", {
+            capabilities = capabilities,
+            flags = {
+                debounce_text_changes = 150,
+            },
+        })
+
         -- Setup LSP servers
         -- Custom configuration for a server can be placed in 'plugins/lsp/servers/<server>.lua'
         -- and will be automatically included in the setup
         for _, server in ipairs(servers) do
-            local opts = {
-                capabilities = vim.deepcopy(capabilities),
-            }
-
-            local has_custom_opts, custom_opts = pcall(require, "plugins.lsp.servers." .. server)
-
-            if has_custom_opts then
-                opts = vim.tbl_deep_extend("force", custom_opts, opts)
-            end
-
-            vim.lsp.config(server, opts)
+            -- vim.lsp.config(server, opts)
             vim.lsp.enable(server)
         end
     end,
