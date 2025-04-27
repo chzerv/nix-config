@@ -96,6 +96,14 @@ local function setup_document_highlight(client, bufnr)
     end
 end
 
+--@param client vim.lsp.Client
+--@param bufnr integer
+local function setup_document_color(client, bufnr)
+    if client:supports_method("textDocument/documentColor") then
+        vim.lsp.document_color.enable(true, bufnr)
+    end
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("LSP", { clear = true }),
     callback = function(args)
@@ -105,5 +113,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         setup_lsp_keymaps(bufnr)
         setup_inlay_hints(client, bufnr)
         setup_document_highlight(client, bufnr)
+        setup_document_color(client, bufnr)
     end,
 })
