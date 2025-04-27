@@ -40,16 +40,17 @@
     system.stateVersion = "24.11";
 
     boot = {
+      # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
       kernelPackages = pkgs.linuxPackages_latest;
       binfmt.emulatedSystems = [
         "aarch64-linux"
       ];
     };
-    services.scx = {
-      enable = true;
-      # https://wiki.cachyos.org/configuration/sched-ext/
-      scheduler = "scx_bpfland";
-    };
+    # services.scx = {
+    #   enable = true;
+    #   # https://wiki.cachyos.org/configuration/sched-ext/
+    #   scheduler = "scx_bpfland";
+    # };
 
     environment = {
       shells = [pkgs.fish pkgs.bashInteractive];
