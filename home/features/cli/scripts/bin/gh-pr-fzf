@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+OPEN_PRS=$(gh pr list --state open --json number,title --jq '.[] | "\(.number)\t\(.title)"')
+
+if [ -z ${OPEN_PRS+x} ]; then
+    echo "No PRs pending.."
+    exit 0
+fi
+
+SELECTED_PR=$(
+    echo "$OPEN_PRS" | fzf \
+        --ansi \
+        --multi \
+        --prompt="Select PR(s) to merge> " \
+        --height 55% \
+        --preview-window right:60%,wrap \
+        --preview 'GH_FORCE_TTY=1000 gh pr view {1} --comments' \
+        --bind="ctrl-e:execute(gh pr view {1})" \
+        --header="Tip: Use ctrl-e to view the PR"
+)
+
+if [[ -z ${SELECTED_PR+x} ]]; then
+    echo "No PR(s) selected.."
+    exit 0
+fi
+
+echo "$SELECTED_PR" | awk '{print $1}' | while read -r pr_num; do
+    gh pr merge --squash "$pr_num"
+done
