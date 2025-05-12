@@ -68,6 +68,7 @@
             "power"
             "audio"
             "input"
+            "dialout"
           ];
           shell = pkgs.fish;
           openssh.authorizedKeys.keys = [
