@@ -14,6 +14,16 @@ in {
         accel-profile = "flat";
       };
 
+      "org/gnome/desktop/applications/terminal" = {
+        exec = "${pkgs.ghostty}/bin/ghostty";
+      };
+
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+        binding = "<Super>Return";
+        command = "ghostty";
+        name = "Open Terminal";
+      };
+
       # By default, these keybindings are 'Super + 1, Super + 2' etc
       # which I want to rebind, so, disable them
       "org/gnome/shell/keybindings" = {
