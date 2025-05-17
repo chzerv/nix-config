@@ -1,14 +1,6 @@
 {pkgs, ...}: {
   services.udev.packages = [
     (pkgs.writeTextFile {
-      name = "ntfs3-by-default";
-      text = ''
-        SUBSYSTEM=="block", TEST!=${pkgs.ntfs3g}/bin/ntfs-3g, ENV{ID_FS_TYPE}=="ntfs", ENV{ID_FS_TYPE}="ntfs3"
-      '';
-      destination = "/etc/udev/rules.d/80-ntfs3-by-default.rules";
-    })
-
-    (pkgs.writeTextFile {
       name = "io-schedulers";
       text = ''
         # HDD

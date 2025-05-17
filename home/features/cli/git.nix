@@ -46,7 +46,6 @@
         ".project"
         ".settings"
         ".vscode/"
-        "*.auto.tfvars"
         "*.log"
         ".env"
         ".direnv"
