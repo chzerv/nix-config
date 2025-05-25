@@ -31,6 +31,15 @@ return {
                     max_height = 15,
                 },
             },
+            menu = {
+                -- Make the menu similar to nvim-cmp
+                draw = {
+                    columns = {
+                        { "label", "label_description", gap = 1 },
+                        { "kind_icon", "kind", gap = 1 },
+                    },
+                },
+            },
         },
 
         signature = {
