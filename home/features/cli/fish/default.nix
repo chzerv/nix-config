@@ -1,4 +1,8 @@
 {
+  lib,
+  config,
+  ...
+}: {
   programs.fish = {
     enable = true;
 
@@ -113,10 +117,28 @@
     };
   };
 
-  xdg.configFile."fish/conf.d/kanagawa.fish" = {
-    source = builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/rebelot/kanagawa.nvim/588227581b0412a239ec67da1ab3a7c8562ed44e/extras/fish/kanagawa.fish";
-      sha256 = "sha256:0smmy783j41294gda1mpq8bqdy7h7j69zhh2i0dgxdg4gxqm7i6s";
-    };
-  };
+  xdg.configFile = lib.mkMerge [
+    {
+      "fish/conf.d/kanagawa.fish" = {
+        source = builtins.fetchurl {
+          url = "https://raw.githubusercontent.com/rebelot/kanagawa.nvim/588227581b0412a239ec67da1ab3a7c8562ed44e/extras/fish/kanagawa.fish";
+          sha256 = "sha256:0smmy783j41294gda1mpq8bqdy7h7j69zhh2i0dgxdg4gxqm7i6s";
+        };
+      };
+    }
+
+    (lib.mkIf config.programs.distrobox.enable {
+      "fish/completions/distrobox.fish" = {
+        text = builtins.readFile ./completions/distrobox.fish;
+      };
+
+      "fish/completions/distrobox-export.fish" = {
+        text = builtins.readFile ./completions/distrobox-export.fish;
+      };
+
+      "fish/completions/distrobox-generate-entry.fish" = {
+        text = builtins.readFile ./completions/distrobox-generate-entry.fish;
+      };
+    })
+  ];
 }

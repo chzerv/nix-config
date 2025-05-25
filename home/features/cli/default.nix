@@ -5,14 +5,15 @@
   ...
 }: {
   imports = [
+    ./fish
     ./bat.nix
     ./bottom.nix
     ./direnv.nix
     ./eza.nix
-    ./fish.nix
     ./fzf.nix
     ./gh.nix
     ./git.nix
+    ./distrobox.nix
     ./kubernetes.nix
     ./navi.nix
     ./nix-index.nix
