@@ -21,7 +21,7 @@ return {
     {
         "sainnhe/everforest",
         lazy = false,
-        enabled = true,
+        enabled = false,
         priority = 1000,
         config = function()
             vim.o.background = "dark"
@@ -34,6 +34,20 @@ return {
             vim.g.everforest_diagnostic_virtual_text = "colored"
 
             vim.cmd.colorscheme("everforest")
+        end,
+    },
+
+    {
+        "vague2k/vague.nvim",
+        lazy = false,
+        enabled = true,
+        priority = 1000,
+        config = function()
+            require("vague").setup({
+                transparent = false,
+            })
+
+            vim.cmd.colorscheme("vague")
         end,
     },
 }
