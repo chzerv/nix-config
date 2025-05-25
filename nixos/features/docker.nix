@@ -5,9 +5,14 @@
   username,
   ...
 }: let
-  opts = config.features.nix;
+  cfg = config.system.docker;
 in {
-  config = lib.mkIf opts.docker {
+  options.system.docker = {
+    enable = lib.mkEnableOption "Enable Docker";
+    addUserToGroup = lib.mkEnableOption "Add the current user to the docker group";
+  };
+
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [docker-compose];
 
     # Docker can also be run rootless
@@ -17,6 +22,6 @@ in {
     };
 
     # Add user to the "docker" group
-    users.users.${username}.extraGroups = ["docker"];
+    users.users.${username}.extraGroups = lib.optionals (cfg.addUserToGroup) ["docker"];
   };
 }

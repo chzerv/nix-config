@@ -4,9 +4,13 @@
   lib,
   ...
 }: let
-  opts = config.features.nix;
+  cfg = config.system.gaming;
 in {
-  config = lib.mkIf opts.gaming {
+  options.system.gaming = {
+    enable = lib.mkEnableOption "Install steam, setup gamemode and lutris";
+  };
+
+  config = lib.mkIf cfg.enable {
     programs = {
       steam.enable = true;
       gamemode = {

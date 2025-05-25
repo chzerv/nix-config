@@ -6,8 +6,6 @@
   ...
 }: {
   imports = [
-    ./options.nix
-
     ./features
   ];
 

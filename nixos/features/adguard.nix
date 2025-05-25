@@ -4,9 +4,13 @@
   lib,
   ...
 }: let
-  opts = config.features.nix;
+  cfg = config.system.adguard;
 in {
-  config = lib.mkIf opts.adguard {
+  options.system.adguard = {
+    enable = lib.mkEnableOption "Enable and configure AdGuard DNS";
+  };
+
+  config = lib.mkIf cfg.enable {
     services.adguardhome = {
       enable = true;
       openFirewall = true;

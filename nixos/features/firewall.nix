@@ -1,10 +1,19 @@
-{config, ...}: let
-  opts = config.features.nix;
-  sshPorts = config.services.openssh.ports;
+{
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.system.firewall;
   localsendPort = [53317];
 in {
-  networking.firewall = {
-    enable = opts.firewall;
-    allowedTCPPorts = sshPorts ++ localsendPort;
+  options.system.firewall = {
+    enable = lib.mkEnableOption "Enable the nixos-firewall";
+  };
+
+  config = {
+    networking.firewall = {
+      enable = cfg.enable;
+      allowedTCPPorts = config.services.openssh.ports ++ localsendPort;
+    };
   };
 }

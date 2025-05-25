@@ -4,9 +4,13 @@
   lib,
   ...
 }: let
-  opts = config.features.nix;
+  cfg = config.system.flatpak;
 in {
-  config = lib.mkIf opts.flatpak {
+  options.system.flatpak = {
+    enable = lib.mkEnableOption "Enable and configure Flatpak";
+  };
+
+  config = lib.mkIf cfg.enable {
     services.flatpak.enable = true;
 
     systemd.services.flatpak-repo = {

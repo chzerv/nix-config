@@ -1,10 +1,20 @@
-{config, ...}: let
-  opts = config.features.nix;
+{
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.system.bluetooth;
 in {
-  hardware.bluetooth = {
-    enable = opts.bluetooth;
+  options.system.bluetooth = {
+    enable = lib.mkEnableOption "Enable bluetooth";
+  };
 
-    # Power on the bluetooth controller on boot
-    powerOnBoot = true;
+  config = {
+    hardware.bluetooth = {
+      enable = cfg.enable;
+
+      # Power on the bluetooth controller on boot
+      powerOnBoot = true;
+    };
   };
 }

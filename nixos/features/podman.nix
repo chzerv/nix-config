@@ -5,9 +5,13 @@
   username,
   ...
 }: let
-  opts = config.features.nix;
+  cfg = config.system.podman;
 in {
-  config = lib.mkIf opts.podman {
+  options.system.podman = {
+    enable = lib.mkEnableOption "Enable and configure podman";
+  };
+
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       podman-compose
       docker-compose
@@ -15,7 +19,6 @@ in {
       slirp4netns
       aardvark-dns
       dive
-      distrobox
     ];
 
     virtualisation.podman = {

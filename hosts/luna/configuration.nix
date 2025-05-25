@@ -16,25 +16,29 @@
   ];
 
   config = {
-    features.nix = {
-      firewall = true;
-      sysctl_hardening = true;
-      efi = true;
-      quiet_boot = true;
-      btrfs = true;
-      mount_smb_share = true;
-      bluetooth = true;
-      gaming = false;
-      flatpak = true;
-      podman = true;
-      docker = false;
-      libvirt = true;
-      openssh = true;
-      ppd = true;
+    system = {
+      adguard.enable = false;
+      bluetooth.enable = true;
+      btrfs.enable = true;
+      docker.enable = false;
+      firewall.enable = true;
+      flatpak.enable = true;
+      gaming.enable = false;
+      libvirt.enable = true;
+      node_exporter.enable = false;
+      openssh.enable = true;
+      plymouth.enable = true;
+      podman.enable = true;
+      power-profiles.enable = true;
+      mount_smb_share.enable = true;
+      sysctl_hardening.enable = true;
+      systemd-boot.enable = true;
       tailscale = {
         enable = true;
         routingFeatures = "client";
       };
+      vagrant.enable = false;
+      gnome.enable = true;
     };
 
     system.stateVersion = "24.11";

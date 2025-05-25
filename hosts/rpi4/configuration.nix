@@ -12,13 +12,13 @@
   ];
 
   config = {
-    features.nix = {
-      firewall = true;
-      sysctl_hardening = true;
-      openssh = true;
-      adguard = true;
-      node_exporter = true;
-      docker = true;
+    system = {
+      firewall.enable = true;
+      sysctl_hardening.enable = true;
+      openssh.enable = true;
+      adguard.enable = true;
+      node_exporter.enable = true;
+      docker.enable = true;
       tailscale = {
         enable = true;
         routingFeatures = "server";

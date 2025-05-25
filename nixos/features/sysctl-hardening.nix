@@ -4,9 +4,13 @@
   type,
   ...
 }: let
-  opts = config.features.nix;
+  cfg = config.system.sysctl_hardening;
 in {
-  config = lib.mkIf opts.sysctl_hardening {
+  options.system.sysctl_hardening = {
+    enable = lib.mkEnableOption "Apply kernel hardening tweaks";
+  };
+
+  config = lib.mkIf cfg.enable {
     boot.kernel.sysctl = {
       # SysRq is a key combo which the kernel which respond to regardless of
       # whatever else it is doing. It can do stuff like reboot, crash the system,

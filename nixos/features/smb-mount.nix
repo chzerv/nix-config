@@ -5,9 +5,13 @@
   pkgs,
   ...
 }: let
-  opts = config.features.nix;
+  cfg = config.system.mount_smb_share;
 in {
-  config = lib.mkIf opts.mount_smb_share {
+  options.system.mount_smb_share = {
+    enable = lib.mkEnableOption "Mount SMB share exported from my NAS";
+  };
+
+  config = lib.mkIf cfg.enable {
     sops.secrets = {
       smb_user = {};
       smb_password = {};

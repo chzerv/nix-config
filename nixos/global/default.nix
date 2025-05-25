@@ -6,7 +6,8 @@
     ./network.nix
     ./nix-ld.nix
     ./nix.nix
+    ./performance.nix
     ./sops.nix
-    ./system
+    ./udev-rules.nix
   ];
 }

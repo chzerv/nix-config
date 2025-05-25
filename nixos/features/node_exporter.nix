@@ -1,10 +1,20 @@
-{config, ...}: let
-  opts = config.features.nix;
+{
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.system.node_exporter;
 in {
-  services.prometheus.exporters.node = {
-    enable = opts.node_exporter;
-    enabledCollectors = ["systemd"];
-    port = 9100;
-    openFirewall = true;
+  options.system.node_exporter = {
+    enable = lib.mkEnableOption "Setup Prometheus node_exporter";
+  };
+
+  config = {
+    services.prometheus.exporters.node = {
+      enable = cfg.enable;
+      enabledCollectors = ["systemd"];
+      port = 9100;
+      openFirewall = true;
+    };
   };
 }

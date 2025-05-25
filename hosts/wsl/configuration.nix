@@ -9,9 +9,9 @@
   ];
 
   config = {
-    features.nix = {
-      openssh = true;
-      docker = true;
+    system = {
+      openssh.enable = true;
+      docker.enable = true;
     };
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

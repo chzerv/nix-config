@@ -6,9 +6,13 @@
   type,
   ...
 }: let
-  opts = config.features.nix;
+  cfg = config.system.libvirt;
 in {
-  config = lib.mkIf opts.libvirt {
+  options.system.libvirt = {
+    enable = lib.mkEnableOption "Setup virtualisation using libvirt";
+  };
+
+  config = lib.mkIf cfg.enable {
     virtualisation.libvirtd = {
       enable = true;
       qemu = {
@@ -29,7 +33,7 @@ in {
         win-spice
       ]
       # Install virt-manager if there is a graphical environment
-      ++ lib.optionals (type != "server") [
+      ++ lib.optionals (type == "laptop" || type == "desktop") [
         virt-manager
       ];
   };

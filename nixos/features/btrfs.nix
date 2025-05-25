@@ -4,9 +4,13 @@
   config,
   ...
 }: let
-  opts = config.features.nix;
+  cfg = config.system.btrfs;
 in {
-  config = lib.mkIf opts.btrfs {
+  options.system.btrfs = {
+    enable = lib.mkEnableOption "Apply BTRFS tweaks";
+  };
+
+  config = lib.mkIf cfg.enable {
     services.btrfs.autoScrub.enable = true;
     services.btrfs.autoScrub.interval = "weekly";
 

@@ -5,7 +5,7 @@
   type,
   ...
 }: let
-  opts = config.features.nix;
+  cfg = config.system.power-profiles;
 
   # This script uses power-profiles-daemon and amd_pstate_epp (energy performance preference) to change power modes depending
   # on whether the system is powered on or not.
@@ -27,7 +27,11 @@
     ${pkgs.power-profiles-daemon}/bin/powerprofilesctl launch -p performance -- "$@"
   '';
 in {
-  config = lib.mkIf opts.ppd {
+  options.system.power-profiles = {
+    enable = lib.mkEnableOption "Enable and configure power-profiles-daemon";
+  };
+
+  config = lib.mkIf cfg.enable {
     services.power-profiles-daemon = {
       enable = true;
     };
