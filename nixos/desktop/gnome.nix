@@ -7,11 +7,6 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome = {
       enable = true;
-      extraGSettingsOverridePackages = [pkgs.mutter];
-      extraGSettingsOverrides = ''
-        [org.gnome.mutter]
-        experimental-features=['scale-monitor-framebuffer', 'variable-refresh-rate', 'xwayland-native-scaling']
-      '';
     };
   };
 
@@ -50,4 +45,5 @@
   ];
 
   services.udev.packages = with pkgs; [gnome-settings-daemon mutter];
+  programs.dconf.enable = true;
 }

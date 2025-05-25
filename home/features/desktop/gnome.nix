@@ -18,9 +18,16 @@ in {
         exec = "${pkgs.ghostty}/bin/ghostty";
       };
 
+      # Custom keybindings gnome default
+      "org/gnome/settings-daemon/plugins/media-keys" = {
+        custom-keybindings = [
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        ];
+      };
+
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Super>Return";
-        command = "ghostty";
+        command = "footclient";
         name = "Open Terminal";
       };
 
@@ -69,6 +76,9 @@ in {
 
       "org/gnome/mutter" = {
         edge-tiling = true;
+        attach-modal-dialogs = false;
+        dynamic-workspaces = false;
+        experimental-features = ["scale-monitor-framebuffer" "autoclose-xwayland"];
       };
 
       "org/gnome/nautilus" = {
