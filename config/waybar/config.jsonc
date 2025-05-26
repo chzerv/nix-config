@@ -1,0 +1,176 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "margin-left": 10,
+    "margin-right": 10,
+    "margin-top": 7,
+    "margin-bottom": 0,
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "reload_style_on_change": true,
+    "modules-left": [
+        "custom/spacer",
+        "hyprland/workspaces",
+        "custom/spacer",
+        "mpris"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "privacy",
+        // "network",
+        "pulseaudio",
+        "battery",
+        "power-profiles-daemon",
+        "tray",
+        "hyprland/language",
+        "clock",
+        "custom/power"
+    ],
+    "hyprland/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "on-click": "activate",
+        "show-special": true,
+        "format": "{icon}",
+        "format-icons": {
+            "default": "",
+            "active": ""
+        }
+    },
+    "hyprland/window": {
+        "format": "{class}",
+        "max-length": 120,
+        "icon": false,
+        "icon-size": 13
+    },
+    "privacy": {
+        "icon-spacing": 3,
+        "icon-size": 14,
+        "transition-duration": 250,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip": true
+            },
+            {
+                "type": "audio-in",
+                "tooltip": true
+            }
+        ]
+    },
+    "hyprland/language": {
+        "format": "{}",
+        "format-en": "en",
+        "format-gr": "gr"
+    },
+    "mpris": {
+        "format": "{dynamic} ({status})",
+        "dynamic-order": [
+            "artist",
+            "title"
+        ]
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 3
+    },
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%a, %d %b, %H:%M}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b>{}</b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode"
+        }
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "tooltip": false,
+        "format-muted": " Muted",
+        "format-bluetooth": "{icon}  {volume}%",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        }
+    },
+    "network": {
+        "tooltip": true,
+        "format-wifi": "{icon} ",
+        "format-icons": [
+            "󰤟",
+            "󰤢",
+            "󰤥"
+        ],
+        "rotate": 0,
+        "format-ethernet": "󰈀 ",
+        "tooltip-format-wifi": "SSID: <b>{essid}</b>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>",
+        "tooltip-format-ethernet": "󰈀 {ifname}",
+        "format-disconnected": " ",
+        "tooltip-format-disconnected": "Disconnected",
+        "on-click": "nm-connection-editor"
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 45,
+            "critical": 25
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "<span color='#a6d189'>󱐋 {capacity}%</span>",
+        "format-plugged": "󰂄 {capacity}%",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "tooltip": true,
+        "tooltip-format": "Capacity: {capacity}%\nCycles: {cycles}"
+    },
+    "power-profiles-daemon": {
+        "format": "{icon} ",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "power-saver": "",
+            "balanced": "",
+            "performance": ""
+        }
+    },
+    "custom/spacer": {
+        "format": " "
+    },
+    "custom/power": {
+        "format": " ",
+        "rotate": 0,
+        "on-click": "wlogout"
+    }
+}

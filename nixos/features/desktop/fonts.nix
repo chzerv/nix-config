@@ -25,6 +25,7 @@
       nerd-fonts.jetbrains-mono
       nerd-fonts.symbols-only
       nerd-fonts.hack
+      font-awesome
     ];
 
     fontconfig = {

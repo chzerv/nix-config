@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./gnome.nix
+    ./hyprland
   ];
 
   home.packages = with pkgs; [

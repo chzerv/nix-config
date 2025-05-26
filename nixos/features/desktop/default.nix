@@ -3,6 +3,7 @@
     ./gnome.nix
     ./fonts.nix
     ./peripherals.nix
+    ./hyprland
   ];
 
   # services = {
