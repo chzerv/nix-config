@@ -48,7 +48,7 @@ return {
 
     opts = function()
         return {
-            { "border-fused", "hide" },
+            { "border-fused" },
 
             defaults = { git_icons = false },
 
