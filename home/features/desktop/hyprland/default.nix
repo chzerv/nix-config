@@ -40,6 +40,7 @@ in {
       loupe
       gnome-calculator
       nautilus
+      blueman
     ];
 
     services = {
