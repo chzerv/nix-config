@@ -14,6 +14,7 @@ in {
     networking.firewall = {
       enable = cfg.enable;
       allowedTCPPorts = config.services.openssh.ports ++ localsendPort;
+      allowedUDPPorts = localsendPort;
     };
   };
 }
