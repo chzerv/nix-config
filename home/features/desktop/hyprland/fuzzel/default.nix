@@ -27,12 +27,18 @@
     name = "fuzzel-launcher";
     text = "fuzzel --prompt '󱓞 '";
   };
+
+  fuzzelWindowSwitcher = pkgs.writeShellApplication {
+    name = "fuzzel-window-switcher";
+    text = builtins.readFile ./fuzzel-window-switcher.sh;
+  };
 in {
   config = lib.mkIf config.wayland.windowManager.hyprland.enable {
     home.packages = with pkgs; [
       fuzzelClipboard
       fuzzelHyprshot
       fuzzelLauncher
+      fuzzelWindowSwitcher
       bemoji
     ];
 
@@ -42,7 +48,7 @@ in {
         main = {
           filter-desktop = true;
           lines = 10;
-          terminal = "ghostty";
+          terminal = "footclient";
           dpi-aware = "yes";
           use-bold = "yes";
           tabs = 2;
@@ -53,8 +59,18 @@ in {
         };
 
         border = {
-          width = 4;
+          width = 3;
           radius = 10;
+        };
+
+        colors = {
+          background = "1b1b1bff";
+          text = "d4be98ff";
+          selection = "3c3836ff";
+          selection-text = "7daea3ff";
+          border = "6c782eff";
+          match = "a9b665ff";
+          selection-match = "d3869bff";
         };
       };
     };
