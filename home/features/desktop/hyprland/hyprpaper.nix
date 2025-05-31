@@ -12,8 +12,8 @@
         splash = false;
         splash_offset = 2.0;
 
-        preload = ["/home/${username}/Pictures/Wallpapers/sushi-dark.png"];
-        wallpaper = [",/home/${username}/Pictures/Wallpapers/sushi-dark.png"];
+        preload = ["/home/${username}/Pictures/Wallpapers/bicycle.jpg"];
+        wallpaper = [",/home/${username}/Pictures/Wallpapers/bicycle.jpg"];
       };
     };
   };

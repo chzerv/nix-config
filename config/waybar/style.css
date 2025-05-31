@@ -5,11 +5,11 @@
 }
 
 window#waybar {
-  background: transparent;
-  border-radius: 10px;
+  background: #282828;
+  border-radius: 5px;
   border-width: 2px;
   border-style: solid;
-  border-color: #eb6e90;
+  border-color: #a9b665;
 }
 
 tooltip {
