@@ -107,6 +107,12 @@
         username = "xci";
         type = "server";
       };
+
+      nextcloud = myLib.mkNixosConfig {
+        hostname = "nextcloud";
+        username = "xci";
+        type = "server";
+      };
     };
 
     # Home Manager Configurations

@@ -2,9 +2,11 @@
 keys:
   - &host_luna age150rcj355hegl9n2l9t3v2ukdtvnzt3uc09c8kngzzq2y2r3p2vkqwdy9v0
   - &host_rpi4 age197zuvurk9jxcyakv733uqx04pk34hs36yd0awdcyv6d7dmrg397qefjmq7
+  - &host_nextcloud age1jstss38nwrsp5pzpcpt9k4mqsn8ls7clcugucuxsl3xce4aj3f7sq4eel0
 creation_rules:
   - path_regex: secrets.yaml$
     key_groups:
       - age:
           - *host_luna
           - *host_rpi4
+          - *host_nextcloud
