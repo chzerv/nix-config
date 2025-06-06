@@ -10,15 +10,15 @@ in {
     enable = lib.mkEnableOption "Enable and configure GNOME";
   };
   config = lib.mkIf cfg.enable {
-    services.xserver = {
-      enable = true;
-      excludePackages = [
-        pkgs.xterm
-      ];
+    services = {
+      # xserver = {
+      #   enable = true;
+      #   excludePackages = [
+      #     pkgs.xterm
+      #   ];
+      # };
       displayManager.gdm.enable = true;
-      desktopManager.gnome = {
-        enable = true;
-      };
+      desktopManager.gnome.enable = true;
     };
 
     environment.gnome.excludePackages = with pkgs; [
@@ -55,7 +55,14 @@ in {
       dconf2nix
     ];
 
-    services.udev.packages = with pkgs; [gnome-settings-daemon mutter];
+    services = {
+      udev.packages = with pkgs; [gnome-settings-daemon mutter];
+      dbus = {
+        enable = true;
+        implementation = "broker";
+      };
+    };
+
     programs.dconf.enable = true;
   };
 }
