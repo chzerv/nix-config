@@ -2,6 +2,7 @@
   programs.yazi = {
     enable = true;
     enableFishIntegration = true;
+    enableZshIntegration = true;
     settings = {
       manager = {
         # Pretty much the defaults

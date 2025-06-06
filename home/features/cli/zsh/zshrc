@@ -1,0 +1,78 @@
+## Ref: https://zsh.sourceforge.io/Doc/Release/Options.html
+## Ref: https://magnus919.com/2025/05/zsh-hidden-gems-advanced-tricks-that-will-transform-your-command-line-experience/
+## Ref: https://thevaluable.dev/zsh-expansion-guide-example/
+
+### Expansion and globbing settings
+unsetopt CASE_GLOB       # Make globbing case-insensitive
+setopt GLOB_DOTS         # Do not require a leading '.' in a filename to be matched
+setopt EXTENDED_GLOB     # Treat '#', '~' and '^' as part of patterns for filename generation
+setopt BRACE_CCL         # foo{x,y,z} -> foox, fooy, fooz
+setopt MAGIC_EQUAL_SUBST # Expand both '~' in `echo foo=~/bar:~/baz`
+
+### Input/Output settings
+setopt INTERACTIVE_COMMENTS # Allow comments in interactive mode
+setopt RC_QUOTES            # Show "Henry's Garage" instead of "Henry'\'s Garage"
+setopt CORRECT              # Turn on corrections
+setopt PATH_DIRS            # Search the path even for command names with slashes
+setopt AUTO_CD              # If the entered command matches a directory, cd into it without typing `cd`
+
+### Job control settings
+setopt AUTO_RESUME    # Attempt to resume existing job before creating a new process
+unsetopt BG_NICE      # Don't run all background jobs at a lower priority
+setopt LONG_LIST_JOBS # List jobs in the long format by default
+setopt NOTIFY         # Report status of background jobs immediately
+
+### Completion settings
+setopt ALWAYS_TO_END    # Move the cursor to the end of a completed word
+setopt AUTO_LIST        # Automatically list choice on ambiguous completion
+setopt AUTO_MENU        # Show completion menu on successive tab press
+setopt AUTO_PARAM_SLASH # Adds the trailing slash to completed directory names
+setopt COMPLETE_IN_WORD # Complete from both ends of a word
+
+# Treat words like bash does, e.g., when we have a path like
+# `/foo/bar` and `C-w` is pressed, delete only "bar".
+autoload -U select-word-style
+select-word-style bash
+
+# Automatically quote URLs
+autoload -Uz url-quote-magic
+zle -N self-insert url-quote-magic
+
+# History Settings
+HISTFILE="$HOME/.cache/zhistory"
+HISTSIZE=50000
+SAVEHIST=50000
+
+setopt APPEND_HISTORY         # Append to history rather than replacing it
+setopt BANG_HIST              # Make '!!' expand to the last entered command
+setopt EXTENDED_HISTORY       # Show timestamps in history
+setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicate entries first when trimming history
+setopt HIST_FIND_NO_DUPS      # Don't display duplicate entries
+setopt HIST_IGNORE_ALL_DUPS   # Replace old duplicate entries with the new ones
+setopt HIST_IGNORE_DUPS       # Don't add an entry for a command that was just ran
+setopt HIST_IGNORE_SPACE      # If a command starts with a space, don't add it to the history
+setopt HIST_SAVE_NO_DUPS      # Ommit older commands that duplicate newer ones
+setopt HIST_VERIFY            # Do not execute immediately upon history expansion
+setopt INC_APPEND_HISTORY     # Write to the history file immediately, not when the shell exits
+setopt SHARE_HISTORY          # Share history between all sessions
+
+### Zle settings
+setopt COMBINING_CHARS
+unsetopt BEEP nomatch
+
+# Keybindings
+bindkey -e
+bindkey "^A" vi-beginning-of-line  # C-A
+bindkey "^E"        vi-end-of-line # C-E
+
+### Edit in $EDITOR
+autoload edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
+
+[ -f "$ZDOTDIR/aliases.zsh" ] && source "$ZDOTDIR/aliases.zsh"
+
+for f in $ZDOTDIR/functions/*
+do
+    [ -f "$f" ] && source "$f"
+done

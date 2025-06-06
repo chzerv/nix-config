@@ -4,6 +4,7 @@ in {
   programs.navi = {
     enable = true;
     enableFishIntegration = true;
+    enableZshIntegration = true;
   };
 
   xdg.dataFile."navi/cheats/my" = {

@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./fish
+    ./zsh
     ./bat.nix
     ./bottom.nix
     ./direnv.nix

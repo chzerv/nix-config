@@ -58,10 +58,11 @@
     # };
 
     environment = {
-      shells = [pkgs.fish pkgs.bashInteractive];
+      shells = with pkgs; [zsh];
+      pathsToLink = ["/share/zsh"];
     };
 
-    programs.fish.enable = true;
+    programs.zsh.enable = true;
 
     users = {
       users = {
@@ -75,7 +76,7 @@
             "input"
             "dialout"
           ];
-          shell = pkgs.fish;
+          shell = pkgs.zsh;
           openssh.authorizedKeys.keys = [
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH3BmmYPJFi2QBh7luMiYgRqGaZJUM6B7mtgs6AjkYAl chzerv@vader"
           ];

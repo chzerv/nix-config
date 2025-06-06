@@ -2,6 +2,7 @@
   programs.fzf = {
     enable = true;
     enableFishIntegration = true;
+    enableZshIntegration = true;
     # Command executed when pressing Ctrl-T
     fileWidgetCommand = "fd --hidden --follow --exclude '.git'";
     # Options to be passed to Ctrl-R
