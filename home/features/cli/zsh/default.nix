@@ -7,8 +7,8 @@
     historySubstringSearch.enable = true;
     autosuggestion = {
       enable = true;
-      highlight = "fg=#808080,bg=none,underline";
-      strategy = ["history" "completion"];
+      # highlight = "fg=#808080,bg=none,underline";
+      # strategy = ["history" "completion"];
     };
 
     enableCompletion = true;

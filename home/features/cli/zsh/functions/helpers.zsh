@@ -18,3 +18,20 @@ function bd() {
 
     cd $git_root
 }
+
+# https://magnus919.com/2025/05/zsh-hidden-gems-advanced-tricks-that-will-transform-your-command-line-experience/
+function cd() {
+  # Go to home without arguments
+  [ -z "$*" ] && builtin cd && return
+  # If directory exists, change to it
+  [ -d "$*" ] && builtin cd "$*" && return
+  [ "$*" = "-" ] && builtin cd "$*" && return
+  # Catch cd . and cd ..
+  case "$*" in
+    ..) builtin cd ..; return;;
+    .) builtin cd .; return;;
+  esac
+  # Finally, call zoxide
+  z "$*" || builtin cd "$*"
+}
+

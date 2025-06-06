@@ -31,7 +31,7 @@ zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions co
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,cputime,cmd'
 
 ### TODO: ??
-# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 ### Colors and decorations
 zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
