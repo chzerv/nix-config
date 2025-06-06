@@ -38,8 +38,8 @@
         routingFeatures = "client";
       };
       vagrant.enable = false;
-      gnome.enable = false;
-      hyprland.enable = true;
+      gnome.enable = true;
+      hyprland.enable = false;
     };
 
     system.stateVersion = "24.11";
