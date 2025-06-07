@@ -10,6 +10,7 @@ return {
             "lua_ls",
             "dockerls",
             "terraformls",
+            "tofu_ls",
             "texlab",
             "ansiblels",
             "bashls",
