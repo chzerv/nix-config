@@ -1,8 +1,8 @@
-{
+{config, ...}: {
   programs.yazi = {
     enable = true;
-    enableFishIntegration = true;
-    enableZshIntegration = true;
+    enableFishIntegration = config.programs.fish.enable;
+    enableZshIntegration = config.programs.zsh.enable;
     settings = {
       manager = {
         # Pretty much the defaults

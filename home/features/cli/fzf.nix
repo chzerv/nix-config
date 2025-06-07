@@ -1,8 +1,8 @@
-{
+{config, ...}: {
   programs.fzf = {
     enable = true;
-    enableFishIntegration = true;
-    enableZshIntegration = true;
+    enableFishIntegration = config.programs.fish.enable;
+    enableZshIntegration = config.programs.zsh.enable;
     # Command executed when pressing Ctrl-T
     fileWidgetCommand = "fd --hidden --follow --exclude '.git'";
     # Options to be passed to Ctrl-R

@@ -1,8 +1,12 @@
-{lib, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   programs.starship = {
     enable = true;
-    enableFishIntegration = true;
-    enableZshIntegration = true;
+    enableFishIntegration = config.programs.fish.enable;
+    enableZshIntegration = config.programs.zsh.enable;
     settings = {
       format = lib.concatStrings [
         "$username"

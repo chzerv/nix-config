@@ -4,7 +4,7 @@
   ...
 }: {
   programs.fish = {
-    enable = false;
+    enable = true;
 
     interactiveShellInit = ''
       # Disable greeting
@@ -117,7 +117,7 @@
     };
   };
 
-  xdg.configFile = lib.mkMerge [
+  xdg.configFile = lib.mkIf config.programs.fish.enable (lib.mkMerge [
     {
       "fish/conf.d/kanagawa.fish" = {
         source = builtins.fetchurl {
@@ -140,5 +140,5 @@
         text = builtins.readFile ./completions/distrobox-generate-entry.fish;
       };
     })
-  ];
+  ]);
 }

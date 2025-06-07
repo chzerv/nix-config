@@ -3,8 +3,8 @@
 in {
   programs.navi = {
     enable = true;
-    enableFishIntegration = true;
-    enableZshIntegration = true;
+    enableFishIntegration = config.programs.fish.enable;
+    enableZshIntegration = config.programs.zsh.enable;
   };
 
   xdg.dataFile."navi/cheats/my" = {
