@@ -2,7 +2,7 @@ return {
     {
         "sainnhe/gruvbox-material",
         lazy = false,
-        enabled = true,
+        enabled = false,
         priority = 1000,
         config = function()
             vim.o.background = "dark"
@@ -48,6 +48,32 @@ return {
             })
 
             vim.cmd.colorscheme("vague")
+        end,
+    },
+    {
+        "webhooked/kanso.nvim",
+        lazy = false,
+        priority = 1000,
+        enabled = true,
+        config = function()
+            -- Default options:
+            require("kanso").setup({
+                bold = true,
+                italics = true,
+                compile = true,
+                undercurl = true,
+                commentStyle = { italic = true },
+                transparent = false,
+                dimInactive = true,
+                terminalColors = true,
+                theme = "ink", -- "zen", "ink", "pearl"
+                background = {
+                    dark = "ink",
+                    light = "pearl",
+                },
+            })
+
+            vim.cmd.colorscheme("kanso")
         end,
     },
 }
