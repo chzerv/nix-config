@@ -26,10 +26,15 @@
     '';
 
     shellAbbrs = {
-      rsync = "rsync --progress";
       cp = "cp -i -v";
-      rm = "rm -i -v";
+      mv = "mv -i -v";
+      ln = "ln -i";
+      rm = "rm -I -v --preserve-root";
       dd = "dd status=progress";
+      chown = "chown --preserve-root";
+      chmod = "chmod --preserve-root";
+      chgrp = "chgrp --preserve-root";
+      rsync = "rsync --progress";
       ":q" = "exit";
       ":Q" = "exit";
       sshfs = "sshfs - o idmap=user,ServerAliveInterval=5,ServerAliveCountMax=3,reconnect";
