@@ -1,16 +1,13 @@
 return {
     "saghen/blink.cmp",
-    lazy = false,
     build = "nix run .#build-plugin",
+    event = "InsertEnter",
     opts = {
-        fuzzy = { implementation = "rust" },
-
         keymap = {
-            preset = "none",
             ["<C-y>"] = { "select_and_accept" },
             ["<C-n>"] = { "show", "select_next", "fallback" },
-            ["<C-p>"] = { "select_prev", "fallback" },
             ["<Down>"] = { "show", "select_next", "fallback" },
+            ["<C-p>"] = { "select_prev", "fallback" },
             ["<Up>"] = { "select_prev", "fallback" },
             ["<C-k>"] = { "snippet_forward", "fallback" },
             ["<C-j"] = { "snippet_backward", "fallback" },
@@ -23,33 +20,10 @@ return {
             list = {
                 selection = { preselect = false, auto_insert = true },
             },
-
-            documentation = {
-                auto_show = true,
-                auto_show_delay_ms = 100,
-                window = {
-                    max_height = 15,
-                },
-            },
-            menu = {
-                -- Make the menu similar to nvim-cmp
-                draw = {
-                    columns = {
-                        { "label", "label_description", gap = 1 },
-                        { "kind_icon", "kind", gap = 1 },
-                    },
-                },
-            },
-        },
-
-        signature = {
-            enabled = true,
+            documentation = { auto_show = true },
         },
 
         snippets = { preset = "luasnip" },
-
-        -- Disable cmdline completion
-        cmdline = { enabled = false },
 
         sources = {
             -- When inside a comment, only enable the "buffer" source.
@@ -83,4 +57,5 @@ return {
             },
         },
     },
+    opts_extend = { "sources.default" },
 }
