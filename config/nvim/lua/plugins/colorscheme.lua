@@ -66,6 +66,11 @@ return {
                 transparent = false,
                 dimInactive = true,
                 terminalColors = true,
+                overrides = function(colors)
+                    return {
+                        WinSeparator = { fg = colors.palette.inkAqua },
+                    }
+                end,
                 theme = "ink", -- "zen", "ink", "pearl"
                 background = {
                     dark = "ink",
